@@ -9,7 +9,9 @@ function Menu() {
   return (
     <div>
         {/* navbar */}
-        <Navbar />
+        <div className='shadow'>
+          <Navbar />
+        </div>
 
         {/* sidebar */}
         <div className='d-flex align-center' >
