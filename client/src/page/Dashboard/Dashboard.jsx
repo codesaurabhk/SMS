@@ -2,7 +2,7 @@ import React from 'react'
 
 function Dashboard() {
   return (
-    <div className='btn btn-primary'>Dashboard</div>
+    <div className='btn btn-danger'>Dashboard</div>
   )
 }
 
