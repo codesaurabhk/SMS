@@ -11,7 +11,7 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<Menu />}>
           <Route path="sidebar" element={<Sidebar />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="" element={<Dashboard />} />
           <Route path="students" element={<Students />} />
         </Route>
       </Routes>

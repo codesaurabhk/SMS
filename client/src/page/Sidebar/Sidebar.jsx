@@ -5,9 +5,8 @@ function Sidebar() {
   return (
     <>
       {/* left side */}
-        <div>Logo</div>
         <div>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/">Dashboard</Link>
         </div>
         <div>
             <Link to="/students">Students</Link>
