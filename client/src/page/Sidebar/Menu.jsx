@@ -1,14 +1,16 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
+import Dashboard from '../Dashboard/Dashboard'
+import Navbar from '../Navbar/Navbar'
 
 
 function Menu() {
   return (
     <div>
         {/* navbar */}
-        <div className='w-100 bg-white p-10 text-center text-black mb-20 h-50 d-flex align-center justify-center'>
-            Navbar
+        <div className='shadow'>
+          <Navbar />
         </div>
 
         {/* sidebar */}
