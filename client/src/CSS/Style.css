@@ -86,9 +86,14 @@
 }
 
 .new-admission-dashboard {
-    background-image: linear-gradient(to right, #cf9fec, #ce9fdc, #c37bff);
     padding: 20px;
     border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+.new-admission-dashboard:hover {
+    transform: scale(1.1); 
 }
 
 .box-group{
@@ -111,8 +116,13 @@
 }
 
 .percent{
-    
     background-color: rgba(255, 255, 255, 0.356);
-    border-radius: 8px;
+    border-radius: 30px;
     padding: 0px 5px;
+}
+
+.form-select:focus {
+  border: none;
+  outline: none;
+  background: transparent;
 }
