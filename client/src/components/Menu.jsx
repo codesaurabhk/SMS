@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import Sidebar from './Sidebar'
-import Dashboard from '../Dashboard/Dashboard'
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../components/Navbar/Navbar'
+import Sidebar from '../components/Sidebar/Sidebar'
 
 
 function Menu() {
