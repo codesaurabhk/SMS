@@ -3,35 +3,37 @@ import { FaPlus } from "react-icons/fa6";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { IoMdArrowUp, IoMdArrowDown } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
-import { Bar } from "react-chartjs-2";
+import { Bar, Doughnut, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
+  ArcElement,
   Tooltip,
   Legend,
   PointElement,
   LineElement,
+  Filler,
 } from "chart.js";
-
-import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
+  BarElement,
+  ArcElement,
   PointElement,
   LineElement,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [year, setYear] = useState(2025);
   const [showModal, setShowModal] = useState(false);
+  const [attendanceType, setAttendanceType] = useState("staff");
 
   const handleToggle = () => setOpen(!open);
   const handleSelect = (option) => {
@@ -111,12 +113,6 @@ const Dashboard = () => {
   const currentYear = currentDate.getFullYear();
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
 
-  const firstDay = `01 ${months[selectedMonth]}`;
-  const lastDay = `${new Date(currentYear, selectedMonth + 1, 0)
-    .getDate()
-    .toString()
-    .padStart(2, "0")} ${months[selectedMonth]}`;
-
   // ===== Chart Dummy Data =====
   const chartMonths = [
     "Jan",
@@ -173,40 +169,86 @@ const Dashboard = () => {
     },
   };
 
-  // ===== Dummy Data for Attendance Line Chart =====
-  const attendanceMonths = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+  // === Attendance Dataset Config ===
+  const attendanceDataSets = {
+    staff: {
+      donut: [90, 10], // present, absent
+      line: [80, 75, 78, 85, 90, 88, 92, 95, 89, 87, 90, 93],
+      summary: "90% Attendance this Month",
+      change: "+4% from last month",
+    },
+    teacher: {
+      donut: [88, 12],
+      line: [70, 75, 78, 80, 85, 82, 86, 90, 88, 92, 85, 89],
+      summary: "88% Attendance this Month",
+      change: "+2% from last month",
+    },
+    student: {
+      donut: [85, 15],
+      line: [60, 68, 70, 72, 75, 78, 80, 85, 83, 88, 84, 90],
+      summary: "85% Attendance this Month",
+      change: "+5% from last month",
+    },
+  };
 
-  const attendanceValues = [10, 25, 60, 75, 40, 30, 45, 40, 85, 50, 35, 45];
+  // === Dynamic Chart Data Based on Selection ===
+  const selected = attendanceDataSets[attendanceType];
 
-  const lineData = {
-    labels: attendanceMonths,
+  const dynamicDonutData = {
+    labels: ["Present", "Absent"],
     datasets: [
       {
-        label: "Staff Attendance",
-        data: attendanceValues,
-        borderColor: "#007bff",
-        backgroundColor: "rgba(0,123,255,0.1)",
+        data: selected.donut,
+        backgroundColor: ["#4f46e5", "#e5e7eb"], // blue & gray
+        borderWidth: 0,
+        cutout: "70%",
+      },
+    ],
+  };
+
+  const dynamicLineData = {
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    datasets: [
+      {
+        label: `${attendanceType} Attendance`,
+        data: selected.line,
+        borderColor: "#2563eb",
+        backgroundColor: "rgba(37,99,235,0.1)",
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: "#007bff",
+        pointBackgroundColor: "#2563eb",
         pointRadius: 5,
         pointHoverRadius: 7,
         borderWidth: 2.5,
       },
     ],
+  };
+
+  const donutStats = {
+    present: selected.donut[0],
+    absent: selected.donut[1],
+    summary: selected.summary,
+    change: selected.change,
+  };
+
+  const donutOptions = {
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: true },
+    },
   };
 
   const lineOptions = {
@@ -237,16 +279,14 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="overview shadow p-3 rounded bg-white">
         {/* === Header Section === */}
-        <div className="overview-head d-flex justify-content-between align-items-center ">
+        <div className="overview-head ">
           <h3>Overview</h3>
 
           <div className="d-flex align-items-center gap-4 position-relative">
             {/* Month Filter */}
             <div
               className="month-filter border px-2 py-2 rounded-pill d-flex align-items-center justify-content-between"
-              style={{
-                width: "220px",
-              }}
+              style={{ width: "220px" }}
             >
               <select
                 className="form-select border-0 bg-transparent fw-semibold text-secondary"
@@ -312,42 +352,40 @@ const Dashboard = () => {
         {/* === Dashboard Cards === */}
         <div className="row mt-4">
           {dashboardData.map((item, index) => (
-            <div className="col-sm-2" key={index}>
+            <div className="dashboard-card col-12 col-sm-4 col-lg-2" key={index}>
               <div
-                className="new-admission-dashboard p-3 shadow rounded text-white"
+                className="new-admission-dashboard p-2 shadow rounded text-white"
                 style={{
                   background: item.gradient,
-                  border: "none",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
                 }}
               >
                 <div className="d-flex justify-content-between align-items-center">
-                  <div className="box-first fs-3">
+                  <div className="box-first">
                     {["Fees Dues", "Fees Collected"].includes(item.label)
                       ? "₹"
                       : ""}
                     {item.value}
                   </div>
-                  <div className="fs-1" style={{ color: "#ffffff98" }}>
+                  <div className="user-icon" style={{ color: "#ffffff98" }}>
                     {item.icon}
                   </div>
                 </div>
 
-                <div className="text fs-5 mt-2">{item.label}</div>
+                <div className="dashboard-card mt-1 mb-2">{item.label}</div>
 
-                <div className="d-flex justify-content-between align-items-center">
-                  <div className="percent mt-1">
+                <div className="d-flex justify-content-between align-items-center mt-1 gap-1">
+                  <div className="card-bottom">
                     <span
-                      className={`${item.color} d-flex align-items-center gap-1`}
+                      className= { `${item.color} sign d-flex align-items-center `}
                     >
                       {item.percent}%
                       {item.percent >= 0 ? <IoMdArrowUp /> : <IoMdArrowDown />}
                     </span>
                   </div>
-                  <div className="percent mt-1 d-flex align-items-center px-2">
-                    <span>
+                  <div className="percent d-flex align-items-center">
+                    
                       <IoIosArrowDown /> Monthly
-                    </span>
+                    
                   </div>
                 </div>
               </div>
@@ -356,10 +394,11 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* === Earnings Chart === */}
+      {/* === Charts Section === */}
       <div className="d-flex gap-4 mt-4">
         <div className="w-75">
-          <div className="p-4 bg-white rounded shadow">
+          {/* Earnings Chart */}
+          <div className="earing-graph p-4 bg-white rounded shadow mb-4">
             <div className="d-flex justify-content-between align-items-center ">
               <h5 className="fw-bold">Earnings</h5>
               <div className="d-flex align-items-center gap-2">
@@ -388,8 +427,8 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <Bar data={chartData} options={chartOptions} height={80} />
-
+            <Bar data={chartData} options={chartOptions} height={120} />
+  
             <div className="text-center mt-3">
               <p className="fw-semibold text-primary mb-0">
                 Rs. 11,30,650.00 Earnings this year
@@ -400,9 +439,26 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-white rounded mt-4 shadow">
-            <div className="d-flex justify-content-between align-items-center">
-              <h5 className="fw-bold">Staff Attendance</h5>
+          {/* === Attendance Chart === */}
+          <div className="p-4 bg-white rounded shadow">
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <div className="d-flex align-items-center gap-2">
+                <select
+                  value={attendanceType}
+                  onChange={(e) => setAttendanceType(e.target.value)}
+                  className="form-select border-0 fw-semibold"
+                  style={{
+                    width: "180px",
+                    backgroundColor: "#f8f9fa",
+                    borderRadius: "20px",
+                  }}
+                >
+                  <option value="staff">Staff Attendance</option>
+                  <option value="teacher">Teacher Attendance</option>
+                  <option value="student">Student Attendance</option>
+                </select>
+              </div>
+
               <div className="d-flex align-items-center gap-2">
                 <select
                   value={year}
@@ -429,67 +485,52 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* === Line Chart === */}
-            <Line data={lineData} options={lineOptions} height={100} />
+            {/* === Chart Layout === */}
+            <div className="d-flex align-items-center justify-content-between flex-wrap gap-4">
+              {/* === Donut Chart Section === */}
+              <div className="text-center" style={{ width: "250px" }}>
+                <Doughnut data={dynamicDonutData} options={donutOptions} />
+                <div className="mt-3">
+                  <p className="fw-bold mb-1">{donutStats.present}%</p>
+                  <p className="text-secondary mb-0">Present</p>
+                  <p className="fw-bold mb-1 mt-3">{donutStats.absent}%</p>
+                  <p className="text-secondary mb-0">Absent</p>
+                </div>
+              </div>
 
-            <div className="text-center mt-3">
-              <p className="fw-semibold text-primary mb-0">
-                95% Attendance this Month
-              </p>
-              <span className="text-success fw-semibold">
-                +5% from last month
-              </span>
-            </div>
-          </div>
-
-          <div className="p-4 bg-white rounded mt-4 shadow">
-            <div className="d-flex justify-content-between align-items-center ">
-              <h5 className="fw-bold">Earnings</h5>
-              <div className="d-flex align-items-center gap-2">
-                <select
-                  value={year}
-                  onChange={(e) => setYear(e.target.value)}
-                  className="form-select border-0 fw-semibold"
+              {/* === Line Chart Section === */}
+              <div style={{ flex: 1 }}>
+                <div
+                  className="bg-white rounded position-relative shadow-sm"
                   style={{
-                    width: "90px",
-                    backgroundColor: "#f8f9fa",
-                    borderRadius: "20px",
+                    boxShadow:
+                      "8px 8px 15px rgba(0,0,0,0.1), -8px 8px 15px rgba(0,0,0,0.05)",
+                    borderRadius: "15px",
+                    padding: "10px 15px",
                   }}
                 >
-                  {[2025, 2024, 2023].map((y) => (
-                    <option key={y} value={y}>
-                      {y}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  className="btn btn-outline-primary rounded-pill fw-semibold"
-                  onClick={() => setShowModal(true)}
-                >
-                  View Details
-                </button>
+                  <Line
+                    data={dynamicLineData}
+                    options={lineOptions}
+                    height={100}
+                  />
+                </div>
+
+                <div className="text-center mt-3">
+                  <p className="fw-semibold text-primary mb-0">
+                    {donutStats.summary}
+                  </p>
+                  <span className="text-success fw-semibold">
+                    {donutStats.change}
+                  </span>
+                </div>
               </div>
-            </div>
-
-            <Bar data={chartData} options={chartOptions} height={80} />
-
-            <div className="text-center mt-3">
-              <p className="fw-semibold text-primary mb-0">
-                Rs. 11,30,650.00 Earnings this year
-              </p>
-              <span className="text-success fw-semibold">
-                20% ↑ from last year
-              </span>
             </div>
           </div>
         </div>
 
         <div className="p-4 bg-white rounded w-25"></div>
       </div>
-
-
-      {/* new code */}
-      
 
       {/* === Modal === */}
       {showModal && (
