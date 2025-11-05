@@ -1,4 +1,4 @@
-.body   {
+.body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -92,7 +92,7 @@
 
 .add-button {
     font-weight: 600;
-    font-size: 12;
+    font-size: 12px;
     color: #FFFFFF;
 }
 
@@ -213,5 +213,20 @@
 @media (min-width: 1440px) {
     .link-head {
         font-size: 16px;
+    }
+     .box-first {
+        font-size: 25px;
+    }
+    .user-icon {
+        font-size: 50px;
+    }
+    .dashboard-card {
+        font-size: 20px;
+    }
+    .sign {
+        font-size: 15px;
+    }
+    .percent {
+        font-size: 15px;
     }
 }

@@ -206,36 +206,36 @@ const Dashboard = () => {
     ],
   };
 
-  const dynamicLineData = {
-    labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
-    datasets: [
-      {
-        label: `${attendanceType} Attendance`,
-        data: selected.line,
-        borderColor: "#2563eb",
-        backgroundColor: "rgba(37,99,235,0.1)",
-        fill: true,
-        tension: 0.4,
-        pointBackgroundColor: "#2563eb",
-        pointRadius: 5,
-        pointHoverRadius: 7,
-        borderWidth: 2.5,
-      },
-    ],
-  };
+  // const dynamicLineData = {
+  //   labels: [
+  //     "Jan",
+  //     "Feb",
+  //     "Mar",
+  //     "Apr",
+  //     "May",
+  //     "Jun",
+  //     "Jul",
+  //     "Aug",
+  //     "Sep",
+  //     "Oct",
+  //     "Nov",
+  //     "Dec",
+  //   ],
+  //   datasets: [
+  //     {
+  //       label: `${attendanceType} Attendance`,
+  //       data: selected.line,
+  //       borderColor: "#2563eb",
+  //       backgroundColor: "rgba(37,99,235,0.1)",
+  //       fill: true,
+  //       tension: 0.4,
+  //       pointBackgroundColor: "#2563eb",
+  //       pointRadius: 5,
+  //       pointHoverRadius: 7,
+  //       borderWidth: 2.5,
+  //     },
+  //   ],
+  // };
 
   const donutStats = {
     present: selected.donut[0],
@@ -251,29 +251,29 @@ const Dashboard = () => {
     },
   };
 
-  const lineOptions = {
-    responsive: true,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        backgroundColor: "#007bff",
-        titleFont: { size: 12 },
-        bodyFont: { size: 14 },
-        displayColors: false,
-        callbacks: {
-          label: (context) => `${context.parsed.y}%`,
-        },
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        grid: { color: "#f1f1f1" },
-        ticks: { callback: (val) => val + "%" },
-      },
-      x: { grid: { display: false } },
-    },
-  };
+  // const lineOptions = {
+  //   responsive: true,
+  //   plugins: {
+  //     legend: { display: false },
+  //     tooltip: {
+  //       backgroundColor: "#007bff",
+  //       titleFont: { size: 12 },
+  //       bodyFont: { size: 14 },
+  //       displayColors: false,
+  //       callbacks: {
+  //         label: (context) => `${context.parsed.y}%`,
+  //       },
+  //     },
+  //   },
+  //   scales: {
+  //     y: {
+  //       beginAtZero: true,
+  //       grid: { color: "#f1f1f1" },
+  //       ticks: { callback: (val) => val + "%" },
+  //     },
+  //     x: { grid: { display: false } },
+  //   },
+  // };
 
   return (
     <div className="dashboard">
@@ -352,7 +352,10 @@ const Dashboard = () => {
         {/* === Dashboard Cards === */}
         <div className="row mt-4">
           {dashboardData.map((item, index) => (
-            <div className="dashboard-card col-12 col-sm-4 col-lg-2" key={index}>
+            <div
+              className="dashboard-card col-12 col-sm-4 col-lg-2"
+              key={index}
+            >
               <div
                 className="new-admission-dashboard p-2 shadow rounded text-white"
                 style={{
@@ -376,16 +379,14 @@ const Dashboard = () => {
                 <div className="d-flex justify-content-between align-items-center mt-1 gap-1">
                   <div className="card-bottom">
                     <span
-                      className= { `${item.color} sign d-flex align-items-center `}
+                      className={`${item.color} sign d-flex align-items-center `}
                     >
                       {item.percent}%
                       {item.percent >= 0 ? <IoMdArrowUp /> : <IoMdArrowDown />}
                     </span>
                   </div>
                   <div className="percent d-flex align-items-center">
-                    
-                      <IoIosArrowDown /> Monthly
-                    
+                    <IoIosArrowDown /> Monthly
                   </div>
                 </div>
               </div>
@@ -398,18 +399,16 @@ const Dashboard = () => {
       <div className="d-flex gap-4 mt-4">
         <div className="w-75">
           {/* Earnings Chart */}
-          <div className="earing-graph p-4 bg-white rounded shadow mb-4">
+          <div className="p-4 bg-white rounded shadow mb-4">
             <div className="d-flex justify-content-between align-items-center ">
               <h5 className="fw-bold">Earnings</h5>
               <div className="d-flex align-items-center gap-2">
                 <select
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
-                  className="form-select border-0 fw-semibold"
+                  className="form-select fw-semibold text-secondry border border-2 text-muted"
                   style={{
                     width: "90px",
-                    backgroundColor: "#f8f9fa",
-                    borderRadius: "20px",
                   }}
                 >
                   {[2025, 2024, 2023].map((y) => (
@@ -419,7 +418,7 @@ const Dashboard = () => {
                   ))}
                 </select>
                 <button
-                  className="btn btn-outline-primary rounded-pill fw-semibold"
+                  className="btn border border-2 border border-secondary text-white shadow bg-secondary rounded fw-semibold"
                   onClick={() => setShowModal(true)}
                 >
                   View Details
@@ -428,7 +427,7 @@ const Dashboard = () => {
             </div>
 
             <Bar data={chartData} options={chartOptions} height={120} />
-  
+
             <div className="text-center mt-3">
               <p className="fw-semibold text-primary mb-0">
                 Rs. 11,30,650.00 Earnings this year
@@ -446,11 +445,9 @@ const Dashboard = () => {
                 <select
                   value={attendanceType}
                   onChange={(e) => setAttendanceType(e.target.value)}
-                  className="form-select border-0 fw-semibold"
+                  className="form-select fw-semibold border-0"
                   style={{
-                    width: "180px",
-                    backgroundColor: "#f8f9fa",
-                    borderRadius: "20px",
+                    width: "200px",
                   }}
                 >
                   <option value="staff">Staff Attendance</option>
@@ -463,11 +460,9 @@ const Dashboard = () => {
                 <select
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
-                  className="form-select border-0 fw-semibold"
+                  className="form-select border border-2 fw-semibold bg-secondry"
                   style={{
                     width: "110px",
-                    backgroundColor: "#f8f9fa",
-                    borderRadius: "20px",
                   }}
                 >
                   {["Monthly", "Weekly", "Daily"].map((y) => (
@@ -477,7 +472,7 @@ const Dashboard = () => {
                   ))}
                 </select>
                 <button
-                  className="btn btn-outline-primary rounded-pill fw-semibold"
+                  className="btn btn-outline-primary border border-2 fw-semibold"
                   onClick={() => setShowModal(true)}
                 >
                   View Details
@@ -490,16 +485,52 @@ const Dashboard = () => {
               {/* === Donut Chart Section === */}
               <div className="text-center" style={{ width: "250px" }}>
                 <Doughnut data={dynamicDonutData} options={donutOptions} />
-                <div className="mt-3">
-                  <p className="fw-bold mb-1">{donutStats.present}%</p>
-                  <p className="text-secondary mb-0">Present</p>
-                  <p className="fw-bold mb-1 mt-3">{donutStats.absent}%</p>
-                  <p className="text-secondary mb-0">Absent</p>
+
+                <div className="mt-4">
+                  {/* Present */}
+                  <div className=" gap-2 mb-2">
+                    <div>
+                    <span className="fw-bold text-dark">
+                      {donutStats.present}%
+                    </span>
+                    <span
+                      className="border"
+                      style={{
+                        width: "14px",
+                        height: "14px",
+                        backgroundColor: "#4f46e5", // Present color
+                      }}
+                    ></span>
+                    </div>
+                    <div>
+                      <span className="text-secondary fw-semibold">Present</span>
+                    </div>
+                    
+                  </div>
+
+                  {/* Absent */}
+                  <div className="d-flex align-items-center justify-content-center gap-2">
+                    <span className="fw-bold text-dark">
+                      {donutStats.absent}%
+                    </span>
+                    <br />
+                    <span className="text-secondary fw-semibold">Absent</span>
+                    <span
+                      className="border"
+                      style={{
+                        width: "14px",
+                        height: "14px",
+                        backgroundColor: "#e5e7eb", // Absent color
+                      }}
+                    ></span>
+                    
+                    
+                  </div>
                 </div>
               </div>
 
               {/* === Line Chart Section === */}
-              <div style={{ flex: 1 }}>
+              {/* <div style={{ flex: 1 }}>
                 <div
                   className="bg-white rounded position-relative shadow-sm"
                   style={{
@@ -524,7 +555,7 @@ const Dashboard = () => {
                     {donutStats.change}
                   </span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
