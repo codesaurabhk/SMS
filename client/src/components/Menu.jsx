@@ -1,32 +1,47 @@
-import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
-import Navbar from '../components/Navbar/Navbar'
-import Sidebar from '../components/Sidebar/Sidebar'
-
+import React, { useState, useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 function Menu() {
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const { pathname } = useLocation();
+
+  // Close sidebar on route change
+  useEffect(() => setOpenSidebar(false), [pathname]);
+
+  // Optional: lock scroll when sidebar open
+  useEffect(() => {
+    if (openSidebar) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => (document.body.style.overflow = "");
+  }, [openSidebar]);
+
   return (
     <div>
-        {/* navbar */}
-        <div className='shadow'>
-          <Navbar />
-        </div>
+      <div className="shadow">
+        <Navbar
+          onToggleSidebar={() => setOpenSidebar(v => !v)}
+          isSidebarOpen={openSidebar}
+        />
+      </div>
 
-        {/* sidebar */}
-        <div className='d-flex align-center' >
-            {/* left side */}
-            <div className='sidebar-left'>
-                <Sidebar />
-            </div>
+      <div className="d-flex align-center">
+        {/* Sidebar */}
+        <aside className={`sidebar-left ${openSidebar ? "is-open" : ""}`}>
+          <Sidebar />
+        </aside>
 
-            {/* right side */}
-            <div className='sidebar-right'>
-                <Outlet />
-            </div>
-        </div>
+        {/* Backdrop for mobile */}
+        {openSidebar && <div className="sidebar-backdrop" onClick={() => setOpenSidebar(false)} />}
 
+        {/* Content */}
+        <main className="sidebar-right">
+          <Outlet />
+        </main>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Menu
+export default Menu;
