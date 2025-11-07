@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { HiOutlineUserGroup } from "react-icons/hi2";
-import { IoMdArrowUp, IoMdArrowDown, IoIosArrowDown, IoIosMore } from "react-icons/io";
+import {
+  IoMdArrowUp,
+  IoMdArrowDown,
+  IoIosArrowDown,
+  IoIosMore,
+} from "react-icons/io";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Calendar from 'react-calendar';
+import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import {
   Chart as ChartJS,
@@ -32,8 +37,7 @@ ChartJS.register(
   Filler
 );
 
-
-  /* ================== images ===================== */
+/* ================== images ===================== */
 
 import DashboardGoPremium from "../../assets/images/dashboard-go-premium.png";
 
@@ -47,7 +51,6 @@ const Dashboard = () => {
   const [selectedSection, setSelectedSection] = useState("");
   const [filterClass, setFilterClass] = useState("");
   const [value, setValue] = useState(new Date());
-  
 
   const handleToggle = () => setOpen(!open);
   const handleSelect = (option) => {
@@ -401,7 +404,7 @@ const Dashboard = () => {
     },
   ];
 
-  // ======topStudent 
+  // ======topStudent
 
   const topStudentsData = [
     {
@@ -569,8 +572,41 @@ const Dashboard = () => {
     ? pendingFeesData.filter((item) => item.class === filterClass)
     : pendingFeesData;
 
-
-    
+  {
+    /* Dummy data For Event table  */
+  }
+  const eventData = [
+    {
+      id: 1,
+      title: "Parent-Teacher Meeting",
+      dateTime: "11th Nov 2025, 10:30 AM",
+      status: "Upcoming",
+    },
+    {
+      id: 2,
+      title: "Science Exhibition",
+      dateTime: "15th Nov 2025, 09:00 AM",
+      status: "Ongoing",
+    },
+    {
+      id: 3,
+      title: "Annual Sports Day",
+      dateTime: "25th Nov 2025, 08:30 AM",
+      status: "Completed",
+    },
+    {
+      id: 4,
+      title: "Cultural Fest",
+      dateTime: "2nd Dec 2025, 12:00 PM",
+      status: "Upcoming",
+    },
+    {
+      id: 5,
+      title: "Board Exam Orientation",
+      dateTime: "8th Dec 2025, 09:00 AM",
+      status: "Upcoming",
+    },
+  ];
 
   return (
     <div className="dashboard">
@@ -1067,7 +1103,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="table-responsive">
+              <div className="table">
                 <table className="table table-border-bottom align-middle text-center">
                   <thead className="table-light border-bottom">
                     <tr>
@@ -1112,33 +1148,92 @@ const Dashboard = () => {
                 <span>Explore 25k+ Feature With life time membership</span>
               </div>
               <div className="mt-4">
-                <div className="btn btn-primary px-4 d-flex align-items-center justify-content-center" style={{height:'30px'}}>
+                <div
+                  className="btn btn-primary px-4 d-flex align-items-center justify-content-center"
+                  style={{ height: "30px" }}
+                >
                   <span className="dashboard-member">Get Full Access</span>
                 </div>
               </div>
             </div>
-            <div className="" style={{width:'220px', height:'180px'}}>
-              <img className="" src={DashboardGoPremium} alt="" style={{ width:'100%',height:'100%',objectFit:'contain'}} />
+            <div className="" style={{ width: "220px", height: "180px" }}>
+              <img
+                className=""
+                src={DashboardGoPremium}
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              />
             </div>
           </div>
           {/* ============================= Holiday Calender ============================ */}
-        <div className="mt-2 ">
-          <div className="d-flex justify-content-between">
-            <span className="holiday fw-bold">Holiday Calender </span>
-            <span className="dtpkr btn ">
-              <button>view All</button>
-            </span>
+          <div className="mt-2 ">
+            <div className="d-flex justify-content-between">
+              <span className="holiday fw-bold">Holiday Calender </span>
+              <span className="dtpkr btn ">
+                <button className="btn btn-dark fw-semibold btn-sm px-3">
+                  View All
+                </button>
+              </span>
+            </div>
+
+            <div className="mt-3">
+              <div>
+                <Calendar onChange={setValue} value={value} />
+              </div>
+            </div>
           </div>
 
-          <div className="mt-3">
-            <div>
-      <Calendar onChange={setValue} value={value} />
-    </div>
+          {/* =============================== Reminder Table =============================*/}
+          <div className="mt-2">
+            <div className="d-flex justify-content-between">
+              <span className="holiday fw-bold">Reminder</span>
+              <span className="dtpkr btn ">
+                <button className="btn btn-dark fw-semibold btn-sm px-3">
+                  View All
+                </button>
+              </span>
+            </div>
+            <div className="table">
+              <table className="table table-border-bottom align-middle text-center">
+                <thead className="table-light border-bottom">
+                  <tr>
+                    <th>Title</th>
+                    <th>Date & Time</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {eventData.map((event) => (
+                    <tr className="text-start fw-light" key={event.id}>
+                      <td>{event.title}</td>
+                      <td>{event.dateTime}</td>
+                      <td>
+                        <span
+                          className={`badge ${
+                            event.status === "Upcoming"
+                              ? "bg- text-warning"
+                              : event.status === "Ongoing"
+                              ? "bg-warning text-dark"
+                              : "bg-success"
+                          }`}
+                          style={
+    event.status === "Upcoming"
+      ? { backgroundColor: "#FDFDEC", }
+      : {}
+  }
+                        >
+                          {event.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-        </div>
       </div>
-      
+
       {/* ========================= Modal =========================== */}
       {showModal && (
         <div
