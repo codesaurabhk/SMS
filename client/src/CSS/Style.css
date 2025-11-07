@@ -90,7 +90,7 @@
     background-color: #343C4D;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     will-change: transform;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 .pages-linkage {
@@ -193,6 +193,22 @@
     outline: none;
     background: transparent;
 }
+
+.table-select {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: inherit !important; /* inherits text color of th */
+  padding-left: 0 !important; /* optional: aligns text better */
+  appearance: none; /* hides default arrow on some browsers */
+}
+
+.table-select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
 
 @media (min-width: 425px) {
     .link-head {
