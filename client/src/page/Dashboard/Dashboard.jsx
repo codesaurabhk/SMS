@@ -33,7 +33,7 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [year, setYear] = useState(2025);
   const [showModal, setShowModal] = useState(false);
-  const [attendanceType, setAttendanceType] = useState("staff");
+  const [attendanceType, setAttendanceType] = useState("teacher");
 
   const handleToggle = () => setOpen(!open);
   const handleSelect = (option) => {
@@ -112,6 +112,7 @@ const Dashboard = () => {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+  const [years, setYears] = useState(new Date().toISOString().slice(0, 10));
 
   // ===== Chart Dummy Data =====
   const chartMonths = [
@@ -176,30 +177,192 @@ const Dashboard = () => {
       line: [80, 75, 78, 85, 90, 88, 92, 95, 89, 87, 90, 93],
       summary: "90% Attendance this Month",
       change: "+4% from last month",
+      tableData: [
+        {
+          Sn: 1,
+          Name: "Raj",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 1,
+          Name: "Anshu",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 2,
+          Name: "Rashmi",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 3,
+          Name: "Ankita",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+      ],
     },
     teacher: {
       donut: [88, 12],
       line: [70, 75, 78, 80, 85, 82, 86, 90, 88, 92, 85, 89],
       summary: "88% Attendance this Month",
       change: "+2% from last month",
+      tableData: [
+        {
+          Sn: 1,
+          Name: "Raj",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 2,
+          Name: "Aditya",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 3,
+          Name: "Akash",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 4,
+          Name: "Rohan Raj",
+          Class: "8A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 5,
+          Name: "Raju",
+          Class: "2c",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 6,
+          Name: "Raja",
+          Class: "5A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 7,
+          Name: "Raj Kumar",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 8,
+          Name: "Ram",
+          Class: "6D",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 9,
+          Name: "Ramu Kaka",
+          Class: "9B",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 10,
+          Name: "Mohan Chamar",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+      ],
     },
     student: {
       donut: [85, 15],
       line: [60, 68, 70, 72, 75, 78, 80, 85, 83, 88, 84, 90],
       summary: "85% Attendance this Month",
       change: "+5% from last month",
+      tableData: [
+        {
+          Sn: 1,
+          Name: "Raj",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 2,
+          Name: "Aditya",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 3,
+          Name: "Akash",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 4,
+          Name: "Rohan Raj",
+          Class: "8A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 5,
+          Name: "Raju",
+          Class: "2c",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 6,
+          Name: "Raja",
+          Class: "5A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 7,
+          Name: "Raj Kumar",
+          Class: "6A",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 8,
+          Name: "Ram",
+          Class: "6D",
+          Reason: "Medical Reason",
+        },
+        {
+          Sn: 9,
+          Name: "Ramu Kaka",
+          Class: "9B",
+          Reason: "Medical Reason",
+        },
+      ],
     },
   };
 
-  // === Dynamic Chart Data Based on Selection ===
+  // === Select based on attendanceType ===
   const selected = attendanceDataSets[attendanceType];
+
+  const donutStats = {
+    present: selected.donut[0],
+    absent: selected.donut[1],
+    summary: selected.summary,
+    change: selected.change,
+  };
+
+  const donutOptions = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+  };
 
   const dynamicDonutData = {
     labels: ["Present", "Absent"],
     datasets: [
       {
         data: selected.donut,
-        backgroundColor: ["#4f46e5", "#e5e7eb"], // blue & gray
+        backgroundColor: ["#C889FF", "#FAD370"], // blue & gray
         borderWidth: 0,
         cutout: "70%",
       },
@@ -237,19 +400,19 @@ const Dashboard = () => {
   //   ],
   // };
 
-  const donutStats = {
-    present: selected.donut[0],
-    absent: selected.donut[1],
-    summary: selected.summary,
-    change: selected.change,
-  };
+  // const donutStats = {
+  //   present: selected.donut[0],
+  //   absent: selected.donut[1],
+  //   summary: selected.summary,
+  //   change: selected.change,
+  // };
 
-  const donutOptions = {
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: true },
-    },
-  };
+  // const donutOptions = {
+  //   plugins: {
+  //     legend: { display: false },
+  //     tooltip: { enabled: true },
+  //   },
+  // };
 
   // const lineOptions = {
   //   responsive: true,
@@ -457,7 +620,7 @@ const Dashboard = () => {
               </div>
 
               <div className="d-flex align-items-center gap-2">
-                <select
+                {/*  <select
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
                   className="form-select border border-2 fw-semibold bg-secondry"
@@ -470,7 +633,30 @@ const Dashboard = () => {
                       {y}
                     </option>
                   ))}
-                </select>
+                </select> */}
+
+                <div
+  className="border border-2 rounded px-2 py-1 d-flex align-items-center justify-content-center fw-semibold"
+  style={{
+    width: "150px",
+    cursor: "pointer",
+  }}
+  onClick={() => document.getElementById("datePicker").showPicker()} // 👈 opens calendar
+>
+  <input
+    id="datePicker"
+    type="date"
+    className="form-control form-control-sm bg-transparent border-0 fw-semibold text-center p-0"
+    style={{
+      width: "100%",
+      cursor: "pointer",
+    }}
+    value={years}
+    onChange={(e) => setYear(e.target.value)}
+  />
+</div>
+
+
                 <button
                   className="btn btn-outline-primary border border-2 fw-semibold"
                   onClick={() => setShowModal(true)}
@@ -481,50 +667,54 @@ const Dashboard = () => {
             </div>
 
             {/* === Chart Layout === */}
-            <div className="d-flex align-items-center justify-content-between flex-wrap gap-4">
+            <div className="d-flex align-items-center justify-content-between gap-4">
               {/* === Donut Chart Section === */}
               <div className="text-center" style={{ width: "250px" }}>
                 <Doughnut data={dynamicDonutData} options={donutOptions} />
 
-                <div className="mt-4">
+                <div className="mt-4 text-center ">
                   {/* Present */}
-                  <div className=" gap-2 mb-2">
-                    <div>
-                    <span className="fw-bold text-dark">
+                  <div className="mb-3">
+                    <span className="fw-bold text-dark fs-2 d-flex">
                       {donutStats.present}%
                     </span>
-                    <span
-                      className="border"
-                      style={{
-                        width: "14px",
-                        height: "14px",
-                        backgroundColor: "#4f46e5", // Present color
-                      }}
-                    ></span>
+
+                    <div className="d-flex align-items-center gap-2">
+                      <span
+                        style={{
+                          display: "inline-block",
+                          width: "30px",
+                          height: "8px",
+                          backgroundColor: "#C889FF",
+                          borderRadius: "2px",
+                          marginLeft: "6px",
+                        }}
+                      ></span>
+                      <span className="text-secondary fw-semibold">
+                        Present
+                      </span>
                     </div>
-                    <div>
-                      <span className="text-secondary fw-semibold">Present</span>
-                    </div>
-                    
                   </div>
 
                   {/* Absent */}
-                  <div className="d-flex align-items-center justify-content-center gap-2">
-                    <span className="fw-bold text-dark">
+                  <div>
+                    <span className="fw-bold text-dark fs-2 d-flex">
                       {donutStats.absent}%
                     </span>
-                    <br />
-                    <span className="text-secondary fw-semibold">Absent</span>
-                    <span
-                      className="border"
-                      style={{
-                        width: "14px",
-                        height: "14px",
-                        backgroundColor: "#e5e7eb", // Absent color
-                      }}
-                    ></span>
-                    
-                    
+
+                    <div className="d-flex align-items-center gap-2">
+                      <span
+                        style={{
+                          display: "inline-block",
+                          width: "30px",
+                          height: "8px",
+                          backgroundColor: "#FAD370",
+                          borderRadius: "2px",
+                          marginLeft: "6px",
+                        }}
+                      ></span>
+                      <span className="text-secondary fw-semibold">Absent</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -556,6 +746,42 @@ const Dashboard = () => {
                   </span>
                 </div>
               </div> */}
+
+              {/* =====First Table Code ====== */}
+              <div className="table">
+                <table className="table table-bordered-bottom align-middle text-center mb-0">
+                  <thead className="table-light">
+                    <tr className="">
+                      <th className="">S.N</th>
+                      <th>
+                        <select
+                          className="form-select form-select-sm table-select fw-bold fs-6"
+                          value={attendanceType}
+                          onChange={(e) => setAttendanceType(e.target.value)}
+                          
+                        >
+                          <option value="teacher" className="fw-bold fs-6">Absentees(Teacher)</option>
+                          <option value="staff" className="fw-bold fs-6">Absentees(Staff)</option>
+                          <option value="student" className="fw-bold fs-6">Absentees(Teacher)</option>
+                        </select>
+                      </th>
+                      <th>Class Teacher</th>
+                      <th>Reasons</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {selected.tableData.map((row, i) => (
+                      <tr key={i}>
+                        <td>{row.Sn}</td>
+                        <td className="text-start">{row.Name}</td>
+                        <td>{row.Class}</td>
+                        <td>{row.Reason}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div></div>
             </div>
           </div>
         </div>
