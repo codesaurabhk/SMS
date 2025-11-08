@@ -1217,10 +1217,10 @@ const Dashboard = () => {
                               : "bg-success"
                           }`}
                           style={
-    event.status === "Upcoming"
-      ? { backgroundColor: "#FDFDEC", }
-      : {}
-  }
+                            event.status === "Upcoming"
+                              ? { backgroundColor: "#FDFDEC" }
+                              : {}
+                          }
                         >
                           {event.status}
                         </span>
