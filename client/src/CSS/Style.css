@@ -235,6 +235,72 @@
     
 }
 
+.event-title-table{
+    color: #1C212D;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.date-time-table {
+    font-weight: 400;
+    font-size: 14px;
+    color: #717376;
+}
+
+.status-badge {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.status-badge.upcoming {
+  background-color: #FDFDEC; 
+  color: #B5A600;
+}
+
+.status-badge.completed {
+  background-color: #ECFDF3; 
+  color: #00B515;
+}
+
+.status-badge.missed {
+  background-color: #FDECEC; 
+  color: #B50003;
+  width: 78px;
+}
+
+.task {
+    background-color: #F2E4FE;
+    padding: 10px 20px;
+    gap: 10px;
+}
+
+.time {
+    color: #1C212D;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: bold;
+}
+
+.task-dis {
+    font-style: bold;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.activity {
+    color: #1C212D;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.reacent-activity-time {
+    color: #717376;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
 
 
 @media (min-width: 425px) {

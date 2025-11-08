@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { HiOutlineUserGroup } from "react-icons/hi2";
-import { IoMdArrowUp, IoMdArrowDown, IoIosArrowDown, IoIosMore } from "react-icons/io";
+import {
+  IoMdArrowUp,
+  IoMdArrowDown,
+  IoIosArrowDown,
+  IoIosMore,
+} from "react-icons/io";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Calendar from 'react-calendar';
+import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import {
   Chart as ChartJS,
@@ -32,10 +37,12 @@ ChartJS.register(
   Filler
 );
 
-
-  /* ================== images ===================== */
+/* ================== images ===================== */
 
 import DashboardGoPremium from "../../assets/images/dashboard-go-premium.png";
+import jitu from "../../assets/images/event.jpg";
+import eva from "../../assets/images/eva.jpg";
+import me from "../../assets/images/jeetu.jpg";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
@@ -47,7 +54,6 @@ const Dashboard = () => {
   const [selectedSection, setSelectedSection] = useState("");
   const [filterClass, setFilterClass] = useState("");
   const [value, setValue] = useState(new Date());
-  
 
   const handleToggle = () => setOpen(!open);
   const handleSelect = (option) => {
@@ -401,7 +407,7 @@ const Dashboard = () => {
     },
   ];
 
-  // ======topStudent 
+  // ======topStudent
 
   const topStudentsData = [
     {
@@ -569,8 +575,71 @@ const Dashboard = () => {
     ? pendingFeesData.filter((item) => item.class === filterClass)
     : pendingFeesData;
 
+  {
+    /* Dummy data For Event table  */
+  }
+  const eventData = [
+    {
+      id: 1,
+      title: "Parent-Teacher Meeting",
+      dateTime: "11th Nov 2025, 10:30 AM",
+      status: "Upcoming",
+    },
+    {
+      id: 2,
+      title: "Science Exhibition",
+      dateTime: "15th Nov 2025, 09:00 AM",
+      status: "Completed",
+    },
+    {
+      id: 3,
+      title: "Annual Sports Day",
+      dateTime: "25th Nov 2025, 08:30 AM",
+      status: "Missed",
+    },
+    {
+      id: 4,
+      title: "Cultural Fest",
+      dateTime: "2nd Dec 2025, 12:00 PM",
+      status: "Upcoming",
+    },
+    {
+      id: 5,
+      title: "Board Exam Orientation",
+      dateTime: "8th Dec 2025, 09:00 AM",
+      status: "Upcoming",
+    },
+  ];
 
-    
+  /* <===================================== Dummy Data for Your Task ==============================> */
+
+  const tasks = [
+    {
+      id: 1,
+      date:'11th Nov 2025',
+      time: "10:00 AM",
+      title: "Create the time table",
+      description:"For all class create the time table ",
+      bgColor: "#F2E4FE",
+    },
+
+    {
+      id: 2,
+      date: "12th Nov 2025",
+      time: "02:30 PM",
+      title: "Check assignment submissions",
+      description:"Check all summar holiday home Work",
+      bgColor: "#FFF2D3",
+    },
+    {
+      id: 3,
+      date: "13th Nov 2025",
+      time: "09:00 AM,",
+      title: "Parent-teacher meeting follow-up",
+      description:"All student parents teacher meeting",
+      bgColor: "#DAFFDF",
+    },
+  ];
 
   return (
     <div className="dashboard">
@@ -646,7 +715,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* === Dashboard Cards === */}
+        {/* <----------------------------------- Dashboard Cards -----------------------------------> */}
         <div className="row mt-4">
           {dashboardData.map((item, index) => (
             <div
@@ -692,10 +761,10 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* === Charts Section === */}
+      {/* <===================================== Charts Section ===================================> */}
       <div className="d-flex gap-4 mt-4">
         <div className="w-65">
-          {/* Earnings Chart */}
+          {/* <-------------------------------- Earnings Chart ----------------------------------> */}
           <div className="p-4 bg-white rounded shadow mb-4">
             <div className="d-flex justify-content-between align-items-center ">
               <h5 className="fw-bold">Earnings</h5>
@@ -735,7 +804,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* === Attendance Chart === */}
+          {/* ============================ Attendance Chart ============================= */}
           <div className="p-4 bg-white rounded shadow">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <div className="d-flex align-items-center gap-2">
@@ -804,7 +873,7 @@ const Dashboard = () => {
 
             {/* === Chart Layout === */}
             <div className="d-flex align-items-center justify-content-between gap-4">
-              {/* === Donut Chart Section === */}
+              {/* <============================ Donut Chart Section =============================> */}
               <div className="text-center" style={{ width: "250px" }}>
                 <Doughnut data={dynamicDonutData} options={donutOptions} />
 
@@ -883,7 +952,7 @@ const Dashboard = () => {
                 </div>
               </div> */}
 
-              {/* =====First Table Code ====== */}
+              {/* <============================ Attendance Table Code =============================> */}
               <div className="table">
                 <table className="table table-bordered-bottom align-middle text-center mb-0">
                   <thead className="table-light">
@@ -927,7 +996,7 @@ const Dashboard = () => {
           </div>
 
           <div className="p-4 bg-white rounded shadow-sm mt-4">
-            {/* ===== Pending Fees Table ===== */}
+            {/* <========================= Pending Fees Table ======================> */}
             <div className="mb-5">
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h5 className="fw-bold mb-0">Pending Fees List</h5>
@@ -1034,7 +1103,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* ===== Top Performing Students Table ===== */}
+            {/* <======================= Top Performing Students Table ========================> */}
             <div>
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h5 className="fw-bold mb-0">Top Performing Students</h5>
@@ -1067,7 +1136,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="table-responsive">
+              <div className="table">
                 <table className="table table-border-bottom align-middle text-center">
                   <thead className="table-light border-bottom">
                     <tr>
@@ -1100,7 +1169,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        {/* ===================== Right Side Code ================== */}
+        {/* <================================ Right Side Code ================================> */}
         <div className="bg-white rounded w-35 p-3">
           <div className="img d-flex rounded justify-content-between p-4">
             <div className="text-white">
@@ -1112,33 +1181,141 @@ const Dashboard = () => {
                 <span>Explore 25k+ Feature With life time membership</span>
               </div>
               <div className="mt-4">
-                <div className="btn btn-primary px-4 d-flex align-items-center justify-content-center" style={{height:'30px'}}>
+                <div
+                  className="btn btn-primary px-4 d-flex align-items-center justify-content-center"
+                  style={{ height: "30px" }}
+                >
                   <span className="dashboard-member">Get Full Access</span>
                 </div>
               </div>
             </div>
-            <div className="" style={{width:'220px', height:'180px'}}>
-              <img className="" src={DashboardGoPremium} alt="" style={{ width:'100%',height:'100%',objectFit:'contain'}} />
+            <div className="" style={{ width: "220px", height: "180px" }}>
+              <img
+                className=""
+                src={DashboardGoPremium}
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              />
             </div>
           </div>
-          {/* ============================= Holiday Calender ============================ */}
-        <div className="mt-2 ">
-          <div className="d-flex justify-content-between">
-            <span className="holiday fw-bold">Holiday Calender </span>
-            <span className="dtpkr btn ">
-              <button>view All</button>
-            </span>
+          {/* <============================= Holiday Calender ============================> */}
+          <div className="mt-2 ">
+            <div className="d-flex justify-content-between">
+              <span className="holiday fw-bold">Holiday Calender </span>
+              <span className="dtpkr btn ">
+                <button className="btn btn-dark fw-semibold btn-sm px-3">
+                  View All
+                </button>
+              </span>
+            </div>
+
+            <div className="mt-3">
+              <div>
+                <Calendar onChange={setValue} value={value} />
+              </div>
+            </div>
           </div>
 
-          <div className="mt-3">
-            <div>
-      <Calendar onChange={setValue} value={value} />
-    </div>
+          {/* <=============================== Reminder Table =============================> */}
+          <div className="mt-2">
+            <div className="d-flex justify-content-between">
+              <span className="holiday fw-bold">Reminder</span>
+              <span className="dtpkr btn ">
+                <button className="btn btn-dark fw-semibold btn-sm px-3">
+                  View All
+                </button>
+              </span>
+            </div>
+            <div className="table">
+              <table className="table table-border-bottom align-middle text-center">
+                <thead className="table-light border-bottom">
+                  <tr>
+                    <th>Title</th>
+                    <th>Date & Time</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {eventData.map((event) => (
+                    <tr className="text-start fw-light" key={event.id}>
+                      <td className="event-title-table">{event.title}</td>
+                      <td className="date-time-table">{event.dateTime}</td>
+                      <td>
+                        <span
+                          className={`badge status-badge px-3 py-2 rounded-pill fw-semibold ${
+                            event.status === "Upcoming"
+                              ? "upcoming" // Light blue background, dark text
+                              : event.status === "Completed"
+                              ? "completed" // Green background, white text
+                              : event.status === "Missed"
+                              ? "missed" // Red background, white text
+                              : "bg-secondary text-white" // Default fallback
+                          }`}
+                        >
+                          {event.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* <================================ Task ==================================>*/}
+          <div className="mt-2">
+            <div className="d-flex justify-content-between">
+              <span className="holiday fw-bold">Your Task</span>
+              <span className="dtpkr btn ">
+                <button className="btn btn-dark fw-semibold btn-sm px-3">
+                  View All
+                </button>
+              </span>
+            </div>
+            {tasks.map((task) => (
+              <div
+                key={task.id}
+                className="task d-flex rounded mt-2 shadow-sm"
+                style={{ backgroundColor: task.bgColor }}
+              >
+                <div className="time-date w-25">
+                  <div>{task.time}</div>
+                  <div>{task.date}</div>
+                </div>
+                <div className="border border-2 border-white"></div>
+                <div className="task-right w-75"> 
+                  <div className="task-dis">{task.title}</div>
+                  <div className="time-date">{task.description}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* <--------------------------------- Recent Activity ------------------------> */}
+          <div className="mt-2">
+            <div className="d-flex justify-content-between">
+              <span className="holiday fw-bold">Recent Activities</span>
+              <span className="dtpkr btn ">
+                <button className="btn btn-dark fw-semibold btn-sm px-3">
+                  View All
+                </button>
+              </span>
+            </div>
+            <div className="d-flex">
+              <div className="w-25 px-2 py-2 ">
+                <img src={eva} className="rounded-circle" alt="" style={{width:'64px', height:'64px'}} />
+              </div>
+              <div className="activity w-75">
+                <div className="time px-2 py-2">Please ensure the monthly attendance report is accurate before the April 30th deadline
+                <br />
+                <span className="reacent-activity-time mt-1">9:00 AM</span>
+              </div>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
       </div>
-      
+
       {/* ========================= Modal =========================== */}
       {showModal && (
         <div
