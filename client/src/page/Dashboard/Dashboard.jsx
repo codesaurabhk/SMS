@@ -687,23 +687,23 @@ const Dashboard = () => {
 
   const events = [
     {
-      imgs: cake,
-      title: "PTM (Parent Teacher Meeting)",
+      img: cake,
+      title: "PTM",
       description: "Discussion of student progress and performance.",
       month: "April",
       date: "23",
       year: "2025",
     },
     {
-      imgs: holi,
-      title: "Annual Sports Day",
+      img: holi,
+      title: "ASD",
       description: "Celebrating physical fitness and teamwork.",
       month: "February",
       date: "14",
       year: "2025",
     },
     {
-      imgs: meeting,
+      img: meeting,
       title: "Science Exhibition",
       description: "Showcasing innovative student projects and experiments.",
       month: "September",
@@ -875,7 +875,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* ============================ Attendance Chart ============================= */}
+          {/* <============================ Attendance Chart =============================> */}
           <div className="p-4 bg-white rounded shadow">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <div className="d-flex align-items-center gap-2">
@@ -1415,7 +1415,7 @@ const Dashboard = () => {
                 <div className="w-75 d-flex gap-2">
                   <div className="">
                     <img
-                      src={event.imgs}
+                      src={event.img}
                       alt=""
                       className="rounded-3"
                       style={{ width: "104px", height: "64px" }}
@@ -1430,10 +1430,12 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-25">
-                  <div>{event.month}</div>
-                  <div>{event.date}</div>
-                  <div>{event.year}</div>
+                <div className="dashed w-25 border-start-dashed p-3">
+                  <div >
+                    <div style={{ borderLeft: "2px dashed red" }}>{event.month}</div>
+                    <div style={{ borderLeft: "2px dashed red" }}>{event.date}</div>
+                    <div style={{ borderLeft: "2px dashed red" }}>{event.year}</div>
+                  </div>
                 </div>
               </div>
             ))}
