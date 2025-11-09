@@ -40,9 +40,14 @@ ChartJS.register(
 /* ================== images ===================== */
 
 import DashboardGoPremium from "../../assets/images/dashboard-go-premium.png";
-import jitu from "../../assets/images/event.jpg";
 import eva from "../../assets/images/eva.jpg";
-import me from "../../assets/images/jeetu.jpg";
+import lady from "../../assets/images/lady.jpg";
+import girl from "../../assets/images/girl.jpg";
+
+/* ---------------------- upcoming event images ------------------------ */
+import holi from "../../assets/images/holi.jpg";
+import cake from "../../assets/images/cake.jpg";
+import meeting from "../../assets/images/meeting.jpg";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
@@ -113,7 +118,9 @@ const Dashboard = () => {
     },
   ];
 
-  // ===== Month Filter =====
+  {
+    /* <===== Month Filter =====> */
+  }
   const months = [
     "January",
     "February",
@@ -128,13 +135,16 @@ const Dashboard = () => {
     "November",
     "December",
   ];
+
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [years, setYears] = useState(new Date().toISOString().slice(0, 10));
 
-  // ===== Chart Dummy Data =====
+  {
+    /* <---------------------------------Chart Dummy Data -----------------------------------> */
+  }
   const chartMonths = [
     "Jan",
     "Feb",
@@ -190,7 +200,9 @@ const Dashboard = () => {
     },
   };
 
-  // === Attendance Dataset Config ===
+  {
+    /* <================================ Attendance Dataset  ==============================> */
+  }
   const attendanceDataSets = {
     staff: {
       donut: [90, 10], // present, absent
@@ -224,6 +236,7 @@ const Dashboard = () => {
         },
       ],
     },
+
     teacher: {
       donut: [88, 12],
       line: [70, 75, 78, 80, 85, 82, 86, 90, 88, 92, 85, 89],
@@ -356,6 +369,10 @@ const Dashboard = () => {
     },
   };
 
+  {
+    /* <------------------------------ pending fess Data -------------------------------> */
+  }
+
   const pendingFeesData = [
     {
       id: 1,
@@ -407,7 +424,9 @@ const Dashboard = () => {
     },
   ];
 
-  // ======topStudent
+  {
+    /* =============================== topStudent ================================> */
+  }
 
   const topStudentsData = [
     {
@@ -575,32 +594,31 @@ const Dashboard = () => {
     ? pendingFeesData.filter((item) => item.class === filterClass)
     : pendingFeesData;
 
-  {
-    /* Dummy data For Event table  */
-  }
+  /* <--------------------------- Dummy data For Event table ----------------------------->  */
+
   const eventData = [
     {
       id: 1,
       title: "Parent-Teacher Meeting",
-      dateTime: "11th Nov 2025, 10:30 AM",
+      dateTime: "11 Nov 10:30 AM",
       status: "Upcoming",
     },
     {
       id: 2,
       title: "Science Exhibition",
-      dateTime: "15th Nov 2025, 09:00 AM",
+      dateTime: "15 Nov 9:00 AM",
       status: "Completed",
     },
     {
       id: 3,
       title: "Annual Sports Day",
-      dateTime: "25th Nov 2025, 08:30 AM",
+      dateTime: "25 Nov 8:30 AM",
       status: "Missed",
     },
     {
       id: 4,
       title: "Cultural Fest",
-      dateTime: "2nd Dec 2025, 12:00 PM",
+      dateTime: "2 Dec 12:00 PM",
       status: "Upcoming",
     },
     {
@@ -616,28 +634,81 @@ const Dashboard = () => {
   const tasks = [
     {
       id: 1,
-      date:'11th Nov 2025',
+      date: "11 Nov",
       time: "10:00 AM",
       title: "Create the time table",
-      description:"For all class create the time table ",
+      description: "For all class create the time table ",
       bgColor: "#F2E4FE",
     },
 
     {
       id: 2,
-      date: "12th Nov 2025",
+      date: "12 Nov",
       time: "02:30 PM",
       title: "Check assignment submissions",
-      description:"Check all summar holiday home Work",
+      description: "Check all summar holiday home Work",
       bgColor: "#FFF2D3",
     },
     {
       id: 3,
-      date: "13th Nov 2025",
+      date: "13 Nov",
       time: "09:00 AM,",
       title: "Parent-teacher meeting follow-up",
-      description:"All student parents teacher meeting",
+      description: "All student parents teacher meeting",
       bgColor: "#DAFFDF",
+    },
+  ];
+
+  /* <-------------------------------- Dummy Data For Recent Activity --------------------------------> */
+
+  const activities = [
+    {
+      img: eva,
+      message:
+        "Please ensure the monthly attendance report is accurate before the April 30th deadline",
+      time: "9:00 AM",
+    },
+    {
+      img: girl,
+      message: "All staff are required to update their timesheets by Friday.",
+      time: "11:30 AM",
+    },
+    {
+      img: lady,
+      message:
+        "Meeting scheduled for 2:00 PM regarding new project allocation.",
+      time: "1:45 PM",
+    },
+  ];
+
+  {
+    /* <--------------------------------- Dummy Data For Upcoming Event --------------------------------> */
+  }
+
+  const events = [
+    {
+      imgs: cake,
+      title: "PTM (Parent Teacher Meeting)",
+      description: "Discussion of student progress and performance.",
+      month: "April",
+      date: "23",
+      year: "2025",
+    },
+    {
+      imgs: holi,
+      title: "Annual Sports Day",
+      description: "Celebrating physical fitness and teamwork.",
+      month: "February",
+      date: "14",
+      year: "2025",
+    },
+    {
+      imgs: meeting,
+      title: "Science Exhibition",
+      description: "Showcasing innovative student projects and experiments.",
+      month: "September",
+      date: "10",
+      year: "2025",
     },
   ];
 
@@ -762,10 +833,10 @@ const Dashboard = () => {
       </div>
 
       {/* <===================================== Charts Section ===================================> */}
-      <div className="d-flex gap-4 mt-4">
+      <div className="d-flex gap-4 mt-3">
         <div className="w-65">
           {/* <-------------------------------- Earnings Chart ----------------------------------> */}
-          <div className="p-4 bg-white rounded shadow mb-4">
+          <div className="p-4 bg-white rounded shadow mb-2">
             <div className="d-flex justify-content-between align-items-center ">
               <h5 className="fw-bold">Earnings</h5>
               <div className="d-flex align-items-center gap-2">
@@ -794,12 +865,12 @@ const Dashboard = () => {
 
             <Bar data={chartData} options={chartOptions} height={120} />
 
-            <div className="text-center mt-3">
-              <p className="fw-semibold text-primary mb-0">
+            <div className="d-flex align-items-center justify-content-center gap-5 mt-3 ">
+              <span className="fw-semibold text-primary">
                 Rs. 11,30,650.00 Earnings this year
-              </p>
+              </span>
               <span className="text-success fw-semibold">
-                20% ↑ from last year
+                +20% ↑ from last year
               </span>
             </div>
           </div>
@@ -1229,15 +1300,18 @@ const Dashboard = () => {
             <div className="table">
               <table className="table table-border-bottom align-middle text-center">
                 <thead className="table-light border-bottom">
-                  <tr>
-                    <th>Title</th>
-                    <th>Date & Time</th>
-                    <th>Status</th>
+                  <tr className="reminder">
+                    <th className="text-start">Title</th>
+                    <th className="text-start">Date & Time</th>
+                    <th className="text-start">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {eventData.map((event) => (
-                    <tr className="text-start fw-light" key={event.id}>
+                    <tr
+                      className="reminder-table text-start fw-light"
+                      key={event.id}
+                    >
                       <td className="event-title-table">{event.title}</td>
                       <td className="date-time-table">{event.dateTime}</td>
                       <td>
@@ -1283,7 +1357,7 @@ const Dashboard = () => {
                   <div>{task.date}</div>
                 </div>
                 <div className="border border-2 border-white"></div>
-                <div className="task-right w-75"> 
+                <div className="task-right w-75">
                   <div className="task-dis">{task.title}</div>
                   <div className="time-date">{task.description}</div>
                 </div>
@@ -1301,17 +1375,68 @@ const Dashboard = () => {
                 </button>
               </span>
             </div>
-            <div className="d-flex">
-              <div className="w-25 px-2 py-2 ">
-                <img src={eva} className="rounded-circle" alt="" style={{width:'64px', height:'64px'}} />
+            {activities.map((activity, index) => (
+              <div className="d-flex align-items-center" key={index}>
+                <div className="w-25 px-2 py-2">
+                  <img
+                    src={activity.img}
+                    className="rounded-circle"
+                    alt=""
+                    style={{ width: "64px", height: "64px" }}
+                  />
+                </div>
+
+                <div className="activity w-75">
+                  <div className="time px-2 py-2">
+                    {activity.message}
+                    <br />
+                    <span className="recent-activity-time mt-1">
+                      {activity.time}
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div className="activity w-75">
-                <div className="time px-2 py-2">Please ensure the monthly attendance report is accurate before the April 30th deadline
-                <br />
-                <span className="reacent-activity-time mt-1">9:00 AM</span>
-              </div>
-              </div>
+            ))}
+          </div>
+
+          {/* <=============================== Upcoming Event ============================> */}
+          <div className="mt-2">
+            <div className="d-flex justify-content-between">
+              <span className="holiday fw-bold">Upcoming Event</span>
+              <span className="dtpkr btn ">
+                <button className="btn btn-dark fw-semibold btn-sm px-3">
+                  View All
+                </button>
+              </span>
             </div>
+
+            {events.map((event, index) => (
+              <div className="d-flex mt-1" key={index}>
+                <div className="w-75 d-flex gap-2">
+                  <div className="">
+                    <img
+                      src={event.imgs}
+                      alt=""
+                      className="rounded-3"
+                      style={{ width: "104px", height: "64px" }}
+                    />
+                  </div>
+                  <div>
+                    <div>
+                      <span>{event.title}</span>
+                    </div>
+                    <div>
+                      <span>{event.description}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-25">
+                  <div>{event.month}</div>
+                  <div>{event.date}</div>
+                  <div>{event.year}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

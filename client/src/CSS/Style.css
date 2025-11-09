@@ -212,6 +212,13 @@
   border: none !important;
 }
 
+
+.reminder-table{
+    color: #1C212D;
+    font-size: 14px;
+    font-weight: 400;
+}
+
 .img{
     background-color: #343C4D;
 }
