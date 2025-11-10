@@ -5,8 +5,8 @@ import {
   IoMdArrowUp,
   IoMdArrowDown,
   IoIosArrowDown,
-  IoIosMore,
 } from "react-icons/io";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -369,10 +369,9 @@ const Dashboard = () => {
     },
   };
 
-  {
+  
     /* <------------------------------ pending fess Data -------------------------------> */
-  }
-
+  
   const pendingFeesData = [
     {
       id: 1,
@@ -634,27 +633,27 @@ const Dashboard = () => {
   const tasks = [
     {
       id: 1,
-      date: "11 Nov",
+      date: "11 Nov,",
       time: "10:00 AM",
       title: "Create the time table",
-      description: "For all class create the time table ",
+      description: "For all class create the routine ",
       bgColor: "#F2E4FE",
     },
 
     {
       id: 2,
-      date: "12 Nov",
+      date: "12 Nov,",
       time: "02:30 PM",
-      title: "Check assignment submissions",
-      description: "Check all summar holiday home Work",
+      title: "assignment submissions",
+      description: "Check all summar holiday",
       bgColor: "#FFF2D3",
     },
     {
       id: 3,
-      date: "13 Nov",
-      time: "09:00 AM,",
-      title: "Parent-teacher meeting follow-up",
-      description: "All student parents teacher meeting",
+      date: "13 Nov,",
+      time: "09:00 AM",
+      title: "Parent-teacher meeting",
+      description: "All student parents",
       bgColor: "#DAFFDF",
     },
   ];
@@ -833,8 +832,8 @@ const Dashboard = () => {
       </div>
 
       {/* <===================================== Charts Section ===================================> */}
-      <div className="d-flex gap-4 mt-3">
-        <div className="w-65">
+      <div className="down-side gap-4 mt-3">
+        <div className="down-left">
           {/* <-------------------------------- Earnings Chart ----------------------------------> */}
           <div className="p-4 bg-white rounded shadow mb-2">
             <div className="d-flex justify-content-between align-items-center ">
@@ -877,7 +876,7 @@ const Dashboard = () => {
 
           {/* <============================ Attendance Chart =============================> */}
           <div className="p-4 bg-white rounded shadow">
-            <div className="d-flex justify-content-between align-items-center mb-3">
+            <div className="attendance-chart align-items-center mb-3">
               <div className="d-flex align-items-center gap-2">
                 <select
                   value={attendanceType}
@@ -893,7 +892,7 @@ const Dashboard = () => {
                 </select>
               </div>
 
-              <div className="d-flex align-items-center gap-2">
+              <div className="date-view d-flex align-items-center gap-2">
                 {/*  <select
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
@@ -943,7 +942,7 @@ const Dashboard = () => {
             </div>
 
             {/* === Chart Layout === */}
-            <div className="d-flex align-items-center justify-content-between gap-4">
+            <div className="student-teacher-staff align-items-center justify-content-between gap-4">
               {/* <============================ Donut Chart Section =============================> */}
               <div className="text-center" style={{ width: "250px" }}>
                 <Doughnut data={dynamicDonutData} options={donutOptions} />
@@ -1024,7 +1023,7 @@ const Dashboard = () => {
               </div> */}
 
               {/* <============================ Attendance Table Code =============================> */}
-              <div className="table">
+              <div className="table-responsive">
                 <table className="table table-bordered-bottom align-middle text-center mb-0">
                   <thead className="table-light">
                     <tr className="">
@@ -1048,30 +1047,31 @@ const Dashboard = () => {
                       </th>
                       <th>Class Teacher</th>
                       <th>Reasons</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     {selected.tableData.map((row, i) => (
                       <tr key={i}>
                         <td>{row.Sn}</td>
-                        <td className="text-start">{row.Name}</td>
-                        <td>{row.Class}</td>
-                        <td>{row.Reason}</td>
+                        <td><span className="text-start">{row.Name}</span></td>
+                        <td><span className="text-start">{row.Reason}</span></td>
+                        <td><span className="text-start">{row.Class}</span></td>
+                        <td><span className="text-start"><BsThreeDotsVertical /></span></td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <div></div>
             </div>
           </div>
 
           <div className="p-4 bg-white rounded shadow-sm mt-4">
-            {/* <========================= Pending Fees Table ======================> */}
+            {/* <--------------------------- Pending Fees Table ------------------------------> */}
             <div className="mb-5">
-              <div className="d-flex justify-content-between align-items-center mb-3">
+              <div className="pending-fees-table justify-content-between align-items-center mb-3">
                 <h5 className="fw-bold mb-0">Pending Fees List</h5>
-                <div className="d-flex gap-2">
+                <div className="pending-fees-table-class d-flex gap-2">
                   <select
                     className="dtpkr border border-2 rounded px-2 py-1 d-flex align-items-center justify-content-center bg-transparent"
                     value={selectedClasspending}
@@ -1111,7 +1111,7 @@ const Dashboard = () => {
                   </button>
                 </div>
               </div>
-              <div className="table">
+              <div className="table-responsive">
                 <table className="table table-border-bottom align-middle text-center">
                   <thead className="table-light border-bottom">
                     <tr>
@@ -1149,13 +1149,13 @@ const Dashboard = () => {
                       filteredPendingFees.map((item) => (
                         <tr key={item.id}>
                           <td>{item.id}</td>
-                          <td className="text-start">{item.name}</td>
-                          <td>Class {item.class}</td>
-                          <td>{item.amount}</td>
-                          <td>{item.dueDate}</td>
-                          <td>{item.contact}</td>
+                          <td>{item.name}</td>
+                          <td><span className="text-start">{item.class}</span></td>
+                          <td><span className="text-start">{item.amount}</span></td>
+                          <td><span className="text-start">{item.dueDate}</span></td>
+                          <td><span className="text-start">{item.contact}</span></td>
                           <td>
-                            <IoIosMore size={18} />
+                            <BsThreeDotsVertical size={18} />
                           </td>
                         </tr>
                       ))
@@ -1176,9 +1176,9 @@ const Dashboard = () => {
 
             {/* <======================= Top Performing Students Table ========================> */}
             <div>
-              <div className="d-flex justify-content-between align-items-center mb-3">
+              <div className="pending-fees-table justify-content-between align-items-center mb-3">
                 <h5 className="fw-bold mb-0">Top Performing Students</h5>
-                <div className="d-flex gap-2">
+                <div className="pending-fees-table-class d-flex gap-2">
                   <select
                     className="dtpkr border border-2 rounded px-2 py-1 d-flex align-items-center justify-content-center"
                     value={selectedClass}
@@ -1207,7 +1207,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="table">
+              <div className="table-responsive">
                 <table className="table table-border-bottom align-middle text-center">
                   <thead className="table-light border-bottom">
                     <tr>
@@ -1225,12 +1225,12 @@ const Dashboard = () => {
                       <tr key={item.id}>
                         <td>{item.id}</td>
                         <td className="text-start">{item.name}</td>
-                        <td>{item.class}</td>
-                        <td>{item.field}</td>
-                        <td>{item.gpa}</td>
-                        <td>{item.rank}</td>
+                        <td><span className="text-start">{item.class}</span></td>
+                        <td><span className="text-start">{item.field}</span></td>
+                        <td><span className="text-start">{item.gpa}</span></td>
+                        <td><span className="text-start">{item.rank}</span></td>
                         <td>
-                          <IoIosMore size={18} />
+                          <span className="text-start"><BsThreeDotsVertical size={18} /></span>
                         </td>
                       </tr>
                     ))}
@@ -1238,10 +1238,11 @@ const Dashboard = () => {
                 </table>
               </div>
             </div>
+            
           </div>
         </div>
-        {/* <================================ Right Side Code ================================> */}
-        <div className="bg-white rounded w-35 p-3">
+        {/* <------------------------------- Right Side Code -------------------------------> */}
+        <div className="down-right bg-white rounded p-3">
           <div className="img d-flex rounded justify-content-between p-4">
             <div className="text-white">
               <span className="fs-6">Mun_C</span>
@@ -1287,7 +1288,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* <=============================== Reminder Table =============================> */}
+          {/* <------------------------------ Reminder Table -------------------------------> */}
           <div className="mt-2">
             <div className="d-flex justify-content-between">
               <span className="holiday fw-bold">Reminder</span>
@@ -1297,7 +1298,7 @@ const Dashboard = () => {
                 </button>
               </span>
             </div>
-            <div className="table">
+            <div className="table-responsive">
               <table className="table table-border-bottom align-middle text-center">
                 <thead className="table-light border-bottom">
                   <tr className="reminder">
@@ -1309,11 +1310,11 @@ const Dashboard = () => {
                 <tbody>
                   {eventData.map((event) => (
                     <tr
-                      className="reminder-table text-start fw-light"
+                      className="text-start fw-light"
                       key={event.id}
                     >
                       <td className="event-title-table">{event.title}</td>
-                      <td className="date-time-table">{event.dateTime}</td>
+                      <td><span className="date-time-table">{event.dateTime}</span></td>
                       <td>
                         <span
                           className={`badge status-badge px-3 py-2 rounded-pill fw-semibold ${
@@ -1353,8 +1354,8 @@ const Dashboard = () => {
                 style={{ backgroundColor: task.bgColor }}
               >
                 <div className="time-date w-25">
-                  <div>{task.time}</div>
                   <div>{task.date}</div>
+                  <div>{task.time}</div>
                 </div>
                 <div className="border border-2 border-white"></div>
                 <div className="task-right w-75">
