@@ -689,7 +689,7 @@ const Dashboard = () => {
     {
       img: cake,
       title: "PTM",
-      description: "Discussion of student progress and performance.",
+      description: "Time: 4:00 PM",
       month: "April",
       date: "23",
       year: "2025",
@@ -697,7 +697,7 @@ const Dashboard = () => {
     {
       img: holi,
       title: "ASD",
-      description: "Celebrating festival.",
+      description: "Time: 4:00 PM",
       month: "February",
       date: "14",
       year: "2025",
@@ -705,7 +705,7 @@ const Dashboard = () => {
     {
       img: meeting,
       title: "Meeting",
-      description: "Showcasing innovative student projects and experiments.",
+      description: "Time: 4:00 PM",
       month: "September",
       date: "10",
       year: "2025",
@@ -1411,7 +1411,7 @@ const Dashboard = () => {
             </div>
 
             {events.map((event, index) => (
-              <div className="d-flex mt-1" key={index}>
+              <div className="d-flex gap-1 mt-4" key={index}>
                 <div className="w-75 d-flex gap-2">
                   <div className="">
                     <img
@@ -1421,20 +1421,19 @@ const Dashboard = () => {
                       style={{ width: "104px", height: "64px" }}
                     />
                   </div>
-                  <div>
-                    <div>
+                  <div className="d-flex flex-column justify-content-center">
+                    
                       <span>{event.title}</span>
-                    </div>
-                    <div>
+                    
                       <span>{event.description}</span>
-                    </div>
+                    
                   </div>
                 </div>
                 <div className="dashed w-25 d-flex gap-10 ">
-                  <div className="border-start-dashed px-2 mt-1">
-                    <div className="dashed-border" style={{ borderLeft: "2px dashed w-30 h-10" }}>{event.month}</div>
-                    <div className="event-name" style={{ borderLeft: "2px dashed" }}>{event.date}</div>
-                    <div className="dashed-border" style={{ borderLeft: "2px dashed" }}>{event.year}</div>
+                  <div className="border-start-dashed px-2">
+                    <div className="dashed-border">{event.month}</div>
+                    <div className="event-name">{event.date}</div>
+                    <div className="dashed-border">{event.year}</div>
                   </div>
                 </div>
               </div>

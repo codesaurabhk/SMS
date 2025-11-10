@@ -324,6 +324,13 @@
 
 }
 
+.border-start-dashed {
+    border-left: 2px dashed gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 
 
 @media (min-width: 425px) {
