@@ -697,14 +697,14 @@ const Dashboard = () => {
     {
       img: holi,
       title: "ASD",
-      description: "Celebrating physical fitness and teamwork.",
+      description: "Celebrating festival.",
       month: "February",
       date: "14",
       year: "2025",
     },
     {
       img: meeting,
-      title: "Science Exhibition",
+      title: "Meeting",
       description: "Showcasing innovative student projects and experiments.",
       month: "September",
       date: "10",
@@ -1430,11 +1430,11 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="dashed w-25 border-start-dashed p-3">
-                  <div >
-                    <div style={{ borderLeft: "2px dashed red" }}>{event.month}</div>
-                    <div style={{ borderLeft: "2px dashed red" }}>{event.date}</div>
-                    <div style={{ borderLeft: "2px dashed red" }}>{event.year}</div>
+                <div className="dashed w-25 d-flex gap-10 ">
+                  <div className="border-start-dashed px-2 mt-1">
+                    <div className="dashed-border" style={{ borderLeft: "2px dashed w-30 h-10" }}>{event.month}</div>
+                    <div className="event-name" style={{ borderLeft: "2px dashed" }}>{event.date}</div>
+                    <div className="dashed-border" style={{ borderLeft: "2px dashed" }}>{event.year}</div>
                   </div>
                 </div>
               </div>
