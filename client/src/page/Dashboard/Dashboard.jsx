@@ -687,25 +687,25 @@ const Dashboard = () => {
 
   const events = [
     {
-      imgs: cake,
-      title: "PTM (Parent Teacher Meeting)",
-      description: "Discussion of student progress and performance.",
+      img: cake,
+      title: "PTM",
+      description: "Time: 4:00 PM",
       month: "April",
       date: "23",
       year: "2025",
     },
     {
-      imgs: holi,
-      title: "Annual Sports Day",
-      description: "Celebrating physical fitness and teamwork.",
+      img: holi,
+      title: "ASD",
+      description: "Time: 4:00 PM",
       month: "February",
       date: "14",
       year: "2025",
     },
     {
-      imgs: meeting,
-      title: "Science Exhibition",
-      description: "Showcasing innovative student projects and experiments.",
+      img: meeting,
+      title: "Meeting",
+      description: "Time: 4:00 PM",
       month: "September",
       date: "10",
       year: "2025",
@@ -875,7 +875,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* ============================ Attendance Chart ============================= */}
+          {/* <============================ Attendance Chart =============================> */}
           <div className="p-4 bg-white rounded shadow">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <div className="d-flex align-items-center gap-2">
@@ -1411,29 +1411,30 @@ const Dashboard = () => {
             </div>
 
             {events.map((event, index) => (
-              <div className="d-flex mt-1" key={index}>
+              <div className="d-flex gap-1 mt-4" key={index}>
                 <div className="w-75 d-flex gap-2">
                   <div className="">
                     <img
-                      src={event.imgs}
+                      src={event.img}
                       alt=""
                       className="rounded-3"
                       style={{ width: "104px", height: "64px" }}
                     />
                   </div>
-                  <div>
-                    <div>
+                  <div className="d-flex flex-column justify-content-center">
+                    
                       <span>{event.title}</span>
-                    </div>
-                    <div>
+                    
                       <span>{event.description}</span>
-                    </div>
+                    
                   </div>
                 </div>
-                <div className="w-25">
-                  <div>{event.month}</div>
-                  <div>{event.date}</div>
-                  <div>{event.year}</div>
+                <div className="dashed w-25 d-flex gap-10 ">
+                  <div className="border-start-dashed px-2">
+                    <div className="dashed-border">{event.month}</div>
+                    <div className="event-name">{event.date}</div>
+                    <div className="dashed-border">{event.year}</div>
+                  </div>
                 </div>
               </div>
             ))}
