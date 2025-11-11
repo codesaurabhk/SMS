@@ -712,7 +712,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="overview shadow p-3 rounded bg-white">
         {/* === Header Section === */}
         <div className="overview-head ">

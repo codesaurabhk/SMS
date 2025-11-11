@@ -631,7 +631,6 @@
 
   .sidebar-left {
     width: 80%;
-    max-width: 320px;
     transform: translateX(-100%);
     position: fixed;
     top: 0;
