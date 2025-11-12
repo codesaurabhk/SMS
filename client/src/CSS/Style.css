@@ -453,6 +453,38 @@
 }
 
 
+.performance-chart-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.performance-chart-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+.occupancy-chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+.occupancy-chart {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .occupancy-chart {
+    padding: 1rem !important;
+  }
+}
+
+
 
 /* <-------------------------------------- for responsive -----------------------------------------> */
 
@@ -480,6 +512,13 @@
   }
   .pending-fees-table-class {
     margin-top: 10px;
+  }
+   .performance-chart .fw-semibold span {
+    font-size: 13px;
+  }
+
+  .performance-chart-container {
+    max-width: 100%;
   }
 }
 
@@ -521,6 +560,22 @@
     display: flex;
     justify-content: space-between;
   }
+   .performance-chart .d-flex.justify-content-between.mb-2 {
+    align-items: flex-start;
+  }
+
+  .performance-chart .percentage-header {
+    margin-top: 4px;
+  }
+
+  /* Reduce padding for chart card */
+  .performance-chart .p-4 {
+    padding: 1rem !important;
+  }
+
+  .performance-chart h6 {
+    font-size: 14px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -552,6 +607,12 @@
   .down-right {
     width: 35%;
   }
+  .performance-chart {
+    width: 100%;
+  }
+  .occupancy-chart {
+    width: 100%;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -572,6 +633,10 @@
   }
   .percent {
     font-size: 15px;
+  }
+  .top-two-graph {
+    display: flex;
+    gap: 20px;
   }
 }
 
@@ -628,6 +693,7 @@
   .hamburger {
     display: inline-flex;
   }
+  
 
   .sidebar-left {
     width: 80%;

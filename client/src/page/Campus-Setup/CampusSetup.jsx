@@ -125,6 +125,7 @@ function CampusSetup() {
   const [open, setOpen] = useState(false);
   const performanceChartRef = useRef();
   const occupancyChartRef = useRef();
+  const roomsChartRef = useRef();
 
   const handleToggle = () => {
     setOpen(!open);
@@ -145,106 +146,146 @@ function CampusSetup() {
     { service: "Water Purifier", percentage: 31, time: "10:15 pm" },
   ];
   useEffect(() => {
-    const width = 440;
-    const barHeight = 60;
-    const height = data.length * barHeight + 20;
+    if (!performanceChartRef.current) return;
 
-    d3.select(performanceChartRef.current).selectAll("*").remove();
+    const container = performanceChartRef.current.parentNode;
 
-    const svg = d3
-      .select(performanceChartRef.current)
-      .attr("width", width)
-      .attr("height", height)
-      .style("font-family", "Inter, sans-serif");
+    const drawChart = () => {
+      const width = container.offsetWidth || 440; // 👈 fallback width
+      const barHeight = 58;
+      const height = data.length * barHeight + 20;
 
-    const xScale = d3
-      .scaleLinear()
-      .domain([0, 100])
-      .range([0, width - 120]);
+      // Clear previous chart
+      const svg = d3
+        .select(performanceChartRef.current)
+        .attr("width", width)
+        .attr("height", height)
+        .style("font-family", "Inter, sans-serif");
 
-    // ✅ Background for left (main area)
-    svg
-      .selectAll(".bar-bg-main")
-      .data(data)
-      .enter()
-      .append("rect")
-      .attr("class", "bar-bg-main")
-      .attr("x", 10)
-      .attr("y", (d, i) => i * barHeight - 1)
-      .attr("width", width - 120 - 10) // leave space for red section
-      .attr("height", barHeight - 10)
-      .attr("rx", 8)
-      .attr("fill", "#F2F7FA");
+      svg.selectAll("*").remove();
 
-    // ✅ Background for right (percentage area)
-    svg
-      .selectAll(".bar-bg-percent")
-      .data(data)
-      .enter()
-      .append("rect")
-      .attr("class", "bar-bg-percent")
-      .attr("x", width - 100) // start near right edge
-      .attr("y", (d, i) => i * barHeight - 1)
-      .attr("width", 80)
-      .attr("height", barHeight - 10)
-      .attr("rx", 8)
-      .attr("fill", "#F2F7FA"); // light red background
+      const xScale = d3
+        .scaleLinear()
+        .domain([0, 100])
+        .range([0, width - 120]);
 
-    // ✅ Filled green bars
-    svg
-      .selectAll(".bar-fill")
-      .data(data)
-      .enter()
-      .append("rect")
-      .attr("class", "bar-fill")
-      .attr("x", 20)
-      .attr("y", (d, i) => i * barHeight + barHeight - 20)
-      .attr("width", 0)
-      .attr("height", 8)
-      .attr("rx", 5)
-      .attr("fill", "#00C853")
-      .transition()
-      .duration(1000)
-      .attr("width", (d) => xScale(d.percentage));
+      // Background (main)
+      svg
+        .selectAll(".bar-bg-main")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", 10)
+        .attr("y", (d, i) => i * barHeight - 1)
+        .attr("width", width - 120 - 10)
+        .attr("height", barHeight - 10)
+        .attr("rx", 8)
+        .attr("fill", "#F2F7FA");
 
-    // ✅ Service labels
-    svg
-      .selectAll(".service-text")
-      .data(data)
-      .enter()
-      .append("text")
-      .attr("x", 20)
-      .attr("y", (d, i) => i * barHeight + 20)
-      .text((d) => d.service)
-      .attr("font-size", "14px")
-      .attr("fill", "#333")
-      .attr("font-weight", "600");
+      // Background (percentage area)
+      svg
+        .selectAll(".bar-bg-percent")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", width - 100)
+        .attr("y", (d, i) => i * barHeight - 1)
+        .attr("width", 80)
+        .attr("height", barHeight - 10)
+        .attr("rx", 8)
+        .attr("fill", "#F2F7FA");
 
-    // ✅ Time labels
-    svg
-      .selectAll(".time-text")
-      .data(data)
-      .enter()
-      .append("text")
-      .attr("x", 260)
-      .attr("y", (d, i) => i * barHeight + barHeight - 20)
-      .text((d) => d.time)
-      .attr("font-size", "12px")
-      .attr("fill", "#888");
+      // Filled green bars
+      svg
+        .selectAll(".bar-fill")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", 20)
+        .attr("y", (d, i) => i * barHeight + barHeight - 20)
+        .attr("width", 0)
+        .attr("height", 8)
+        .attr("rx", 5)
+        .attr("fill", "#00C853")
+        .transition()
+        .duration(1000)
+        .attr("width", (d) => xScale(d.percentage));
 
-    // ✅ Percentage labels (inside red background)
-    svg
-      .selectAll(".percentage-text")
-      .data(data)
-      .enter()
-      .append("text")
-      .attr("x", width - 60)
-      .attr("y", (d, i) => i * barHeight + 25)
-      .text((d) => `${d.percentage}%`)
-      .attr("font-size", "14px")
-      .attr("font-weight", "700")
-      .attr("fill", "#000"); // deep red text
-  }, []);
+      // Service labels
+      svg
+        .selectAll(".service-text")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("x", 20)
+        .attr("y", (d, i) => i * barHeight + 20)
+        .text((d) => d.service)
+        .attr("font-size", width < 400 ? "12px" : "14px")
+        .attr("fill", "#333")
+        .attr("font-weight", "600");
+
+      // Time labels
+      svg
+        .selectAll(".time-text")
+        .data(data)
+        .enter()
+        .append("text")
+        // 👇 dynamically position x depending on screen width
+        .attr("x", () => {
+          if (width > 800) return width * 0.85; // Desktop: far right
+          if (width > 500) return width * 0.75; // Tablet: move slightly left
+          return 20; // Mobile: align to left
+        })
+        // 👇 adjust y position based on screen width
+        .attr("y", (d, i) => {
+          if (width < 500) {
+            // on mobile, put below the bar
+            return i * barHeight + barHeight;
+          }
+          // otherwise, stay beside bar
+          return i * barHeight + barHeight - 20;
+        })
+        .text((d) => d.time)
+        .attr("font-size", () => {
+          if (width > 800) return "13px";
+          if (width > 500) return "12px";
+          return "11px";
+        })
+        // 👇 adjust text alignment for small screens
+        .attr("text-anchor", width < 500 ? "start" : "end")
+        .attr("fill", "#888");
+
+      // Percentage labels (move below bar on small screens)
+      svg
+        .selectAll(".percentage-text")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("x", width < 400 ? 20 : width - 60)
+        .attr("y", (d, i) =>
+          width < 400 ? i * barHeight + barHeight - 5 : i * barHeight + 25
+        )
+        .text((d) => `${d.percentage}%`)
+        .attr("font-size", width < 400 ? "13px" : "14px")
+        .attr("font-weight", "700")
+        .attr("fill", "#000");
+    };
+
+    // Draw once on mount
+    drawChart();
+
+    // 👇 Use ResizeObserver for smooth responsive redraws
+    const resizeObserver = new ResizeObserver(() => {
+      drawChart();
+    });
+
+    resizeObserver.observe(container);
+
+    // Cleanup
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [data]);
 
   /* --------------------------------- 🔹 Occupancy Chart Data --------------------------------- */
   const occupancyData = [
@@ -254,156 +295,300 @@ function CampusSetup() {
     { label: "Others", value: 15, color: "#673AB7" },
   ];
 
-  /* --------------------------------- 🔹 Occupancy Chart (Semi Donut) --------------------------------- */
- useEffect(() => {
-  const width = 400;
-  const height = 280;
-  const radius = 110;
+  useEffect(() => {
+    if (!occupancyChartRef.current) return;
 
-  // Clear previous SVG
-  d3.select(occupancyChartRef.current).selectAll("*").remove();
+    const drawChart = () => {
+      const container = occupancyChartRef.current.parentNode;
+      const width = container.offsetWidth; // 👈 dynamic width
+      const height = width * 0.65; // maintain aspect ratio (adjust as needed)
+      const radius = Math.min(width, height) / 3.2;
 
-  const svg = d3
-    .select(occupancyChartRef.current)
-    .attr("width", width)
-    .attr("height", height)
-    .append("g")
-    .attr("transform", `translate(${width / 2.2}, ${height / 1.4})`);
+      // === Clear previous SVG ===
+      d3.select(occupancyChartRef.current).selectAll("*").remove();
 
-  // ===== Shadow effect =====
-  const defs = svg.append("defs");
-  const shadow = defs
-    .append("filter")
-    .attr("id", "shadow")
-    .attr("x", "-50%")
-    .attr("y", "-50%")
-    .attr("width", "200%")
-    .attr("height", "200%");
-  shadow
-    .append("feDropShadow")
-    .attr("dx", "2")
-    .attr("dy", "3")
-    .attr("stdDeviation", "3")
-    .attr("flood-color", "#b5b5b5");
+      // === Create SVG Container ===
+      const svg = d3
+        .select(occupancyChartRef.current)
+        .attr("width", "100%") // 👈 let CSS handle width
+        .attr("height", height)
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "xMidYMid meet")
+        .append("g")
+        .attr(
+          "transform",
+          `translate(${width / 2 - width * 0.05}, ${
+            height / 2 + height * 0.02
+          })`
+        );
 
-  // ===== Pie and Arc setup =====
-  const pie = d3
-    .pie()
-    .sort(null)
-    .value((d) => d.value)
-    .startAngle(-Math.PI / 1.2)
-    .endAngle(Math.PI / 1.2);
+      // === Shadow effect ===
+      const defs = svg.append("defs");
+      const shadow = defs
+        .append("filter")
+        .attr("id", "shadow")
+        .attr("x", "-100%")
+        .attr("y", "-100%")
+        .attr("width", "300%")
+        .attr("height", "300%")
+        .attr("filterUnits", "userSpaceOnUse");
 
-  const arc = d3
-    .arc()
-    .innerRadius(radius - 25)
-    .outerRadius(radius)
-    .cornerRadius(10);
+      shadow
+        .append("feDropShadow")
+        .attr("dx", "2")
+        .attr("dy", "3")
+        .attr("stdDeviation", "4")
+        .attr("flood-color", "#000");
 
-  const arcHover = d3
-    .arc()
-    .innerRadius(radius - 25)
-    .outerRadius(radius + 10)
-    .cornerRadius(10);
+      // === Pie + Arc setup ===
+      const pie = d3
+        .pie()
+        .sort(null)
+        .value((d) => d.value)
+        .padAngle(0.08);
 
-  // ===== Tooltip =====
-  const tooltip = d3
-    .select("body")
-    .append("div")
-    .attr("class", "d3-tooltip")
-    .style("position", "absolute")
-    .style("background", "#fff")
-    .style("padding", "8px 12px")
-    .style("border-radius", "6px")
-    .style("box-shadow", "0 4px 10px rgba(0,0,0,0.15)")
-    .style("font-size", "13px")
-    .style("font-weight", "500")
-    .style("color", "#333")
-    .style("pointer-events", "none")
-    .style("opacity", 0);
+      const arc = d3
+        .arc()
+        .innerRadius(radius - 5)
+        .outerRadius(radius + 2)
+        .cornerRadius(10);
 
-  // ===== Draw Arcs =====
-  const arcs = svg
-    .selectAll(".arc")
-    .data(pie(occupancyData))
-    .enter()
-    .append("path")
-    .attr("class", "arc")
-    .attr("d", arc)
-    .attr("fill", (d) => d.data.color)
-    .attr("filter", "url(#shadow)")
-    .attr("opacity", 0.95)
-    .on("mouseover", function (event, d) {
-      d3.select(this)
-        .transition()
-        .duration(300)
-        .attr("d", arcHover)
-        .attr("opacity", 1);
+      // === Tooltip ===
+      d3.select(".d3-tooltip").remove();
+      const tooltip = d3
+        .select("body")
+        .append("div")
+        .attr("class", "d3-tooltip")
+        .style("position", "absolute")
+        .style("background", "#fff")
+        .style("padding", "8px 12px")
+        .style("border-radius", "6px")
+        .style("box-shadow", "0 4px 10px rgba(0,0,0,0.15)")
+        .style("font-size", "13px")
+        .style("font-weight", "500")
+        .style("color", "#333")
+        .style("pointer-events", "none")
+        .style("opacity", 0);
 
-      tooltip
-        .style("opacity", 1)
-        .html(
-          `<strong>${d.data.label}</strong><br/>${d.data.value}% occupancy`
-        )
-        .style("left", event.pageX + 15 + "px")
-        .style("top", event.pageY - 20 + "px");
-    })
-    .on("mousemove", function (event) {
-      tooltip
-        .style("left", event.pageX + 15 + "px")
-        .style("top", event.pageY - 20 + "px");
-    })
-    .on("mouseout", function () {
-      d3.select(this)
-        .transition()
-        .duration(300)
+      // === Draw Donut Slices ===
+      svg
+        .selectAll(".arc")
+        .data(pie(occupancyData))
+        .enter()
+        .append("path")
+        .attr("class", "arc")
         .attr("d", arc)
-        .attr("opacity", 0.95);
+        .attr("fill", (d) => d.data.color)
+        .attr("filter", "url(#shadow)")
+        .attr("opacity", 0.95)
+        .style("cursor", "pointer")
+        .on("mouseover", function (event, d) {
+          const distance = 15;
+          const angle = (d.startAngle + d.endAngle) / 2;
+          const dx = Math.cos(angle) * distance;
+          const dy = Math.sin(angle) * distance;
 
-      tooltip.transition().duration(200).style("opacity", 0);
-    })
-    .transition()
-    .duration(1000)
-    .attrTween("d", function (d) {
-      const i = d3.interpolate(d.startAngle + 0.1, d.endAngle);
-      return function (t) {
-        d.endAngle = i(t);
-        return arc(d);
-      };
-    });
-     // ===== Optional: Label Line + Text for "Class Room" =====
-  const labelArc = d3
-    .arc()
-    .innerRadius(radius + 30)
-    .outerRadius(radius + 30);
+          d3.select(this)
+            .transition()
+            .duration(250)
+            .ease(d3.easeBackOut)
+            .attr("transform", `translate(${dx}, ${dy})`)
+            .attr("opacity", 1);
 
-  const labelData = pie(occupancyData)[0]; // Class Room arc
-  const [x, y] = labelArc.centroid(labelData);
+          const [xOuter, yOuter] = arc.outerRadius(radius + 10).centroid(d);
+          svg
+            .append("line")
+            .attr("class", "hover-line")
+            .attr("x1", xOuter)
+            .attr("y1", yOuter)
+            .attr("x2", xOuter)
+            .attr("y2", yOuter)
+            .attr("stroke", d.data.color)
+            .attr("stroke-width", 3)
+            .transition()
+            .duration(250)
+            .attr("x2", xOuter * 1.25)
+            .attr("y2", yOuter * 1.25);
 
-  svg
-    .append("line")
-    .attr("x1", x - 10)
-    .attr("y1", y)
-    .attr("x2", x + 30)
-    .attr("y2", y - 20)
-    .attr("stroke", "#D07C27")
-    .attr("stroke-width", 2);
+          tooltip
+            .style("opacity", 1)
+            .html(
+              `
+            <div style="font-weight:600; color:${d.data.color};">${d.data.label}</div>
+            <div style="font-size:14px;">${d.data.value}% occupancy</div>
+          `
+            )
+            .style("left", event.pageX + 15 + "px")
+            .style("top", event.pageY - 20 + "px");
+        })
+        .on("mousemove", function (event) {
+          tooltip
+            .style("left", event.pageX + 15 + "px")
+            .style("top", event.pageY - 20 + "px");
+        })
+        .on("mouseout", function () {
+          d3.select(this)
+            .transition()
+            .duration(250)
+            .ease(d3.easeBackIn)
+            .attr("transform", "translate(0,0)")
+            .attr("opacity", 0.95);
 
-  svg
-    .append("text")
-    .attr("x", x + 50)
-    .attr("y", y - 25)
-    .attr("text-anchor", "start")
-    .attr("fill", "#D07C27")
-    .attr("font-size", "18px")
-    .attr("font-weight", "600")
-    .text("Class Rooms");
+          svg.selectAll(".hover-line").remove();
+          tooltip.transition().duration(200).style("opacity", 0);
+        });
 
-  // ===== Cleanup tooltip on unmount =====
-  return () => {
-    tooltip.remove();
-  };
-}, []);
+      return () => tooltip.remove();
+    };
+
+    // === Initial draw
+    drawChart();
+
+    // === Redraw on container resize
+    const resizeObserver = new ResizeObserver(() => drawChart());
+    resizeObserver.observe(occupancyChartRef.current.parentNode);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  {
+    /* < -------------------------------------- Room Count per Building -------------------------------------- > */
+  }
+  const roomsData = [
+    { building: "B1", occupied: 160, available: 25, under: 15 },
+    { building: "B2", occupied: 100, available: 20, under: 10 },
+    { building: "B3", occupied: 70, available: 15, under: 10 },
+    { building: "B4", occupied: 150, available: 30, under: 15 },
+    { building: "B5", occupied: 110, available: 20, under: 10 },
+    { building: "B6", occupied: 90, available: 15, under: 8 },
+    { building: "B7", occupied: 130, available: 25, under: 10 },
+  ];
+
+  useEffect(() => {
+    if (!roomsChartRef.current) return;
+
+    const container = roomsChartRef.current.parentNode;
+    const width = container.offsetWidth;
+    const height = 300;
+    const margin = { top: 30, right: 20, bottom: 40, left: 50 };
+
+    // Clear any previous chart
+    d3.select(roomsChartRef.current).selectAll("*").remove();
+
+    const svg = d3
+      .select(roomsChartRef.current)
+      .attr("width", "100%")
+      .attr("height", height)
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    const keys = ["under", "available", "occupied"];
+    const colorScale = d3
+      .scaleOrdinal()
+      .domain(keys)
+      .range(["#8FC9FF", "#007BFF", "#0047AB"]);
+
+    const x = d3
+      .scaleBand()
+      .domain(roomsData.map((d) => d.building))
+      .range([0, width - margin.left - margin.right])
+      .padding(0.55);
+
+    const y = d3
+      .scaleLinear()
+      .domain([0, d3.max(roomsData, (d) => d.occupied + d.available + d.under)])
+      .nice()
+      .range([height - margin.bottom - margin.top, 0]);
+
+    const stackedData = d3.stack().keys(keys)(roomsData);
+
+    // 🩶 1️⃣ Add horizontal Y grid lines first (behind bars)
+    svg
+      .append("g")
+      .call(
+        d3
+          .axisLeft(y)
+          .ticks(5)
+          .tickSize(-(width - margin.left - margin.right))
+          .tickPadding(10)
+      )
+      .call((g) => g.select(".domain").remove()) // remove Y axis line
+      .selectAll("text")
+      .attr("font-size", "12px")
+      .attr("fill", "#666");
+
+    // 🩶 Style grid lines
+    svg
+      .selectAll(".tick line")
+      .attr("stroke", "#E9EEF3")
+      .attr("stroke-width", 1)
+      .attr("opacity", 0.8);
+
+    // 🟩 2️⃣ Draw stacked bars (on top of grid)
+    svg
+      .selectAll(".layer")
+      .data(stackedData)
+      .enter()
+      .append("g")
+      .attr("fill", (d) => colorScale(d.key))
+      .selectAll("rect")
+      .data((d) => d)
+      .enter()
+      .append("rect")
+      .attr("x", (d) => x(d.data.building))
+      .attr("y", (d) => y(d[1]))
+      .attr("height", (d) => y(d[0]) - y(d[1]))
+      .attr("width", x.bandwidth())
+      .attr("opacity", 1)
+      .on("mouseover", function () {
+        d3.select(this)
+          .transition()
+          .duration(150)
+          .attr("opacity", 0.85)
+          .attr("transform", "translate(0,-4)");
+      })
+      .on("mouseout", function () {
+        d3.select(this)
+          .transition()
+          .duration(150)
+          .attr("opacity", 1)
+          .attr("transform", "translate(0,0)");
+      });
+
+    // 🧭 3️⃣ Add X Axis (bottom labels only)
+    svg
+      .append("g")
+      .attr("transform", `translate(0,${height - margin.bottom - margin.top})`)
+      .call(d3.axisBottom(x))
+      .call((g) => g.select(".domain").remove()) // remove X axis line
+      .selectAll("text")
+      .attr("dy", "1em")
+      .attr("font-size", "13px")
+      .attr("fill", "#555");
+
+      
+    // 🏷️ Add X-axis label (centered)
+    svg
+      .append("text")
+      .attr("x", (width - margin.left - margin.right) / 2) // horizontally centered
+      .attr("y", height - margin.bottom + 5) // just below axis labels
+      .attr("text-anchor", "middle")
+      .attr("font-size", "13px")
+      .attr("fill", "#666")
+      .text("Building");
+
+    // 🏷️ 4️⃣ Add Y-axis label
+    // svg
+    //   .append("text")
+    //   .attr("x", -margin.left + 10)
+    //   .attr("y", -10)
+    //   .attr("text-anchor", "start")
+    //   .attr("font-size", "13px")
+    //   .attr("fill", "#666")
+    //   .text("Rooms Count");
+  }, [roomsData]);
 
   return (
     <div className="container-fluid">
@@ -584,16 +769,13 @@ function CampusSetup() {
           </div>
 
           {/* <--------------------------------- All chart ------------------------------------> */}
-          <div className="d-flex gap-4 mt-3">
+          <div className="top-two-graph gap-4 mt-3 ">
             {/* <=================================== Performane Chart =======================================> */}
-            <div className="mt-3">
-              <div
-                className="p-4 bg-white rounded shadow-sm"
-                style={{ width: "480px" }}
-              >
+            <div className="performance-chart mt-3 w-50">
+              <div className="p-4 bg-white rounded shadow-sm">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <h6 className="fw-bold mb-0">
-                    Campus Performance Chart{" "}
+                    Campus Performance Chart
                     <span className="text-danger">• Live</span>
                   </h6>
                   <button className="btn btn-outline-secondary btn-sm rounded-pill">
@@ -601,49 +783,106 @@ function CampusSetup() {
                   </button>
                 </div>
 
-                <div className="d-flex justify-content-between mb-2 fw-semibold text-muted">
-                  <span>Services</span>
-                  <span>Percentage</span>
+                <div className="d-flex justify-content-between mb-2 fw-semibold text-muted mb-3">
+                  <span
+                    style={{
+                      padding: "0px 20px",
+                      fontWeight: "400",
+                      color: "#1C212D",
+                      fontSize: "16px",
+                    }}
+                  >
+                    Services
+                  </span>
+                  <span
+                    style={{
+                      padding: "0px 25px",
+                      fontWeight: "400",
+                      color: "#1C212D",
+                      fontSize: "16px",
+                    }}
+                  >
+                    Percentage
+                  </span>
                 </div>
 
-                <svg ref={performanceChartRef}></svg>
+                <div className="performance-chart-container">
+                  <svg ref={performanceChartRef}></svg>
+                </div>
+              </div>
+              {/* <----------------------------------------------- Rooms per count -----------------------------------------------> */}
+              <div className="mt-3">
+                <div className=" p-4 bg-white rounded shadow-sm">
+                  <div className="d-flex justify-content-between align-items-center mb-3">
+                    <h6 className="fw-bold mb-0">Rooms per Count</h6>
+                    <button className="btn btn-outline-secondary btn-sm rounded-pill">
+                      year
+                    </button>
+                  </div>
+                  <div className="d-flex justify-content-between gap-3 mb-2  text-muted">
+                    {/* <div>
+                      <span className="me-2" style={{ color: "#0047AB" }}>
+                        
+                      </span>
+                      Occupied <br />
+                      <span className="ms-1 text-dark ">600 Rooms</span>
+                    </div>
+                    <div>
+                      <span className="me-2" style={{ color: "#007BFF" }}>
+                        
+                      </span>
+                      Available <br />
+                      <span className="ms-1 text-dark ">97 Rooms</span>
+                    </div>
+                    <div>
+                      <span className="me-2" style={{ color: "#8FC9FF" }}>
+                        
+                      </span>
+                      Under Construction <br />
+                      <span className="ms-1 text-dark">81 Rooms</span>
+                    </div> */}
+                  </div>
+
+                  <div>
+                    <svg ref={roomsChartRef}></svg>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* <=================================== Occupancy Chart =======================================> */}
-            <div
-              className="p-4 bg-white rounded shadow-sm mt-3"
-              style={{ width: "400px" }}
-            >
-              <div className="d-flex justify-content-between align-items-center">
-                <h6 className="fw-bold mb-0">Campus Occupancy</h6>
-                <button className="btn btn-outline-secondary btn-sm rounded-pill">
-                  2025
-                </button>
-              </div>
+            <div className="occupancy-chart mt-3 w-50">
+              <div className="occupancy-chart p-4 bg-white rounded shadow-sm ">
+                <div className="d-flex justify-content-between align-items-center">
+                  <h6 className="fw-bold mb-0">Campus Occupancy</h6>
+                  <button className="btn btn-outline-secondary btn-sm rounded-pill">
+                    2025
+                  </button>
+                </div>
 
-              <svg ref={occupancyChartRef}></svg>
-              <div>
-                <div className="d-flex justify-content-center gap-4 mt-3">
-                  {occupancyData.map((d, i) => (
-                    <div key={i} className="d-flex align-items-center gap-2">
-                      <div
-                        style={{
-                          width: 12,
-                          height: 12,
-                          backgroundColor: d.color,
-                          borderRadius: 3,
-                        }}
-                      ></div>
-                      <span style={{ fontSize: 13 }}>{d.label}</span>
-                    </div>
-                  ))}
+                <div className="" style={{}}>
+                  <svg ref={occupancyChartRef}></svg>
+                </div>
+                <div>
+                  <div className="d-flex justify-content-center gap-4">
+                    {occupancyData.map((d, i) => (
+                      <div key={i} className="d-flex align-items-center gap-2">
+                        <div
+                          style={{
+                            width: 12,
+                            height: 12,
+                            backgroundColor: d.color,
+                            borderRadius: 3,
+                          }}
+                        ></div>
+                        <span style={{ fontSize: 13 }}>{d.label}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-
           </div>
-
         </div>
         <div className="w-25 bg-white">Campus setup</div>
       </div>
