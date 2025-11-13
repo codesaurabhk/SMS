@@ -472,17 +472,27 @@
 }
 
 
-.occupancy-chart {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
+
+.update-btn {
+  border: 1px solid #c8c8c8;
+  background: transparent;
+  padding: 6px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #717376;
 }
 
-@media (max-width: 600px) {
-  .occupancy-chart {
-    padding: 1rem !important;
-  }
+.progress {
+  background-color: #e9e9e9 !important;
+  border-radius: 10px !important;
+  overflow: hidden;
 }
+
+.progress-bar {
+  background-color: #2D8CFF !important;
+  border-radius: 10px;
+}
+
 
 
 
@@ -607,6 +617,26 @@
   .down-right {
     width: 35%;
   }
+  .campus-left {
+    width: 75%;
+  }
+  .campus-right {
+    width: 25%;
+  }
+  .performance-chart {
+    width: 75%;
+  }
+  .occupancy-chart{
+    width: 75%;
+  }
+  /* .all-graph {
+    display: flex;
+    gap: 20px;
+  } */
+   .four-graph {
+    display: flex;
+    gap: 20px;
+   }
   .performance-chart {
     width: 100%;
   }
