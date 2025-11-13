@@ -7,7 +7,7 @@ import { TfiFilter } from "react-icons/tfi";
 import { LuCloudDownload } from "react-icons/lu";
 import { PiDotsThreeVertical } from "react-icons/pi";
 import { MdOutlineIndeterminateCheckBox } from "react-icons/md";
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 
@@ -85,15 +85,14 @@ const Students = () => {
       attendance: "59%",
     },
   ]);
-    const [showLowAttendance, setShowLowAttendance] = useState(false);
-
-  
+  const [showLowAttendance, setShowLowAttendance] = useState(false);
+  const [openMenuId, setOpenMenuId] = useState(null);
 
   const overviewCards = [
     { title: "Total Students", value: 6000, color: "#c79d7c" },
     { title: "Active Students", value: 6000, color: "#d8c26a" },
     { title: "Pending Fees", value: 6000, color: "#e18bd9" },
-    { title: "Students Not Assigned Class Yet", value: 6000, color: "#8DDE6F" },
+    // { title: "Students Not Assigned Class Yet", value: 6000, color: "#8DDE6F" },
     { title: "Inactive/Transferred Students", value: 6000, color: "#7fb5f0" },
     { title: "Low Attendance Students", value: 6000, color: "#ec8a8a" },
   ];
@@ -109,10 +108,14 @@ const Students = () => {
     "Payment Failed": { bg: "#FF9999", color: "#911808" },
   };
 
-   const handleCardClick = (title) => {
+  const handleCardClick = (title) => {
     if (title === "Low Attendance Students") {
-       navigate("/studentTable");
+      navigate("/studentTable");
     }
+  };
+  
+  const toggleMenu = (id) => {
+    setOpenMenuId(openMenuId === id ? null : id);
   };
 
   return (
@@ -123,18 +126,15 @@ const Students = () => {
       {/*  Student Overview Section */}
       <Card className="shadow border-0 mb-4  rounded-4">
         <Card.Body>
-           <div className="d-flex justify-content-between align-items-center mb-4">
-          <h3 className="fw-semibold mb-4">📊 Student Overview</h3>
-           
-            </div>
-       
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <h3 className="fw-semibold mb-1"> Student Overview</h3>
+          </div>
 
-             
           <div className="d-flex flex-wrap gap-4">
             {overviewCards.map((card, index) => (
               <Card
                 key={index}
-                  onClick={() => handleCardClick(card.title)}
+                onClick={() => handleCardClick(card.title)}
                 className="shadow-sm rounded-4 d-flex flex-row align-items-center position-relative"
                 style={{
                   width: "232px",
@@ -189,7 +189,6 @@ const Students = () => {
               </Card>
             ))}
           </div>
-           
         </Card.Body>
       </Card>
 
@@ -198,7 +197,7 @@ const Students = () => {
         <Card.Header className="d-flex justify-content-between align-items-center bg-white border-0 rounded-3 py-3">
           <div className="d-flex gap-2 ms-1">
             <h5 className="mb-0  fw-semibold">Students</h5>{" "}
-            <span
+            {/* <span
               style={{
                 backgroundColor: "#F7FAFF",
                 color: "#0070FF",
@@ -206,16 +205,34 @@ const Students = () => {
               }}
             >
               40
-            </span>
+            </span> */}
           </div>
-          <div className="d-flex gap-3">
+          <div className="d-flex gap-3  ">
+            <Form.Select
+              size="sm"
+              className="rounded-3 text-secondary"
+              style={{
+                width: "100px",
+                border: "1px solid #1C1C1C29",
+                padding: "4px 10px",
+              }}
+            >
+              <option value="">All Class</option>
+              <option value="1">Class 1</option>
+              <option value="2">Class 2</option>
+              <option value="3">Class 3</option>
+            </Form.Select>
             <Button
               className="rounded-3 "
               variant="outline-secondary"
               size="sm"
               style={{ padding: "4px 14px", border: "1px solid #1C1C1C29" }}
             >
-              <LuCloudDownload /> &nbsp; Export
+              <LuCloudDownload
+                className=" fs-5"
+                style={{ transform: "rotate(180deg)" }}
+              />{" "}
+              &nbsp; Export
             </Button>
             <Button
               className="rounded-3 "
@@ -223,7 +240,15 @@ const Students = () => {
               size="sm"
               style={{ padding: "4px 14px", border: "1px solid #1C1C1C29" }}
             >
-              <TfiFilter /> &nbsp; Filter
+              <LuCloudDownload className=" fs-5" /> &nbsp; Import
+            </Button>
+            <Button
+              className="rounded-3 "
+              variant="outline-secondary"
+              size="sm"
+              style={{ padding: "4px 14px", border: "1px solid #1C1C1C29" }}
+            >
+              <TfiFilter className="fw-semibold fs-5" /> &nbsp; Filter
             </Button>
             <Link to="/addstudents" style={{ textDecoration: "none" }}>
               <Button
@@ -232,7 +257,7 @@ const Students = () => {
                 size="sm"
                 style={{ padding: "4px 18px" }}
               >
-                + &nbsp; Add
+                + Add New Student
               </Button>
             </Link>
           </div>
@@ -262,11 +287,11 @@ const Students = () => {
             </thead>
             <tbody>
               {students.map((s) => (
-                <tr key={s.id}>
+                <tr key={s.id} onClick={()=>navigate(`/studentProfile/${s.id}`)} >
                   <td>
                     <input type="checkbox" name="" id="" />
                   </td>
-                  <td>{s.id}</td>
+                  <td className="text-secondary">{s.id}</td>
                   <td>
                     <img
                       src={s.photo}
@@ -276,19 +301,18 @@ const Students = () => {
                       height="35"
                     />
                   </td>
-                  <td>{s.name}</td>
-                  <td>{s.class}</td>
-                  <td>{s.section}</td>
-                  <td>{s.doa}</td>
-                  <td>{s.admissionNo}</td>
-                  <td>{s.contact}</td>
-                  <td>
+                  <td className="text-secondary">{s.name}</td>
+                  <td className="text-secondary">{s.class}</td>
+                  <td className="text-secondary">{s.section}</td>
+                  <td className="text-secondary">{s.doa}</td>
+                  <td className="text-secondary">{s.admissionNo}</td>
+                  <td className="text-secondary">{s.contact}</td>
+                  <td className="text-secondary">
                     {s.status}
                     {/* <Badge bg={getBadgeColor(s.status)}>{s.status}</Badge> */}
                   </td>
-                  <td>{s.teacher}</td>
+                  <td className="text-secondary">{s.teacher}</td>
                   <td>
-                   
                     <span
                       style={{
                         display: "inline-block",
@@ -303,9 +327,56 @@ const Students = () => {
                       {s.fee}
                     </span>
                   </td>
-                  <td>{s.attendance}</td>
-                  <td>
-                    <PiDotsThreeVertical />
+                  <td className="text-secondary">{s.attendance}</td>
+                  <td className="position-relative">
+                    <div className="dropdown ">
+                      <PiDotsThreeVertical
+                        className="cursor-pointer"
+                        data-bs-toggle="dropdown"
+                        style={{ cursor: "pointer" }}
+                      />
+
+                      <ul
+                        className="dropdown-menu shadow-sm border-0"
+                        style={{ borderRadius: "8px", minWidth: "80px" }}
+                      >
+                        <li>
+                          <button
+                            className="dropdown-item"
+                            style={{ borderRadius: "6px" }}
+                            onMouseEnter={(e) =>
+                              (e.target.style.background = "#cfe2ff")
+                            }
+                            onMouseLeave={(e) =>
+                              (e.target.style.background = "transparent")
+                            }
+                            onMouseDown={(e) =>
+                              (e.target.style.background = "#cfe2ff")
+                            }
+                          >
+                            Edit
+                          </button>
+                        </li>
+
+                        <li>
+                          <button
+                            className="dropdown-item"
+                            style={{ borderRadius: "6px" }}
+                            onMouseEnter={(e) =>
+                              (e.target.style.background = "#cfe2ff")
+                            }
+                            onMouseLeave={(e) =>
+                              (e.target.style.background = "transparent")
+                            }
+                            onMouseDown={(e) =>
+                              (e.target.style.background = "#cfe2ff")
+                            }
+                          >
+                            Delete
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -338,6 +409,3 @@ const Students = () => {
 };
 
 export default Students;
-
-
-

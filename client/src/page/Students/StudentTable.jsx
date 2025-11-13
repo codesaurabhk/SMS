@@ -7,11 +7,12 @@ import { TfiFilter } from "react-icons/tfi";
 import { LuCloudDownload } from "react-icons/lu";
 import { PiDotsThreeVertical } from "react-icons/pi";
 import { MdOutlineIndeterminateCheckBox } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 
 const Students = () => {
+   const navigate = useNavigate();
   const [students] = useState([
     {
       id: 1,
@@ -111,11 +112,11 @@ const Students = () => {
     { title: "Total Students", value: 6000, color: "#c79d7c" },
     { title: "Active Students", value: 6000, color: "#d8c26a" },
     { title: "Pending Fees", value: 6000, color: "#e18bd9" },
-    { title: "Pending Fees", value: 6000, color: "#e18bd9" },
+    { title: "Pending Fees", value: 6000, color: "#91A4C8" },
     { title: "Students Not Assigned Class Yet", value: 6000, color: "#8DDE6F" },
     { title: "Inactive/Transferred Students", value: 6000, color: "#7fb5f0" },
     { title: "Low Attendance Students", value: 6000, color: "#ec8a8a" },
-    { title: "Low Attendance Students", value: 6000, color: "#ec8a8a" },
+    { title: "Low Attendance Students", value: 6000, color: "#C071FD" },
   ];
 
   const feeColors = {
@@ -130,8 +131,8 @@ const Students = () => {
   };
 
   const handleCardClick = (title) => {
-    if (title === "Low Attendance Students") {
-      setShowLowAttendance(true);
+    if (title === "Total Students") {
+       navigate("/students");
     }
   };
 
@@ -221,7 +222,7 @@ const Students = () => {
                 <h6 className="fw-bold mb-0">Birthday This Month</h6>
                 <a
                   href="#"
-                  className="text-decoration-none small text-primary fw-semibold"
+                  className="small  text-secondary "
                 >
                   View All
                 </a>
@@ -236,16 +237,16 @@ const Students = () => {
                   >
                     <div className="d-flex align-items-center gap-3">
                       <div className="text-center">
-                        <div className="fw-bold small">{b.date}</div>
+                        <div className=" small">{b.date}</div>
                       </div>
-                      <div>
+                      <div className="ps-2" style={{borderLeft:"3px solid white"}}>
                         <div className="fw-bold">{b.name}</div>
-                        <div className="text-secondary small">{b.detail}</div>
+                        <div className=" small " >{b.detail}</div>
                       </div>
                     </div>
                     <a
                       href="#"
-                      className="text-decoration-none small fw-semibold text-primary"
+                      className=" small  text-secondary"
                     >
                       Send Wishes
                     </a>
@@ -259,7 +260,7 @@ const Students = () => {
       <Card className="shadow border-0 rounded-3 bg-white">
         <Card.Header className="d-flex justify-content-between align-items-center bg-white border-0 rounded-3 py-3">
           <div className="d-flex gap-2 ms-1">
-            <h5 className="mb-0  fw-semibold">Students hi </h5>{" "}
+            <h5 className="mb-0  fw-semibold">Students</h5>{" "}
             <span
               style={{
                 backgroundColor: "#F7FAFF",

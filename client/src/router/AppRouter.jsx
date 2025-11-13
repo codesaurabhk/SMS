@@ -21,6 +21,7 @@ import Settings from "../page/Settings/Settings";
 import Reports from "../page/Reports/Reports";
 import AddStudent from "../page/Students/AddStudent";
 import StudentTable from "../page/Students/StudentTable";
+import StudentProfile from "../page/Students/StudentProfile";
 
 
 function AppRouter() {
@@ -34,6 +35,7 @@ function AppRouter() {
           <Route path="user-management-system" element={<UserManagement/>} />
           <Route path="students" element={<Students />} />
           <Route path="studentTable" element={<StudentTable />} />
+          <Route path="studentProfile/:id" element={<StudentProfile />} />
 
           <Route path="addstudents" element={<AddStudent/>} />
           <Route path="teachers" element={<Teachers />} />
