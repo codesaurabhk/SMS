@@ -22,6 +22,7 @@ import Reports from "../page/Reports/Reports";
 import AddStudent from "../page/Students/AddStudent";
 import StudentTable from "../page/Students/StudentTable";
 import StudentProfile from "../page/Students/StudentProfile";
+import BlockSetup from "../page/Campus-Setup/BlockSetup";
 
 
 function AppRouter() {
@@ -31,7 +32,10 @@ function AppRouter() {
         <Route path="/" element={<Menu />}>
           <Route path="sidebar" element={<Sidebar />} />
           <Route path="" element={<Dashboard />} />
+
           <Route path="campus-setup" element={<CampusSetup/>} />
+            <Route path="block-setup" element={<BlockSetup/>} />
+
           <Route path="user-management-system" element={<UserManagement/>} />
           <Route path="students" element={<Students />} />
           <Route path="studentTable" element={<StudentTable />} />

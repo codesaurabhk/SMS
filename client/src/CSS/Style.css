@@ -429,22 +429,23 @@
 .campus-slider {
   display: flex;
   gap: 20px;
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
   scroll-behavior: smooth;
   padding: 10px 0;
 }
-
-/* Hide scrollbar for Chrome, Safari, Edge */
-.campus-slider::-webkit-scrollbar {
+.campus-slider::-webkit-scrollbar{
   display: none;
 }
 
+
+
 /* Hide scrollbar for Firefox */
 .campus-slider {
-  scrollbar-width: none;
   -ms-overflow-style: none; /* for old Edge */
 }
+
+
 
 .campus-card span,
 .campus-card div {
@@ -494,6 +495,67 @@
 }
 
 
+.alert-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #ffe6e1;
+  border: 1px solid #ffb5a9;
+}
+
+.campus-tag {
+  background-color: #e7f8d9;
+  color: #000;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.floor-tag {
+  background-color: #e5f1ff;
+  border: 1px solid #77b6ff;
+  color: #000;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pending-badge {
+  background-color: #ffd2d2;
+  color: #ff3b3b;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+
+/* <------------------------------------------ Block-Setup -----------------------------------------> */
+
+.input-border {
+  border: 1px solid #cccccc;
+  width: 500px;
+}
+
+
+.input-form {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 10px 10px;
+}
+
+.attach-file {
+  color:#C09072 ;
+  border-bottom: 1px solid #C09072;
+}
+
+.dashed {
+   border-style: dashed !important;
+   width: 295px;
+   background-color: #ECF0FA;
+}
 
 
 /* <-------------------------------------- for responsive -----------------------------------------> */
@@ -529,6 +591,12 @@
 
   .performance-chart-container {
     max-width: 100%;
+  }
+  .top-two-graph {
+    width: 100%;
+  }
+  .bottom-two-graph {
+    width: 100%;
   }
 }
 
@@ -586,6 +654,29 @@
   .performance-chart h6 {
     font-size: 14px;
   }
+
+  .top-two-graph {
+    display: flex;
+  }
+
+  .bottom-two-graph {
+    display: flex;
+  }
+  .performance-chart {
+    width: 50%;
+  }
+  .occupancy-chart {
+    width: 50%;
+  }
+  .multi-layer-graph {
+    width: 50%;
+  }
+  .rooms-graph {
+    width: 50%;
+  }
+  .campus-right {
+    gap:10px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -610,6 +701,7 @@
 
   .down-side {
     display: flex;
+    gap:2%;
   }
   .down-left {
     width: 65%;
@@ -618,10 +710,10 @@
     width: 35%;
   }
   .campus-left {
-    width: 75%;
+    width: 74%;
   }
   .campus-right {
-    width: 25%;
+    width: 24%;
   }
   .performance-chart {
     width: 75%;
@@ -758,6 +850,10 @@
   }
   .logo-middle {
     display: flex;
+  }
+  .campus-right {
+    gap:10px;
+    margin-top: 20px;
   }
 }
 

@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 import { HiOutlineBuildingLibrary } from "react-icons/hi2";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoIosWarning } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
 import * as d3 from "d3";
 
 {
@@ -119,6 +120,36 @@ const blockData = [
     coordinate: "Ravi Kumar",
     phone: "+91 9812233445",
     status: "Under Maintenance",
+  },
+];
+
+{
+  /* <==================================================== Dummy Data for Maintaince Alert ========================================> */
+}
+const issuesData = [
+  {
+    id: 1,
+    title: "Window issue in Class 6A",
+    campus: "Main campus",
+    block: "Block A",
+    floor: "Floor 3",
+    classroom: "Class 6A",
+    description: "The classroom window lock is broken and needs repair.",
+    reportedBy: "Kajal",
+    reportedOn: "23/09/2029",
+    status: "Pending",
+  },
+  {
+    id: 2,
+    title: "Projector not working in Class 9B",
+    campus: "Main campus",
+    block: "Block B",
+    floor: "Floor 2",
+    classroom: "Class 9B",
+    description: "The projector is not turning on since morning.",
+    reportedBy: "Rohan",
+    reportedOn: "12/01/2030",
+    status: "In Progress",
   },
 ];
 
@@ -874,11 +905,11 @@ function CampusSetup() {
         </div>
 
         {/* <=================================== Slide-cards ======================================> */}
-        <div className="campus-slider d-flex gap-3 overflow-auto p-2">
+        <div className="campus-slider d-flex gap-3 p-2 overflowY-scroll">
           {campusData.map((item) => (
             <div
               key={item.id}
-              className="campus-card d-flex bg-white shadow-sm p-3 rounded flex-shrink-0"
+              className="campus-card d-flex bg-white shadow-sm p-3 rounded flex-shrink-0 "
               style={{ width: "260px" }}
             >
               {/* Left: Text */}
@@ -907,16 +938,18 @@ function CampusSetup() {
       </div>
 
       {/* <======================================= Left & Right Side Code ===================================> */}
-      <div className="down-side gap-4 mt-3">
+      <div className="down-side mt-3">
         <div className="campus-left">
           {/* <--------------------------------- Building / Department Table ------------------------------------> */}
           <div className="rounded shadow-sm bg-white rounded p-2">
             <div className="overview-head position-relative">
               <h5>Building / Department</h5>
+             <Link to="/block-setup" style={{textDecoration:'none'}}>
               <button className="btn btn-primary d-flex gap-2 align-items-center add-button">
                 <FaPlus />
                 <span>Add New Building</span>
               </button>
+             </Link>
             </div>
             <div className="table-responsive">
               <table className="table table-border-bottom align-middle text-center">
@@ -977,10 +1010,13 @@ function CampusSetup() {
           </div>
 
           {/* 1 */}
-          <div className="d-flex all-graph gap-4 mt-3 ">
+          <div className="top-two-graph all-graph gap-4 mt-3 ">
             {/* <=================================== Performane Chart =======================================> */}
-            <div className="performance-chart mt-3 w-50">
-              <div className="p-4 bg-white rounded shadow-sm">
+            <div
+              className="performance-chart mt-3 bg-white rounded shadow-sm "
+              style={{ height: "400px" }}
+            >
+              <div className="p-4">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <h6 className="fw-bold mb-0">
                     Campus Performance Chart
@@ -1021,38 +1057,40 @@ function CampusSetup() {
             </div>
 
             {/* <=================================== Occupancy Chart =======================================> */}
-            <div className="w-50">
-              <div className="occupancy-chart mt-3">
-                <div className="occupancy-chart p-4 bg-white rounded shadow-sm ">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <h6 className="fw-bold mb-0">Campus Occupancy</h6>
-                    <button className="btn btn-outline-secondary btn-sm rounded-pill">
-                      2025
-                    </button>
-                  </div>
 
-                  <div className="" style={{}}>
-                    <svg ref={occupancyChartRef}></svg>
-                  </div>
-                  <div>
-                    <div className="d-flex justify-content-center gap-4">
-                      {occupancyData.map((d, i) => (
+            <div
+              className="occupancy-chart mt-3 bg-white rounded shadow-sm "
+              style={{ height: "400px" }}
+            >
+              <div className="occupancy-chart p-4 ">
+                <div className="d-flex justify-content-between align-items-center">
+                  <h6 className="fw-bold mb-0">Campus Occupancy</h6>
+                  <button className="btn btn-outline-secondary btn-sm rounded-pill">
+                    2025
+                  </button>
+                </div>
+
+                <div className="" style={{}}>
+                  <svg ref={occupancyChartRef}></svg>
+                </div>
+                <div>
+                  <div
+                    style={{ marginTop: "-20px" }}
+                    className="d-flex justify-content-center gap-4"
+                  >
+                    {occupancyData.map((d, i) => (
+                      <div key={i} className="d-flex align-items-center gap-2">
                         <div
-                          key={i}
-                          className="d-flex align-items-center gap-2"
-                        >
-                          <div
-                            style={{
-                              width: 12,
-                              height: 12,
-                              backgroundColor: d.color,
-                              borderRadius: 3,
-                            }}
-                          ></div>
-                          <span style={{ fontSize: 13 }}>{d.label}</span>
-                        </div>
-                      ))}
-                    </div>
+                          style={{
+                            width: 12,
+                            height: 12,
+                            backgroundColor: d.color,
+                            borderRadius: 3,
+                          }}
+                        ></div>
+                        <span style={{ fontSize: 13 }}>{d.label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -1060,9 +1098,9 @@ function CampusSetup() {
           </div>
 
           {/* 2 */}
-          <div className="d-flex gap-4 mt-3">
+          <div className="bottom-two-graph gap-4 mt-3">
             {/* <----------------------------------------------- Rooms per count -----------------------------------------------> */}
-            <div className="mt-3 w-50">
+            <div className="rooms-graph mt-3">
               <div className=" p-4 bg-white rounded shadow-sm">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <h6 className="fw-bold mb-0">Rooms per Count</h6>
@@ -1102,7 +1140,7 @@ function CampusSetup() {
             </div>
 
             {/* multi layer bar grapg*/}
-            <div className="w-50">
+            <div className="multi-layer-graph mt-3">
               <div className=" p-4 bg-white rounded shadow-sm">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <h6 className="fw-bold mb-0">Rooms Type</h6>
@@ -1122,7 +1160,7 @@ function CampusSetup() {
           </div>
         </div>
 
-{/* <-------------------------------------- left side card ---------------------------------> */}
+        {/* <-------------------------------------- right side card ---------------------------------> */}
         <div className="campus-right">
           <div className="setup-card p-4 rounded shadow-sm bg-white">
             {/* ======= Item 1 ======== */}
@@ -1176,18 +1214,108 @@ function CampusSetup() {
                 </div>
               </div>
             </div>
-
           </div>
           {/* <-------------------------------------- Maintainance Alert ---------------------------------> */}
           <div className="maintainance-card p-4 rounded shadow-sm bg-white mt-3">
-            <div className="d-flex justify-content-between align-items-center mb-3 gap-20px">
-              <span style={{fontSize:'20px', fontWeight:'400', color:'#1C212D'}} className="">Maintainance Alerts</span>
-              <span style={{backgroundColor:'#434E67', padding:'7px 8px', borderRadius:'6px', fontSize:'9px', fontWeight:'600'}}>
+            <div className="d-flex justify-content-between align-items-center mb-1 gap-20px">
+              <span
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "400",
+                  color: "#1C212D",
+                }}
+              >
+                Maintainance Alerts
+              </span>
+              <span
+                style={{
+                  backgroundColor: "#434E67",
+                  padding: "7px 8px",
+                  borderRadius: "6px",
+                  fontSize: "9px",
+                  fontWeight: "600",
+                }}
+              >
                 <button className="bg-transparent border-0 rounded text-white">
-                View All
-              </button></span>
+                  View All
+                </button>
+              </span>
             </div>
-            
+            <div>
+              <div className="py-4">
+                {issuesData.map((item) => (
+                  <div
+                    key={item.id}
+                    className="card shadow-sm p-3 rounded-4 border-0 p-4 mb-3"
+                  >
+                    {/* ICON + TITLE */}
+                    <div className="d-flex align-items-center gap-3">
+                      <div className="alert-box d-flex justify-content-center align-items-center">
+                        <span className="img-fluid">
+                          <IoIosWarning style={{ color: "#ff0000" }} />
+                        </span>
+                      </div>
+                      <span className="issues m-0">{item.title}</span>
+                    </div>
+
+                    {/* TAGS */}
+                    <div className="d-flex gap-2 mt-3 flex-wrap">
+                      <span className="badge campus-tag px-3 py-2">
+                        {item.campus}
+                      </span>
+                      <span className="badge campus-tag px-3 py-2">
+                        {item.block}
+                      </span>
+                      <span className="badge campus-tag px-3 py-2">
+                        {item.floor}
+                      </span>
+                      <span className="badge campus-tag px-3 py-2">
+                        {item.classroom}
+                      </span>
+                    </div>
+
+                    {/* DESCRIPTION */}
+                    <p className="text-muted mt-3">{item.description}</p>
+
+                    <hr />
+
+                    {/* FOOTER */}
+                    <div className="d-flex justify-content-between align-items-center">
+                      <p className="m-0 fw-medium">
+                        Reported By:{" "}
+                        <span className="fw-semibold">{item.reportedBy}</span> —
+                        {item.reportedOn}
+                      </p>
+
+                      <span className="badge pending-badge px-3 py-2">
+                        {item.status}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* map */}
+          <div
+            style={{
+              width: "100%",
+              height: "350px",
+              borderRadius: "20px",
+              overflow: "hidden",
+              marginTop: "10px",
+            }}
+          >
+            <iframe
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.217064855766!2d77.20799317462794!3d28.61393919141061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2ddea3c1c23%3A0xa486f16e2945f5de!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1700000000000"
+            ></iframe>
           </div>
         </div>
       </div>
