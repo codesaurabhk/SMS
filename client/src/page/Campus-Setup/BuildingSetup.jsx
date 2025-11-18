@@ -7,14 +7,14 @@ import { AiFillDelete } from "react-icons/ai";
 import { RiAddLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 
-function BlockSetup() {
+function BuildingSetup() {
   return (
     <div className="bg-white p-4 rounded">
       <div className="d-flex justify-content-between">
-        <span className="fw-semibold fs-4">Block Setup</span>
+        <span className="fw-semibold fs-4">Building Setup</span>
         <button className="btn btn-primary d-flex gap-2 align-items-center add-button">
           <FaPlus />
-          <span>Add New Block</span>
+          <span>Add more Building</span>
         </button>
       </div>
       <div className="">
@@ -22,13 +22,13 @@ function BlockSetup() {
         <div className="row mt-3 d-flex justify-content-between">
           <div className="col d-flex flex-column">
             <span className="fw-semibold" style={{ color: "#666666" }}>
-              Block Name
+              Building Name
             </span>
             <div className="input-border rounded">
               <input
                 type="text"
                 className="input-form rounded w-100"
-                placeholder="Sunrise Main Campus"
+                placeholder="Main Acedemic Block"
               />
             </div>
           </div>
@@ -46,13 +46,13 @@ function BlockSetup() {
           </div>
           <div className="col d-flex flex-column">
             <span className="fw-semibold" style={{ color: "#666666" }}>
-              Block Type
+              Building Floor
             </span>
             <div className="input-border rounded">
-              <select
+              <input
                 type="text"
                 className="input-form rounded w-100"
-                placeholder="Academic / Admin / Hostel / Sport / Activity"
+                placeholder="3"
               />
             </div>
           </div>
@@ -62,37 +62,45 @@ function BlockSetup() {
         <div className="row mt-3 d-flex justify-content-between">
           <div className="col d-flex flex-column">
             <span className="fw-semibold" style={{ color: "#666666" }}>
-              Total Building
+              Assign Campush
             </span>
             <div className="input-border rounded">
               <input
                 type="text"
                 className="input-form rounded w-100"
-                placeholder="3"
+                placeholder="Delhi Campus"
               />
             </div>
           </div>
           <div className="col d-flex flex-column">
             <span className="fw-semibold" style={{ color: "#666666" }}>
-              Total Floors
+              Building Type
             </span>
             <div className="input-border rounded">
-              <input
-                type="text"
-                className="input-form rounded w-100"
-                placeholder="3"
-              />
+              <select
+                className="p-2 w-100 border-0"
+                defaultValue=""
+                style={{
+                  outline: "none",
+                  borderRadius: "inherit",
+                  color: "#a1a1a1",
+                }}
+              >
+                <option value="" disabled hidden className="placeholder-option">
+                  Academic / Admin / Sport / Library / Hostel
+                </option>
+              </select>
             </div>
           </div>
           <div className="col d-flex flex-column">
             <span className="fw-semibold" style={{ color: "#666666" }}>
-              Tootal Rooms
+              Contruction Year
             </span>
             <div className="input-border rounded">
               <input
                 type="text"
                 className="input-form rounded w-100"
-                placeholder="30"
+                placeholder="2010"
               />
             </div>
           </div>
@@ -102,47 +110,41 @@ function BlockSetup() {
         <div className="row mt-3 d-flex justify-content-between">
           <div className="col d-flex flex-column">
             <span className="fw-semibold" style={{ color: "#666666" }}>
-              Block Incharge
+              Status
             </span>
             <div className="input-border rounded">
-              <input
-                type="text"
-                className="input-form rounded w-100"
-                placeholder="Diwakar Jitu"
-              />
+              <select
+                className="p-2 w-100 border-0"
+                defaultValue=""
+                style={{
+                  outline: "none",
+                  borderRadius: "inherit",
+                  color: "#a1a1a1",
+                }}
+              >
+                <option value="" disabled hidden className="placeholder-option">
+                  Active / Inactive
+                </option>
+              </select>
             </div>
           </div>
           <div className="col d-flex flex-column">
             <span className="fw-semibold" style={{ color: "#666666" }}>
-              Construction Status
+              Remarks
             </span>
             <div className="input-border rounded">
               <input
                 type="text"
                 className="input-form rounded w-100"
-                placeholder="Active / Under Construction"
+                placeholder="Remarks"
               />
             </div>
           </div>
-          <div className="col d-flex flex-column">
-            <span className="fw-semibold" style={{ color: "#666666" }}>
-              Block Location
-            </span>
-            <div className="input-border rounded">
-              <input
-                type="text"
-                className="input-form rounded w-100"
-                placeholder="North Wing / Near Library"
-              />
-            </div>
-          </div>
+          <div className="col d-flex flex-column"></div>
         </div>
       </div>
 
       <div className="mt-3">
-        <div className="mt-3">
-          <span className="attach-file">Attach building layout/Blue Print</span>
-        </div>
         {/* <-------------------------------------------- Attach file ------------------------------------------> */}
         <div className="d-flex gap-2 align-items-center">
           <div className="d-flex justify-content-between align-items-center p-2 border-primary border-1 border-dash mt-3 rounded gap-3 ms-2">
@@ -273,29 +275,30 @@ function BlockSetup() {
             className="p-2 ms-2  rounded-3 mt-2"
             style={{ width: "290px", border: "1px dashed #2632381A" }}
           >
-            {/* <div>Files</div> */}
             <div className="d-flex justify-content-between">
               <div>
-                {" "}
                 <FiFile /> Pan card.pdf
               </div>
               <div style={{ color: "#911808" }}>
-                {" "}
                 <AiFillDelete />
               </div>
             </div>
           </div>
         </div>
-        {/* <========================================= Add Buildin & Add Ground ===========================================>*/}
-        <div className="add-building d-flex flex-column flex-start mt-3 p-3 gap-3 fw-semibold">
-          <Link to="/building-setup" style={{textDecoration:'none'}}>
+        {/* <========================================= Add Buildin & Add Ground ===========================================> */}
+        <div className="d-flex flex-column gap-3">
+          <div className="add-building d-flex justify-content-between align-items-center w-100 flex-start mt-2 fw-semibold">
+            <span className="florr-details">Floor Details</span>
             <span className="btn border border-1 border-primary rounded">
-              <RiAddLine /> Add Building
+              <RiAddLine /> Add Floor
             </span>
-          </Link>
-          <span className="btn border border-1  border-primary rounded">
-            <RiAddLine /> Add Ground
-          </span>
+          </div>
+          <div className="add-building d-flex justify-content-between w-100 flex-star fw-semibold align-items-center">
+            <span className="florr-details">Room Details</span>
+            <span className="btn border border-1  border-primary rounded">
+              <RiAddLine /> Add Rooms
+            </span>
+          </div>
         </div>
 
         {/* <=========================================== Cancel & save ==============================================> */}
@@ -312,4 +315,4 @@ function BlockSetup() {
   );
 }
 
-export default BlockSetup;
+export default BuildingSetup;
