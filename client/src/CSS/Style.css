@@ -552,9 +552,39 @@
 }
 
 .dashed {
-   border-style: dashed !important;
    width: 295px;
-   background-color: #ECF0FA;
+}
+
+.border-dash {
+  border-style: dashed;
+  width: 295px;
+  height: 70px;
+  background-color: #ECF0FA;
+}
+
+.add-building {
+  width: 200px;
+  color: #666666;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.cancel {
+  width: 99px;
+}
+
+.save {
+  width : 99px
+}
+
+.placeholder-option {
+  color: #A1A1A1 !important;
+}
+
+.florr-details {
+  font-size: 16px;
+  line-height: 145%;
+  font-weight: 700;
 }
 
 
