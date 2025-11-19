@@ -24,6 +24,8 @@ import StudentTable from "../page/Students/StudentTable";
 import StudentProfile from "../page/Students/StudentProfile";
 import BlockSetup from "../page/Campus-Setup/BlockSetup";
 import BuildingSetup from "../page/Campus-Setup/BuildingSetup";
+import AddGround from "../page/Campus-Setup/AddGround";
+
 
 
 
@@ -37,7 +39,8 @@ function AppRouter() {
 
           <Route path="campus-setup" element={<CampusSetup/>} />
             <Route path="block-setup" element={<BlockSetup/>} />            
-            <Route path="building-setup" element={<BuildingSetup/>} />            
+            <Route path="building-setup" element={<BuildingSetup/>} />  
+            <Route path="ground" element={<AddGround/>} />         
 
 
           <Route path="user-management-system" element={<UserManagement/>} />

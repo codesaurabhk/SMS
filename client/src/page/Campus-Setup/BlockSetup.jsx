@@ -288,14 +288,16 @@ function BlockSetup() {
         </div>
         {/* <========================================= Add Buildin & Add Ground ===========================================>*/}
         <div className="add-building d-flex flex-column flex-start mt-3 p-3 gap-3 fw-semibold">
-          <Link to="/building-setup" style={{textDecoration:'none'}}>
+          <Link to="/block-setup" style={{ textDecoration: "none" }}>
             <span className="btn border border-1 border-primary rounded">
               <RiAddLine /> Add Building
             </span>
           </Link>
-          <span className="btn border border-1  border-primary rounded">
-            <RiAddLine /> Add Ground
-          </span>
+          <Link to="/ground">
+            <span className="btn border border-1  border-primary rounded">
+              <RiAddLine /> Add Ground
+            </span>
+          </Link>
         </div>
 
         {/* <=========================================== Cancel & save ==============================================> */}
