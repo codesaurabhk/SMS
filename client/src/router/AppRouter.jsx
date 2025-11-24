@@ -25,6 +25,7 @@ import StudentProfile from "../page/Students/StudentProfile";
 import BlockSetup from "../page/Campus-Setup/BlockSetup";
 import BuildingSetup from "../page/Campus-Setup/BuildingSetup";
 import AddGround from "../page/Campus-Setup/AddGround";
+import AddTeachers from "../page/Teachers/AddTeachers";
 
 
 
@@ -50,6 +51,7 @@ function AppRouter() {
 
           <Route path="addstudents" element={<AddStudent/>} />
           <Route path="teachers" element={<Teachers />} />
+          <Route path="addteachers" element={<AddTeachers/>} />
           <Route path="academic-setup" element={<AcademicSetup />} />
           <Route path="lead-management-system" element={<LeadManagementSystem />} />
           <Route path="hr-management" element={<HRManagement />} />

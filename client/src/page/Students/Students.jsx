@@ -13,7 +13,8 @@ import { FaChevronRight } from "react-icons/fa";
 
 const Students = () => {
   const navigate = useNavigate();
-  const [students] = useState([
+  const [students] = useState(
+    [
     {
       id: 1,
       photo: "https://i.pravatar.cc/40?img=1",
