@@ -972,7 +972,9 @@ function CampusSetup() {
                   {blockData.map((block) => (
                     <tr key={block.id}>
                       <td>{block.id}</td>
-                      <td className="text-start">{block.blockName}</td>
+                      <td className="text-start">
+                        <Link to="/campusoverview" style={{textDecoration:'none', outline:'none', color:'#717376'}}>{block.blockName}</Link>
+                      </td>
                       <td>
                         <span className="text-start">{block.code}</span>
                       </td>

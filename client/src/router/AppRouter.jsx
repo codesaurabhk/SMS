@@ -25,7 +25,12 @@ import StudentProfile from "../page/Students/StudentProfile";
 import BlockSetup from "../page/Campus-Setup/BlockSetup";
 import BuildingSetup from "../page/Campus-Setup/BuildingSetup";
 import AddGround from "../page/Campus-Setup/AddGround";
+import CampusOvervieww from "../page/Campus-Setup/CampusOverview";
 import AddTeachers from "../page/Teachers/AddTeachers";
+import BuildingOverview from "../page/Campus-Setup/BuildingOverview";
+import FloorOverview from "../page/Campus-Setup/FloorOverview";
+
+
 
 
 
@@ -41,7 +46,10 @@ function AppRouter() {
           <Route path="campus-setup" element={<CampusSetup/>} />
             <Route path="block-setup" element={<BlockSetup/>} />            
             <Route path="building-setup" element={<BuildingSetup/>} />  
-            <Route path="ground" element={<AddGround/>} />         
+            <Route path="ground" element={<AddGround/>} /> 
+            <Route path="campusoverview" element={<CampusOvervieww/>} />  
+            <Route path="buildingoverview" element={<BuildingOverview/>}/>
+            <Route path="flooroverview" element={<FloorOverview/>}/>
 
 
           <Route path="user-management-system" element={<UserManagement/>} />

@@ -588,6 +588,31 @@
 }
 
 
+/* <------------------------------------------- campush Overview ---------------------------------> */
+campush-header {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  color: #1C212D;
+  font-style: Medium;
+}
+
+.campush-overview-label {
+  font: inter;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 14px;
+  color: #1C212D;
+}
+
+.campush-overview-data {
+  color: #717376;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 14px;
+}
+
+
 /* <-------------------------------------- for responsive -----------------------------------------> */
 
 @media (min-width: 425px) {
