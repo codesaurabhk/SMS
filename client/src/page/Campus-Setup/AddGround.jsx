@@ -7,8 +7,9 @@ import { AiFillDelete } from "react-icons/ai";
 
 function AddGround() {
   return (
-    <div className="d-flex bg-white p-4 rounded gap-3">
-      <div className="w-75 ">
+    <div className="bg-white p-4 rounded gap-3">
+      <div className="d-flex">
+        <div className="w-75 ">
         <div className="row">
           <div className="col">
             <label
@@ -365,6 +366,7 @@ function AddGround() {
             successfull registration
           </span>
         </div>
+        
       </div>
       <div className="w-25">
         <div className="p-3">
@@ -525,7 +527,11 @@ function AddGround() {
               </div>
             </div>
           </div>
-          <div className="d-flex gap-3 ms-2 " style={{ marginTop: "10rem" }}>
+          
+        </div>
+      </div>
+      </div>
+      <div className="d-flex gap-3 ms-2 justify-content-end">
             <div className="mt-4 text-end ">
               <button
                 type="submit"
@@ -553,8 +559,6 @@ function AddGround() {
                 Next
               </button>
             </div>
-          </div>
-        </div>
       </div>
     </div>
   );
