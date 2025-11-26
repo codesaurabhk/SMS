@@ -51,7 +51,6 @@ function AppRouter() {
             <Route path="buildingoverview" element={<BuildingOverview/>}/>
             <Route path="flooroverview" element={<FloorOverview/>}/>
 
-
           <Route path="user-management-system" element={<UserManagement/>} />
           <Route path="students" element={<Students />} />
           <Route path="studentTable" element={<StudentTable />} />
