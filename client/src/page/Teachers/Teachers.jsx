@@ -515,7 +515,7 @@ const Teachers = () => {
             </thead> 
             <tbody>
               {students.map((s) => (
-                <tr key={s.id} onClick={()=>navigate(`/studentProfile/${s.id}`)} >
+                <tr key={s.id} onClick={()=>navigate(`/teachersProfile/${s.id}`)} >
                   <td>
                     <input type="checkbox" name="" id="" />
                   </td>

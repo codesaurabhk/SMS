@@ -29,6 +29,7 @@ import CampusOvervieww from "../page/Campus-Setup/CampusOverview";
 import AddTeachers from "../page/Teachers/AddTeachers";
 import BuildingOverview from "../page/Campus-Setup/BuildingOverview";
 import FloorOverview from "../page/Campus-Setup/FloorOverview";
+import TeacherProfile from "../page/Teachers/TeacherProfile";
 
 
 
@@ -60,6 +61,7 @@ function AppRouter() {
           <Route path="addstudents" element={<AddStudent/>} />
           <Route path="teachers" element={<Teachers />} />
           <Route path="addteachers" element={<AddTeachers/>} />
+          <Route path="teachersProfile/:id" element={<TeacherProfile/>} />
           <Route path="academic-setup" element={<AcademicSetup />} />
           <Route path="lead-management-system" element={<LeadManagementSystem />} />
           <Route path="hr-management" element={<HRManagement />} />

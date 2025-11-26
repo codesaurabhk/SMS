@@ -27,34 +27,33 @@ import {
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
-  Cell
+  Cell,
 } from "recharts";
 import { Smile } from "lucide-react";
 
-
-const StudentProfile = () => {
-  const [selectedSection, setSelectedSection] = useState("Basic Details");
+const TeacherProfile = () => {
+  const [selectedSection, setSelectedSection] = useState("Basic & Contact Details");
 
   // ------- Main Content Renderer -------
   const renderContent = () => {
     switch (selectedSection) {
-      case "Basic Details":
+      case "Basic & Contact Details":
         return (
           <>
             {/* MAIN INFORMATION */}
             <div className="d-flex  justify-content-between gap-4 ">
               <div className="w-100">
                 <Card className="shadow border-0 rounded-4 p-4 h-auto ">
-                  <div style={{ marginBottom: "120px" }}>
+                  <div >
                     <Card className=" border-0  rounded-4 p-2 ms-2">
                       <h5 className="fw-semibold mb-4 ">
-                        Identification & Basic Information
+                        Basic & Contact Details
                       </h5>{" "}
                       <div className="ms-4">
-                        <div className="row mb-3">
+                        <div className="row mb-1">
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">Gender</p>
-                            <p className="text-secondary">Female</p>
+                            <p className="text-secondary">Male</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">Date of Birth</p>
@@ -66,7 +65,7 @@ const StudentProfile = () => {
                           </div>
                         </div>
 
-                        <div className="row mb-3">
+                        <div className="row mb-1">
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">Nationality</p>
                             <p className="text-secondary">Indian</p>
@@ -81,16 +80,16 @@ const StudentProfile = () => {
                           </div>
                         </div>
 
-                        <div className="row mb-3">
+                        <div className="row mb-1">
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">Aadhar Number</p>
                             <p className="text-secondary">222555555555</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">
-                              Birth Certificate No.
+                              Age
                             </p>
-                            <p className="text-secondary">256102452555254552</p>
+                            <p className="text-secondary">43</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">Place Of Birth</p>
@@ -98,7 +97,7 @@ const StudentProfile = () => {
                           </div>
                         </div>
 
-                        <div className="row mb-3">
+                        <div className="row mb-1">
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">Mother Tongue</p>
                             <p className="text-secondary">Hindi</p>
@@ -107,11 +106,75 @@ const StudentProfile = () => {
                             <p className="fw-semibold mb-0">
                               Medical Conditions
                             </p>
-                            <p className="text-secondary">None</p>
+                            <p className="text-secondary">No/Yes eg., asthma</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">Disability</p>
-                            <p className="text-secondary">No</p>
+                            <p className="text-secondary">Yes/no</p>
+                          </div>
+                        </div>
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Current Residential Address</p>
+                            <p className="text-secondary">House No.327</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              Area
+                            </p>
+                            <p className="text-secondary">Civil Lines</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">City</p>
+                            <p className="text-secondary">Allahbad</p>
+                          </div>
+                        </div>
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">State</p>
+                            <p className="text-secondary">UP</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              Country
+                            </p>
+                            <p className="text-secondary">India</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Pincode</p>
+                            <p className="text-secondary">254254</p>
+                          </div>
+                        </div>
+                        <div className="row mb-0">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Permanent Residential Address(if Different)</p>
+                            <p className="text-secondary">House No.327</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              Area
+                            </p>
+                            <p className="text-secondary">Civil Lines</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">City</p>
+                            <p className="text-secondary">Allahabad</p>
+                          </div>
+                        </div>
+                        <div className="row ">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">State</p>
+                            <p className="text-secondary">UP</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              Country
+                            </p>
+                            <p className="text-secondary">India</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Pincode</p>
+                            <p className="text-secondary">254254</p>
                           </div>
                         </div>
                       </div>
@@ -119,11 +182,11 @@ const StudentProfile = () => {
                   </div>
                 </Card>
               </div>
-              <div className="w-25">
+              <div className="w-30">
                 <Card className="shadow border-0 rounded-4 p-3 text-center ">
                   <div>
                     <img
-                      src="https://i.pravatar.cc/200?img=10"
+                      src="https://i.pravatar.cc/200?img=11"
                       className=" mb-3 mt-1 p-3 "
                       style={{
                         width: "100%",
@@ -133,20 +196,24 @@ const StudentProfile = () => {
                       }}
                     />
                   </div>
-                  <h5 className="fw-bold fs-5">Neha Pal</h5>
-                  <p className="text-secondary">Student ID : ST65432</p>
+                  <h5 className="fw-bold fs-4">Mr. Sumit Sharma</h5>
+                  <p className="text-secondary">Employee ID : ST65432</p>
 
-                  <div className="text-start mt-0 px-3">
+                  <div className="text-start  px-3">
                     <p className="fw-semibold text-dark mb-1">E-Mail ID</p>
-                    <p className="text-secondary">neha.pal@DPS.com</p>
+                    <p className="text-secondary">Sumit.Sharma@DPS.com</p>
 
                     <p className="fw-semibold text-dark mb-1">
-                      Class & Section
+                      Designation
                     </p>
-                    <p className="text-secondary">Class 5th C</p>
+                    <p className="text-secondary">Subject or class Teacher or Coordination</p>
+                    <p className="fw-semibold text-dark mb-1">
+                      Department
+                    </p>
+                    <p className="text-secondary">English / Science / Mathematics etc.</p>
 
-                    <p className="fw-semibold text-dark mb-1">Roll No.</p>
-                    <p className="text-secondary">63</p>
+                    <p className="fw-semibold text-dark mb-1">Contact No.</p>
+                    <p className="text-secondary">+91 8765 765 765</p>
                   </div>
                 </Card>
               </div>
@@ -154,6 +221,257 @@ const StudentProfile = () => {
           </>
         );
 
+      case "Employment Details":
+        return (
+          <>
+            {/* MAIN INFORMATION */}
+            <div className="d-flex  justify-content-between gap-4 ">
+              <div className="w-100">
+                <Card className="shadow border-0 rounded-4 p-4 h-100 ">
+                  <div >
+                    <Card className=" border-0  rounded-4 p-2 ms-2">
+                      <h5 className="fw-semibold mb-4 ">
+                        Employment Details
+                      </h5>{" "}
+                      <div className="ms-4">
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Joining Date</p>
+                            <p className="text-secondary">Date of joining school</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Employment Type</p>
+                            <p className="text-secondary">Full-Time / Part-Time / Contractual</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Reporting To</p>
+                            <p className="text-secondary">Principal/HOD</p>
+                          </div>
+                        </div>
+
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Subject(s) Assigned</p>
+                            <p className="text-secondary">e.g.,Physics,Maths</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Class Teacher Of</p>
+                            <p className="text-secondary">e.g., Class 10A</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Assigned Classes</p>
+                            <p className="text-secondary">List of classes & subjects handled</p>
+                          </div>
+                        </div>
+
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Exam Duties</p>
+                            <p className="text-secondary">Invigilation/Paper Setting</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              Assigned Events
+                            </p>
+                            <p className="text-secondary">Annual Day, Science Fair , etc.</p>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                </Card>
+              </div>
+              <div className="w-30">
+                <Card className="shadow border-0 rounded-4 p-3 text-center ">
+                  <div>
+                    <img
+                      src="https://i.pravatar.cc/200?img=11"
+                      className=" mb-3 mt-1 p-3 "
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  </div>
+                  <h5 className="fw-bold fs-4">Mr. Sumit Sharma</h5>
+                  <p className="text-secondary">Employee ID : ST65432</p>
+
+                  <div className="text-start  px-3">
+                    <p className="fw-semibold text-dark mb-1">E-Mail ID</p>
+                    <p className="text-secondary">Sumit.Sharma@DPS.com</p>
+
+                    <p className="fw-semibold text-dark mb-1">
+                      Designation
+                    </p>
+                    <p className="text-secondary">Subject or class Teacher or Coordination</p>
+                    <p className="fw-semibold text-dark mb-1">
+                      Department
+                    </p>
+                    <p className="text-secondary">English / Science / Mathematics etc.</p>
+
+                    <p className="fw-semibold text-dark mb-1">Contact No.</p>
+                    <p className="text-secondary">+91 8765 765 765</p>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </>
+        );
+     
+       case "Academic Details":
+        return (
+          <>
+            {/* MAIN INFORMATION */}
+            <div className="d-flex  justify-content-between gap-4 ">
+              <div className="w-100">
+                <Card className="shadow border-0 rounded-4 p-4 h-100 ">
+                  <div >
+                    <Card className=" border-0  rounded-4 p-2 ms-2">
+                      <h5 className="fw-semibold mb-4 ">
+                        Academic Details
+                      </h5>{" "}
+                      <div className="ms-4">
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Total Working Experience</p>
+                            <p className="text-secondary">10 Yrs</p>
+                          </div>
+                          
+                        </div>
+
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">School/College Name</p>
+                            <p className="text-secondary">XYZ School</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Experience Years</p>
+                            <p className="text-secondary">5 yrs</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">From - To</p>
+                            <p className="text-secondary">2015-17</p>
+                          </div>
+                        </div>
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">School/College Name</p>
+                            <p className="text-secondary">XYZ School</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Experience Years</p>
+                            <p className="text-secondary">5 yrs</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">From - To</p>
+                            <p className="text-secondary">2015-17</p>
+                          </div>
+                        </div>
+
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Quailification</p>
+                            <p className="text-secondary">e.g.,B.Ed,M.Sc,Ph.D</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              University
+                            </p>
+                            <p className="text-secondary">ABC University</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              Year 
+                            </p>
+                            <p className="text-secondary">2015-17</p>
+                          </div>
+                          
+                        </div>
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Masters</p>
+                            <p className="text-secondary">e.g.,B.Ed,M.Sc,Ph.D</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              University
+                            </p>
+                            <p className="text-secondary">ABC University</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              Year 
+                            </p>
+                            <p className="text-secondary">2015-17</p>
+                          </div>
+                          
+                        </div>
+                        <div className="row mb-1">
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">Bachelors</p>
+                            <p className="text-secondary">e.g.,B.Ed,M.Sc,Ph.D</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              University
+                            </p>
+                            <p className="text-secondary">ABC University</p>
+                          </div>
+                          <div className="col-12 col-sm-6 col-lg-4">
+                            <p className="fw-semibold mb-0">
+                              Year 
+                            </p>
+                            <p className="text-secondary">2015-17</p>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                </Card>
+              </div>
+              <div className="w-30">
+                <Card className="shadow border-0 rounded-4 p-3 text-center ">
+                  <div>
+                    <img
+                      src="https://i.pravatar.cc/200?img=11"
+                      className=" mb-3 mt-1 p-3 "
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  </div>
+                  <h5 className="fw-bold fs-4">Mr. Sumit Sharma</h5>
+                  <p className="text-secondary">Employee ID : ST65432</p>
+
+                  <div className="text-start  px-3">
+                    <p className="fw-semibold text-dark mb-1">E-Mail ID</p>
+                    <p className="text-secondary">Sumit.Sharma@DPS.com</p>
+
+                    <p className="fw-semibold text-dark mb-1">
+                      Designation
+                    </p>
+                    <p className="text-secondary ">Subject or class Teacher or Coordinator</p>
+                    <p className="fw-semibold text-dark mb-1">
+                      Department
+                    </p>
+                    <p className="text-secondary">English / Science / Mathematics etc.</p>
+
+                    <p className="fw-semibold text-dark mb-1">Contact No.</p>
+                    <p className="text-secondary">+91 8765 765 765</p>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </>
+        );
+     
       case "Academic Performance":
         const summaryCards = [
           {
@@ -343,12 +661,14 @@ const StudentProfile = () => {
           },
         ];
 
-
-
         return (
           <>
             <div>
-              <img className="img-fluid" src={AcadmicPerformace} alt="no image" />
+              <img
+                className="img-fluid"
+                src={AcadmicPerformace}
+                alt="no image"
+              />
             </div>
             <div className="d-flex  justify-content-between gap-3 ">
               <div className="container-fluid mt-3">
@@ -358,17 +678,26 @@ const StudentProfile = () => {
                     <Card
                       key={i}
                       className="shadow-sm border-0 rounded-4 px-3 py-2"
-                      style={{ width: "180px", height: "95px", borderRadius: "20px" }}
+                      style={{
+                        width: "180px",
+                        height: "95px",
+                        borderRadius: "20px",
+                      }}
                     >
                       <div className="d-flex justify-content-between align-items-center h-100">
-
                         {/* LEFT SIDE */}
                         <div style={{ marginRight: "6px" }}>
-                          <p className="fw-semibold mb-1" style={{ fontSize: "13px" }}>
+                          <p
+                            className="fw-semibold mb-1"
+                            style={{ fontSize: "13px" }}
+                          >
                             {card.title}
                           </p>
 
-                          <h4 className="fw-bold mb-1" style={{ fontSize: "20px" }}>
+                          <h4
+                            className="fw-bold mb-1"
+                            style={{ fontSize: "20px" }}
+                          >
                             {card.value}
                           </h4>
 
@@ -396,7 +725,10 @@ const StudentProfile = () => {
                         <div className="text-center d-flex flex-column align-items-center">
                           <FaSchool
                             size={30}
-                            style={{ color: card.iconColor, marginBottom: "3px" }}
+                            style={{
+                              color: card.iconColor,
+                              marginBottom: "3px",
+                            }}
                           />
 
                           {card.badge && (
@@ -412,13 +744,10 @@ const StudentProfile = () => {
                             </span>
                           )}
                         </div>
-
                       </div>
                     </Card>
                   ))}
                 </div>
-
-
 
                 {/* ====== MAIN EXAM TABLE ====== */}
                 <Card className="shadow-sm border-0 rounded-4 p-4 mt-3">
@@ -426,19 +755,25 @@ const StudentProfile = () => {
 
                   <Table hover className="align-middle">
                     <thead>
-                      <tr className="text-secondary" style={{ fontSize: "14px" }}>
+                      <tr
+                        className="text-secondary"
+                        style={{ fontSize: "14px" }}
+                      >
                         <th>S.N</th>
                         <th>Subject Name</th>
                         <th className="text-center">
-                          <span className="text-secondary">10 Jul 24</span> <br />
+                          <span className="text-secondary">10 Jul 24</span>{" "}
+                          <br />
                           <small>Term 1</small>
                         </th>
                         <th className="text-center">
-                          <span className="text-secondary"> 10 Oct 24</span><br />
+                          <span className="text-secondary"> 10 Oct 24</span>
+                          <br />
                           <small>Term 2</small>
                         </th>
                         <th className="text-center">
-                          <span className="text-secondary"> 10 Feb 25</span><br />
+                          <span className="text-secondary"> 10 Feb 25</span>
+                          <br />
                           <small>Term 3</small>
                         </th>
                         <th>Total</th>
@@ -490,10 +825,10 @@ const StudentProfile = () => {
                 </Card>
               </div>
               <div className="w-25 ">
-                <Card className="shadow border-0 rounded-4 p-3 text-center  " >
+                <Card className="shadow border-0 rounded-4 p-3 text-center  ">
                   <div>
                     <img
-                      src="https://i.pravatar.cc/200?img=10"
+                      src="https://i.pravatar.cc/200?img=8"
                       className=" mb-3 mt-1 p-3 "
                       style={{
                         width: "100%",
@@ -522,31 +857,34 @@ const StudentProfile = () => {
               </div>
             </div>
             <div className="d-flex justify-content-between gap-3">
-
               {/* ================= LEFT SECTION ================= */}
               <div className="p-3 flex-grow-1 bg-white rounded-4 mt-4 shadow">
                 <h5 className="fw-semibold mb-3">Advanced Academic Metrics</h5>
 
                 <div className="d-flex gap-3">
-
                   {/* LEFT METRICS CARDS */}
                   <div
                     className="d-flex flex-wrap gap-3"
                     style={{ width: "380px" }}
                   >
-
                     {/* CARD */}
                     <div
                       className="card rounded-4 border-0 bg-white p-3 shadow"
                       style={{ width: "180px" }}
                     >
-                      <h6 className="fw-bold mb-1" style={{ fontSize: "0.85rem" }}>
+                      <h6
+                        className="fw-bold mb-1"
+                        style={{ fontSize: "0.85rem" }}
+                      >
                         Homework Completion Rate
                       </h6>
                       <h2 className="fw-bold mb-2">85%</h2>
 
                       <div className="progress" style={{ height: 8 }}>
-                        <div className="progress-bar bg-success" style={{ width: "85%" }}></div>
+                        <div
+                          className="progress-bar bg-success"
+                          style={{ width: "85%" }}
+                        ></div>
                       </div>
                     </div>
 
@@ -555,13 +893,19 @@ const StudentProfile = () => {
                       className="card rounded-4 border-0 bg-white p-3 shadow"
                       style={{ width: "180px" }}
                     >
-                      <h6 className="fw-bold mb-1" style={{ fontSize: "0.85rem" }}>
+                      <h6
+                        className="fw-bold mb-1"
+                        style={{ fontSize: "0.85rem" }}
+                      >
                         Practical Scores
                       </h6>
                       <h2 className="fw-bold mb-2">78%</h2>
 
                       <div className="progress" style={{ height: 8 }}>
-                        <div className="progress-bar bg-success" style={{ width: "78%" }}></div>
+                        <div
+                          className="progress-bar bg-success"
+                          style={{ width: "78%" }}
+                        ></div>
                       </div>
                     </div>
 
@@ -570,13 +914,19 @@ const StudentProfile = () => {
                       className="card rounded-4 border-0 bg-white p-3 shadow"
                       style={{ width: "180px" }}
                     >
-                      <h6 className="fw-bold mb-1" style={{ fontSize: "0.85rem" }}>
+                      <h6
+                        className="fw-bold mb-1"
+                        style={{ fontSize: "0.85rem" }}
+                      >
                         Exam Improvement
                       </h6>
                       <h2 className="fw-bold mb-2">15%</h2>
 
                       <div className="progress" style={{ height: 8 }}>
-                        <div className="progress-bar bg-success" style={{ width: "15%" }}></div>
+                        <div
+                          className="progress-bar bg-success"
+                          style={{ width: "15%" }}
+                        ></div>
                       </div>
                     </div>
 
@@ -585,10 +935,16 @@ const StudentProfile = () => {
                       className="card rounded-4 border-0 bg-white p-3 shadow"
                       style={{ width: "180px" }}
                     >
-                      <h6 className="fw-bold mb-1" style={{ fontSize: "0.85rem" }}>
+                      <h6
+                        className="fw-bold mb-1"
+                        style={{ fontSize: "0.85rem" }}
+                      >
                         Sports
                       </h6>
-                      <p className="text-secondary mb-1" style={{ fontSize: "0.75rem" }}>
+                      <p
+                        className="text-secondary mb-1"
+                        style={{ fontSize: "0.75rem" }}
+                      >
                         State Level
                       </p>
 
@@ -597,57 +953,112 @@ const StudentProfile = () => {
                       </h2>
 
                       <div className="progress" style={{ height: 8 }}>
-                        <div className="progress-bar bg-success" style={{ width: "85%" }}></div>
+                        <div
+                          className="progress-bar bg-success"
+                          style={{ width: "85%" }}
+                        ></div>
                       </div>
                     </div>
                   </div>
 
-
                   {/* ================= CHART CARD ================= */}
-                  <div className="card rounded-4 border-0 bg-white p-4 shadow-sm flex-grow-1" style={{ height: "320px", width: "390px" }}>
-
-
+                  <div
+                    className="card rounded-4 border-0 bg-white p-4 shadow-sm flex-grow-1"
+                    style={{ height: "320px", width: "390px" }}
+                  >
                     <div className="position-relative mb-4">
                       <h6 className="fw-bold text-dark">Performance Trend</h6>
 
                       <div className="d-flex align-items-center gap-3 bg-white border rounded-3 px-3 py-2 shadow-sm position-absolute end-0 top-0">
-                        <div className="bg-success rounded-circle d-flex justify-content-center align-items-center" style={{ width: 24, height: 24 }}>
+                        <div
+                          className="bg-success rounded-circle d-flex justify-content-center align-items-center"
+                          style={{ width: 24, height: 24 }}
+                        >
                           <Smile className="text-white" size={16} />
                         </div>
                         <div className="lh-1">
-                          <div className="fw-bold text-success" style={{ fontSize: "0.9rem" }}>98%</div>
-                          <div className="text-secondary" style={{ fontSize: "0.7rem" }}>Term 3, Feb'2025</div>
+                          <div
+                            className="fw-bold text-success"
+                            style={{ fontSize: "0.9rem" }}
+                          >
+                            98%
+                          </div>
+                          <div
+                            className="text-secondary"
+                            style={{ fontSize: "0.7rem" }}
+                          >
+                            Term 3, Feb'2025
+                          </div>
                         </div>
                       </div>
                     </div>
 
-
                     <div style={{ height: 300 }}>
                       <ResponsiveContainer width="100%" height="100%">
-                        <ComposedChart data={data} margin={{ top: 20, right: 0, bottom: 0, left: -25 }}>
-                          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                          <XAxis dataKey="subject" dy={10} tick={{ fill: "#64748b", fontSize: 12 }} tickLine={false} axisLine={false} />
-                          <YAxis ticks={[0, 50, 100]} tick={{ fill: "#64748b", fontSize: 12 }} tickLine={false} axisLine={false} />
-                          <Bar dataKey="score" barSize={26} radius={[4, 4, 4, 4]}>
+                        <ComposedChart
+                          data={data}
+                          margin={{ top: 20, right: 0, bottom: 0, left: -25 }}
+                        >
+                          <CartesianGrid
+                            strokeDasharray="3 3"
+                            vertical={false}
+                            stroke="#f1f5f9"
+                          />
+                          <XAxis
+                            dataKey="subject"
+                            dy={10}
+                            tick={{ fill: "#64748b", fontSize: 12 }}
+                            tickLine={false}
+                            axisLine={false}
+                          />
+                          <YAxis
+                            ticks={[0, 50, 100]}
+                            tick={{ fill: "#64748b", fontSize: 12 }}
+                            tickLine={false}
+                            axisLine={false}
+                          />
+                          <Bar
+                            dataKey="score"
+                            barSize={26}
+                            radius={[4, 4, 4, 4]}
+                          >
                             {data.map((entry, i) => (
-                              <Cell key={i} fill={entry.fill || (entry.isLow ? "#fee2e2" : "#9ca3af")} fillOpacity={entry.isLow ? 1 : 0.7} />
+                              <Cell
+                                key={i}
+                                fill={
+                                  entry.fill ||
+                                  (entry.isLow ? "#fee2e2" : "#9ca3af")
+                                }
+                                fillOpacity={entry.isLow ? 1 : 0.7}
+                              />
                             ))}
                           </Bar>
-                          <Line type="monotone" dataKey="trend" stroke="#008000" strokeWidth={2}
-                            dot={{ r: 3, fill: "white", stroke: "#008000", strokeWidth: 2 }} />
+                          <Line
+                            type="monotone"
+                            dataKey="trend"
+                            stroke="#008000"
+                            strokeWidth={2}
+                            dot={{
+                              r: 3,
+                              fill: "white",
+                              stroke: "#008000",
+                              strokeWidth: 2,
+                            }}
+                          />
                         </ComposedChart>
                       </ResponsiveContainer>
                     </div>
-
 
                     <div className="mt-4">
                       <h6 className="fw-bold mb-2">Teacher Remarks</h6>
                       <div className="d-flex gap-2">
                         <h3 className="fw-bold mb-0">30%</h3>
-                        <p className="text-secondary mb-0">Academic performance improved,<br /> compared to the previous term.</p>
+                        <p className="text-secondary mb-0">
+                          Academic performance improved,
+                          <br /> compared to the previous term.
+                        </p>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -658,28 +1069,60 @@ const StudentProfile = () => {
                 className="d-flex bg-white p-3 rounded-4 shadow mt-4 flex-wrap gap-3"
                 style={{ width: "395px", height: "auto" }}
               >
-
                 {/* CARD 1 */}
                 <div
                   className="card shadow border-0 rounded-4 p-3"
                   style={{ width: "170px", height: "168px" }}
                 >
-                  <p className="fw-semibold text-secondary mb-1" style={{ fontSize: "0.85rem" }}>Class Rank</p>
-                  <h3 className="fw-bold mb-0" style={{ fontSize: "1.5rem" }}>15th</h3>
-                  <p className="text-secondary mb-2" style={{ fontSize: "0.75rem" }}>out of 56 students</p>
+                  <p
+                    className="fw-semibold text-secondary mb-1"
+                    style={{ fontSize: "0.85rem" }}
+                  >
+                    Class Rank
+                  </p>
+                  <h3 className="fw-bold mb-0" style={{ fontSize: "1.5rem" }}>
+                    15th
+                  </h3>
+                  <p
+                    className="text-secondary mb-2"
+                    style={{ fontSize: "0.75rem" }}
+                  >
+                    out of 56 students
+                  </p>
 
                   <div className="d-flex flex-column gap-1">
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fde68a" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 1 : 19th</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fde68a" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 1 : 19th
+                      </p>
                     </div>
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fcd34d" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 2 : 10th</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fcd34d" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 2 : 10th
+                      </p>
                     </div>
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fbbf24" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 3 : 5th</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fbbf24" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 3 : 5th
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -689,21 +1132,49 @@ const StudentProfile = () => {
                   className="card shadow border-0 rounded-4 p-3"
                   style={{ width: "170px", height: "168px" }}
                 >
-                  <p className="fw-semibold text-secondary mb-1" style={{ fontSize: "0.85rem" }}>GPA/Grade</p>
-                  <h3 className="fw-bold mb-2" style={{ fontSize: "1.5rem" }}>8.5/A</h3>
+                  <p
+                    className="fw-semibold text-secondary mb-1"
+                    style={{ fontSize: "0.85rem" }}
+                  >
+                    GPA/Grade
+                  </p>
+                  <h3 className="fw-bold mb-2" style={{ fontSize: "1.5rem" }}>
+                    8.5/A
+                  </h3>
 
                   <div className="d-flex flex-column gap-1">
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fde68a" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 1 : 87%</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fde68a" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 1 : 87%
+                      </p>
                     </div>
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fcd34d" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 2 : 90%</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fcd34d" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 2 : 90%
+                      </p>
                     </div>
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fbbf24" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 3 : 95%</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fbbf24" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 3 : 95%
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -713,22 +1184,55 @@ const StudentProfile = () => {
                   className="card shadow border-0 rounded-4 p-3"
                   style={{ width: "170px", height: "168px" }}
                 >
-                  <p className="fw-semibold text-success mb-1" style={{ fontSize: "0.85rem" }}>Best Subject</p>
-                  <h3 className="fw-bold mb-0" style={{ fontSize: "1.5rem" }}>Art</h3>
-                  <p className="text-secondary mb-2" style={{ fontSize: "0.75rem" }}>Scored 99%</p>
+                  <p
+                    className="fw-semibold text-success mb-1"
+                    style={{ fontSize: "0.85rem" }}
+                  >
+                    Best Subject
+                  </p>
+                  <h3 className="fw-bold mb-0" style={{ fontSize: "1.5rem" }}>
+                    Art
+                  </h3>
+                  <p
+                    className="text-secondary mb-2"
+                    style={{ fontSize: "0.75rem" }}
+                  >
+                    Scored 99%
+                  </p>
 
                   <div className="d-flex flex-column gap-1">
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fde68a" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 1 : 19th</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fde68a" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 1 : 19th
+                      </p>
                     </div>
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fcd34d" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 2 : 10th</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fcd34d" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 2 : 10th
+                      </p>
                     </div>
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fbbf24" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 3 : 5th</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fbbf24" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 3 : 5th
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -738,28 +1242,59 @@ const StudentProfile = () => {
                   className="card shadow border-0 rounded-4 p-3"
                   style={{ width: "170px", height: "168px" }}
                 >
-                  <p className="fw-semibold text-danger mb-1" style={{ fontSize: "0.85rem" }}>Weakest Subject</p>
-                  <h3 className="fw-bold mb-0" style={{ fontSize: "1.5rem" }}>Computer</h3>
-                  <p className="text-secondary mb-2" style={{ fontSize: "0.75rem" }}>Scored 62%</p>
+                  <p
+                    className="fw-semibold text-danger mb-1"
+                    style={{ fontSize: "0.85rem" }}
+                  >
+                    Weakest Subject
+                  </p>
+                  <h3 className="fw-bold mb-0" style={{ fontSize: "1.5rem" }}>
+                    Computer
+                  </h3>
+                  <p
+                    className="text-secondary mb-2"
+                    style={{ fontSize: "0.75rem" }}
+                  >
+                    Scored 62%
+                  </p>
 
                   <div className="d-flex flex-column gap-1">
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fde68a" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 1 : 87%</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fde68a" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 1 : 87%
+                      </p>
                     </div>
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fcd34d" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 2 : 90%</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fcd34d" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 2 : 90%
+                      </p>
                     </div>
                     <div className="d-flex align-items-center gap-2">
-                      <div style={{ width: 8, height: 8, background: "#fbbf24" }}></div>
-                      <p className="mb-0 text-secondary" style={{ fontSize: "0.75rem" }}>Term 3 : 95%</p>
+                      <div
+                        style={{ width: 8, height: 8, background: "#fbbf24" }}
+                      ></div>
+                      <p
+                        className="mb-0 text-secondary"
+                        style={{ fontSize: "0.75rem" }}
+                      >
+                        Term 3 : 95%
+                      </p>
                     </div>
                   </div>
                 </div>
-
               </div>
-
             </div>
             <Card className="shadow-sm border-0 p-3 rounded-4 mt-4 ">
               <div className="d-flex justify-content-between align-items-center mb-3">
@@ -783,10 +1318,7 @@ const StudentProfile = () => {
               <div className="table-responsive mb-5">
                 <Table hover className="align-middle">
                   <thead>
-                    <tr
-                      className="text-secondary"
-                      style={{ fontSize: "14px" }}
-                    >
+                    <tr className="text-secondary" style={{ fontSize: "14px" }}>
                       <th>S.N</th>
                       <th>Academic Yr</th>
                       <th>Class & Sec</th>
@@ -811,13 +1343,20 @@ const StudentProfile = () => {
                         <td>{r.remarks}</td>
                         <td>{r.result}</td>
                         <td>{r.teacher}</td>
-                        <td > <span style={{
-                          borderRadius: "20px",
-                          padding: "5px 12px",
-                          backgroundColor: "00E31A",
-                          // backgroundColor:"green",
-                          color: "#00B515",
-                        }}>{r.feeStatus}</span></td>
+                        <td>
+                          {" "}
+                          <span
+                            style={{
+                              borderRadius: "20px",
+                              padding: "5px 12px",
+                              backgroundColor: "00E31A",
+                              // backgroundColor:"green",
+                              color: "#00B515",
+                            }}
+                          >
+                            {r.feeStatus}
+                          </span>
+                        </td>
                         <td>{r.promotedTo}</td>
 
                         <td>
@@ -832,148 +1371,6 @@ const StudentProfile = () => {
                 </Table>
               </div>
             </Card>
-
-
-
-
-
-
-          </>
-        );
-
-      case "Academic Details":
-        return (
-          <>
-            <div className="d-flex justify-content-between gap-4 ">
-              <div className="w-100">
-                <Card className="shadow border-0 rounded-4 p-4 h-auto ">
-                  <div className="p-2 ms-3 " style={{ marginBottom: "76px" }}>
-                    <h5 className=" mb-4">Academic Details</h5>
-
-                    <div className="ms-3">
-                      {/* ROW 1 */}
-                      <div className="row mb-2">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Academic Year</p>
-                          <p className="text-secondary">2024-2025</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Admission Date</p>
-                          <p className="text-secondary">1st Feb 2018</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Admission Type</p>
-                          <p className="text-secondary">
-                            New / Transfer / Re-admission
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* ROW 2 */}
-                      <div className="row ">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">House/Club</p>
-                          <p className="text-secondary">
-                            Green/Blue/Yellow/Red
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Medium of Instruction
-                          </p>
-                          <p className="text-secondary">English, Hindi, etc.</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Current Status</p>
-                          <p className="text-secondary ">
-                            Active / Transferred / Dropped / Alumni
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* ROW 3 */}
-                      <div className="row ">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Promotion Status</p>
-                          <p className="text-secondary">
-                            Promoted / Detained / Repeating
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Class Teacher</p>
-                          <p className="text-secondary">Mrs. Mathews</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">TC Issued?</p>
-                          <p className="text-secondary">Yes / No</p>
-                        </div>
-                      </div>
-                    </div>
-                    {/* ---- Previous School Details ---- */}
-                    <p className=" fs-5 mt-0 mb-3">Previous School Details</p>
-                    <div className="ms-3">
-                      <div className="row mb-4">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Previous School Name
-                          </p>
-                          <p className="text-secondary">
-                            Yes/Girls High School
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">City/State/Country</p>
-                          <p className="text-secondary">Allahabad/UP/India</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Reason Of Transfer</p>
-                          <p className="text-secondary">Parental request</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-              <div className="w-25">
-                <Card className="shadow border-0 rounded-4 p-3 text-center ">
-                  <div>
-                    <img
-                      src="https://i.pravatar.cc/200?img=10"
-                      className=" mb-3 mt-1 p-3 "
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </div>
-                  <h5 className="fw-bold fs-5">Neha Pal</h5>
-                  <p className="text-secondary">Student ID : ST65432</p>
-
-                  <div className="text-start mt-0 px-3">
-                    <p className="fw-semibold text-dark mb-1">E-Mail ID</p>
-                    <p className="text-secondary">neha.pal@DPS.com</p>
-
-                    <p className="fw-semibold text-dark mb-1">
-                      Class & Section
-                    </p>
-                    <p className="text-secondary">Class 5th C</p>
-
-                    <p className="fw-semibold text-dark mb-1">Roll No.</p>
-                    <p className="text-secondary">63</p>
-                  </div>
-                </Card>
-              </div>
-            </div>
           </>
         );
 
@@ -1168,7 +1565,7 @@ const StudentProfile = () => {
                   <Card className="shadow border-0 rounded-4 p-3 text-center ">
                     <div>
                       <img
-                        src="https://i.pravatar.cc/200?img=10"
+                        src="https://i.pravatar.cc/200?img=8"
                         className=" mb-3 mt-1 p-3 "
                         style={{
                           width: "100%",
@@ -1515,7 +1912,7 @@ const StudentProfile = () => {
                 <Card className="shadow border-0 rounded-4 p-3 text-center ">
                   <div>
                     <img
-                      src="https://i.pravatar.cc/200?img=10"
+                      src="https://i.pravatar.cc/200?img=8"
                       className=" mb-3 mt-1 p-3 "
                       style={{
                         width: "100%",
@@ -1656,10 +2053,11 @@ const StudentProfile = () => {
                       <div style={{ width: "140px" }}>
                         <p className="fw-semibold mb-0">Status</p>
                         <p
-                          className={`small mb-0 ${item.status === "Success"
-                            ? "text-success"
-                            : "text-danger"
-                            }`}
+                          className={`small mb-0 ${
+                            item.status === "Success"
+                              ? "text-success"
+                              : "text-danger"
+                          }`}
                         >
                           {item.status}
                         </p>
@@ -1924,7 +2322,7 @@ const StudentProfile = () => {
                 <Card className="shadow border-0 rounded-4 p-3 text-center ">
                   <div>
                     <img
-                      src="https://i.pravatar.cc/200?img=10"
+                      src="https://i.pravatar.cc/200?img=8"
                       className=" mb-3 mt-1 p-3 "
                       style={{
                         width: "100%",
@@ -2422,7 +2820,7 @@ const StudentProfile = () => {
                 <Card className="shadow border-0 rounded-4 p-3 text-center ">
                   <div>
                     <img
-                      src="https://i.pravatar.cc/200?img=10"
+                      src="https://i.pravatar.cc/200?img=8"
                       className=" mb-3 mt-1 p-3 "
                       style={{
                         width: "100%",
@@ -2885,7 +3283,7 @@ const StudentProfile = () => {
                 <Card className="shadow border-0 rounded-4 p-3 text-center ">
                   <div>
                     <img
-                      src="https://i.pravatar.cc/200?img=10"
+                      src="https://i.pravatar.cc/200?img=8"
                       className=" mb-3 mt-1 p-3 "
                       style={{
                         width: "100%",
@@ -2915,6 +3313,7 @@ const StudentProfile = () => {
             </div>
           </>
         );
+      
       case "Uploaded Documents":
         const documents = [
           "Birth Certificate.pdf",
@@ -2930,8 +3329,8 @@ const StudentProfile = () => {
         return (
           <>
             <div className="d-flex  justify-content-between gap-4 ">
-              <div className="w-100">
-                <Card className="shadow border-0 rounded-4 p-4 mt-4">
+              <div className="w-100 ">
+                <Card className="shadow border-0 rounded-4 p-5  ">
                   <h5 className="fw-semibold mb-4">Documents</h5>
 
                   <p className="fw-semibold mb-2">Files</p>
@@ -2973,11 +3372,11 @@ const StudentProfile = () => {
                   </div>
                 </Card>
               </div>
-              <div className="w-25">
+              <div className="w-30">
                 <Card className="shadow border-0 rounded-4 p-3 text-center ">
                   <div>
                     <img
-                      src="https://i.pravatar.cc/200?img=10"
+                      src="https://i.pravatar.cc/200?img=11"
                       className=" mb-3 mt-1 p-3 "
                       style={{
                         width: "100%",
@@ -2987,20 +3386,24 @@ const StudentProfile = () => {
                       }}
                     />
                   </div>
-                  <h5 className="fw-bold fs-5">Neha Pal</h5>
-                  <p className="text-secondary">Student ID : ST65432</p>
+                  <h5 className="fw-bold fs-4">Mr. Sumit Sharma</h5>
+                  <p className="text-secondary">Employee ID : ST65432</p>
 
-                  <div className="text-start mt-0 px-3">
+                  <div className="text-start  px-3">
                     <p className="fw-semibold text-dark mb-1">E-Mail ID</p>
-                    <p className="text-secondary">neha.pal@DPS.com</p>
+                    <p className="text-secondary">Sumit.Sharma@DPS.com</p>
 
                     <p className="fw-semibold text-dark mb-1">
-                      Class & Section
+                      Designation
                     </p>
-                    <p className="text-secondary">Class 5th C</p>
+                    <p className="text-secondary">Subject or class Teacher or Coordination</p>
+                    <p className="fw-semibold text-dark mb-1">
+                      Department
+                    </p>
+                    <p className="text-secondary">English / Science / Mathematics etc.</p>
 
-                    <p className="fw-semibold text-dark mb-1">Roll No.</p>
-                    <p className="text-secondary">63</p>
+                    <p className="fw-semibold text-dark mb-1">Contact No.</p>
+                    <p className="text-secondary">+91 8765 765 765</p>
                   </div>
                 </Card>
               </div>
@@ -3245,7 +3648,7 @@ const StudentProfile = () => {
                 <Card className="shadow border-0 rounded-4 p-3 text-center ">
                   <div>
                     <img
-                      src="https://i.pravatar.cc/200?img=10"
+                      src="https://i.pravatar.cc/200?img=8"
                       className=" mb-3 mt-1 p-3 "
                       style={{
                         width: "100%",
@@ -3290,12 +3693,12 @@ const StudentProfile = () => {
 
   const sidebarItems = [
     {
-      title: "Basic Details",
+      title: "Basic & Contact Details",
       icon: <RiGraduationCapFill />,
       activeIcon: <FaCircleUser />,
     },
     {
-      title: "Academic Performance",
+      title: "Employment Details",
       icon: <RiGraduationCapFill />,
       activeIcon: <FaCircleUser />,
     },
@@ -3304,6 +3707,12 @@ const StudentProfile = () => {
       icon: <RiGraduationCapFill />,
       activeIcon: <FaCircleUser />,
     },
+    {
+      title: "Academic Performance",
+      icon: <RiGraduationCapFill />,
+      activeIcon: <FaCircleUser />,
+    },
+    
     {
       title: "Fees & Billing Info",
       icon: <RiGraduationCapFill />,
@@ -3374,7 +3783,7 @@ const StudentProfile = () => {
             <div className="text-center mb-2">
               <div style={{ position: "relative", display: "inline-block" }}>
                 <img
-                  src="https://i.pravatar.cc/200?img=10"
+                  src="https://i.pravatar.cc/200?img=11"
                   alt="profile"
                   className="rounded-circle mb-3 mt-3"
                   width={95}
@@ -3400,8 +3809,8 @@ const StudentProfile = () => {
                   <FaCamera size={14} className="text-secondary" />
                 </div>
               </div>
-              <h5 className="fw-bold mb-0">Neha Pal</h5>
-              <p className="text-secondary mb-0 small">Neha.Pal@DPS.com</p>
+              <h5 className="fw-bold mb-0">Mr. Sumit</h5>
+              <p className="text-secondary mb-0 small">Sumit.sharma@DSP.com</p>
               <p style={{ color: "#A1A1A1" }} className="small">
                 Last update: 12-11-2020
               </p>
@@ -3432,8 +3841,9 @@ const StudentProfile = () => {
 
                     {/* TITLE */}
                     <span
-                      className={`${isActive ? "fw-semibold text-dark" : "text-secondary"
-                        }`}
+                      className={`${
+                        isActive ? "fw-semibold text-dark" : "text-secondary"
+                      }`}
                     >
                       {item.title}
                     </span>
@@ -3448,7 +3858,7 @@ const StudentProfile = () => {
         <div className="col-12 col-md-9 col-lg-10 right-col">
           {renderContent()}
         </div>
-        {/* <div className="col-12 col-md-3 col-lg-2 right-col"> </div> */}
+       
 
         
       </div>
@@ -3456,4 +3866,4 @@ const StudentProfile = () => {
   );
 };
 
-export default StudentProfile;
+export default TeacherProfile;
