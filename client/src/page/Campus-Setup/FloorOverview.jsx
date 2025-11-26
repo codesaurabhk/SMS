@@ -60,19 +60,17 @@ const roomData = [
   },
 ];
 
-
-
 function CampusOverview() {
-    const [viewFloorPopup, setViewFloorPopup] = useState(false);
+  const [viewFloorPopup, setViewFloorPopup] = useState(false);
 
-const handleViewFloorPopup = () => {
+  const handleViewFloorPopup = () => {
     setViewFloorPopup(true);
-}
+  };
 
-const handleViewFloorPopupClose = () => {
+  const handleViewFloorPopupClose = () => {
     setViewFloorPopup(false);
-}
-    
+  };
+
   return (
     <div className="bg-white rounded p-4">
       <h1 className="campush-header">Floor Overview</h1>
@@ -91,9 +89,7 @@ const handleViewFloorPopupClose = () => {
             <span className="campush-overview-data">Class Room</span>
           </div>
           <div className="col d-flex flex-column gap-2">
-            <label className="campush-overview-label">
-              Total Area
-            </label>
+            <label className="campush-overview-label">Total Area</label>
             <span className="campush-overview-data"> 35 Sq.m</span>
           </div>
           <div className="col d-flex flex-column gap-2">
@@ -103,9 +99,7 @@ const handleViewFloorPopupClose = () => {
         </div>
         <div className="row mt-4">
           <div className="col d-flex flex-column gap-2">
-            <label className="campush-overview-label">
-              Created On
-            </label>
+            <label className="campush-overview-label">Created On</label>
             <span className="campush-overview-data">25-Nov-2025</span>
           </div>
           <div className="col d-flex flex-column gap-2">
@@ -116,10 +110,8 @@ const handleViewFloorPopupClose = () => {
             <label className="campush-overview-label">Created By</label>
             <span className="campush-overview-data">Diwakar</span>
           </div>
-          <div className="col d-flex flex-column gap-2">
-          </div>
-          <div className="col d-flex flex-column gap-2">
-          </div>
+          <div className="col d-flex flex-column gap-2"></div>
+          <div className="col d-flex flex-column gap-2"></div>
         </div>
       </div>
 
@@ -211,7 +203,10 @@ const handleViewFloorPopupClose = () => {
                     </span>
                   </td>
 
-                  <td style={{color:"#BC8869"}} onClick={handleViewFloorPopup}>
+                  <td
+                    style={{ color: "#BC8869" }}
+                    onClick={handleViewFloorPopup}
+                  >
                     <span>View Floor Details</span>
                   </td>
                   <td>
@@ -242,27 +237,90 @@ const handleViewFloorPopupClose = () => {
             Next <FaChevronRight />
           </Button>
         </Card.Footer>
-
       </Card>
-       {viewFloorPopup && (
-        <div style={{
-            width:'100%',
-            height:'100%',
-            position:'fixed',
-            top:0,
-            right:0,
-            background:'#1d1c1c63',
-            display:'flex',
-            justifyContent:'center',
-            alignItems:'center',
-        }}>
-            <div style={{
-                background:'white',
-                padding:'20px'
-            }}>
-                Hyy
-                <div onClick={handleViewFloorPopupClose}>cancel</div>
+      {viewFloorPopup && (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "fixed",
+            top: 0,
+            right: 0,
+            background: "#1d1c1c63",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              background: "white",
+              padding: "20px",
+              borderRadius:'8px',
+              width:'639px',
+              height:"400px"
+            }}
+          >
+            <h1 className="campush-header">Room Overview</h1>
+            <div className="p-2 mt-4 ">
+              <div className="row mt-2">
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Floor Name / Number</label>
+                <span className="campush-overview-data">Science lab</span>
+              </div>
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Assigned Floor</label>
+                <span className="campush-overview-data">Ground Floor</span>
+              </div>
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Types of Rooms</label>
+                <span className="campush-overview-data">Class Room</span>
+              </div>
             </div>
+            <div className="row mt-4">
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Capacity</label>
+                <span className="campush-overview-data">40</span>
+              </div>
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Facilities</label>
+                <span className="campush-overview-data">A.C, Projecter Class Rooms</span>
+              </div>
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Area</label>
+                <span className="campush-overview-data">35 Sq.m</span>
+              </div>
+            </div>
+            <div className="row mt-4">
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Status</label>
+                <span className="campush-overview-data">Active</span>
+              </div>
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Created On</label>
+                <span className="campush-overview-data">15-Aug-2025</span>
+              </div>
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Created Time</label>
+                <span className="campush-overview-data">10:24 A.M</span>
+              </div>
+            </div>
+            <div className="row mt-4">
+              <div className="col d-flex flex-column gap-2">
+                <label className="campush-overview-label">Created By</label>
+                <span className="campush-overview-data">Diwakar Kumar</span>
+              </div>
+              <div className="col d-flex flex-column gap-2">
+              </div>
+              <div className="col d-flex flex-column gap-2">
+              </div>
+            </div>
+            </div>
+            <div className="d-flex justify-content-end " 
+              onClick={handleViewFloorPopupClose}>
+              <span className="border rounded p-2">Cancel</span>
+            </div>
+          </div>
         </div>
       )}
     </div>

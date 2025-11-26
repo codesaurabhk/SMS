@@ -155,6 +155,7 @@ const issuesData = [
 
 function CampusSetup() {
   const [open, setOpen] = useState(false);
+  const [selectedRooms, setSelectedRooms] = useState([]);
   const performanceChartRef = useRef();
   const occupancyChartRef = useRef();
   const roomsChartRef = useRef();
@@ -702,6 +703,16 @@ function CampusSetup() {
     { label: "Stationary", value: 400, color: "#AF7AC5" },
   ];
 
+  // -------- HANDLE LEGEND MULTI-SELECT --------
+  const handleLegendClick = (label) => {
+    setSelectedRooms((prev) => {
+      if (prev.includes(label)) {
+        return prev.filter((i) => i !== label); // remove
+      }
+      return [...prev, label]; // add
+    });
+  };
+
   useEffect(() => {
     if (!chartRef.current || !legendRef.current) return;
 
@@ -716,20 +727,27 @@ function CampusSetup() {
       d3.select(chartRef.current).selectAll("*").remove();
       d3.select(legendRef.current).selectAll("*").remove();
 
-      // ================= SVG BASE =================
+      // ============== FILTER LOGIC ==============
+      const filteredData =
+        selectedRooms.length === 0
+          ? roomTypes
+          : roomTypes.filter((d) => selectedRooms.includes(d.label));
+
+      const total = d3.sum(filteredData, (d) => d.value);
+
+      // ============== SVG BASE ==============
       const svg = d3
         .select(chartRef.current)
-        .attr("width", width * 0.45) // PIE SIZE AREA
+        .attr("width", width * 0.45)
         .attr("height", height)
         .append("g")
-        .attr("transform", `translate(${(width * 0.6) / 2}, ${height / 2.5})`); // CENTER PIE AREA
+        .attr("transform", `translate(${(width * 0.6) / 2}, ${height / 2.5})`);
 
-      // ================= PIE SETUP =================
+      // PIE SETUP
       const pie = d3
         .pie()
         .sort(null)
         .value((d) => d.value);
-
       const arc = d3.arc().innerRadius(0).outerRadius(radius);
 
       const arcLabel = d3
@@ -737,12 +755,10 @@ function CampusSetup() {
         .innerRadius(radius * 0.6)
         .outerRadius(radius * 0.6);
 
-      const total = d3.sum(roomTypes, (d) => d.value);
-
-      // ================= DRAW PIE =================
-      svg
+      // ============== DRAW PIE ==============
+      const arcs = svg
         .selectAll("path")
-        .data(pie(roomTypes))
+        .data(pie(filteredData))
         .enter()
         .append("path")
         .attr("d", arc)
@@ -762,10 +778,10 @@ function CampusSetup() {
             .attr("transform", "scale(1)");
         });
 
-      // ================= LABELS INSIDE PIE =================
+      // ============== LABELS ==============
       svg
         .selectAll("text")
-        .data(pie(roomTypes))
+        .data(pie(filteredData))
         .enter()
         .append("text")
         .text((d) => `${Math.round((d.data.value / total) * 100)}%`)
@@ -775,7 +791,7 @@ function CampusSetup() {
         .attr("font-weight", "600")
         .attr("text-anchor", "middle");
 
-      // ================= LEGEND (LEFT SIDE) =================
+      // ============== LEGEND ==============
       const legendWrap = d3
         .select(legendRef.current)
         .style("display", "flex")
@@ -790,9 +806,16 @@ function CampusSetup() {
         .attr("class", "legend-item")
         .style("display", "flex")
         .style("align-items", "center")
-        .style("gap", "10px");
+        .style("gap", "10px")
+        .style("cursor", "pointer")
+        .style("opacity", (d) =>
+          selectedRooms.length === 0 || selectedRooms.includes(d.label)
+            ? 1
+            : 0.3
+        )
+        .on("click", (e, d) => handleLegendClick(d.label));
 
-      // Dot color
+      // COLOR DOT
       legendItem
         .append("div")
         .style("width", "12px")
@@ -800,7 +823,7 @@ function CampusSetup() {
         .style("border-radius", "50%")
         .style("background", (d) => d.color);
 
-      // Label + number
+      // TEXT
       const labelGroup = legendItem
         .append("div")
         .style("display", "flex")
@@ -818,15 +841,13 @@ function CampusSetup() {
         .text((d) => d.value);
     };
 
-    // Draw on load
     drawChart();
 
-    // Responsive redraw
     const observer = new ResizeObserver(drawChart);
     observer.observe(chartRef.current.parentNode);
 
     return () => observer.disconnect();
-  }, []);
+  }, [selectedRooms]);
 
   return (
     <div className="container-fluid">
@@ -944,12 +965,12 @@ function CampusSetup() {
           <div className="rounded shadow-sm bg-white rounded p-2">
             <div className="overview-head position-relative">
               <h5>Building / Department</h5>
-             <Link to="/block-setup" style={{textDecoration:'none'}}>
-              <button className="btn btn-primary d-flex gap-2 align-items-center add-button">
-                <FaPlus />
-                <span>Add New Building</span>
-              </button>
-             </Link>
+              <Link to="/block-setup" style={{ textDecoration: "none" }}>
+                <button className="btn btn-primary d-flex gap-2 align-items-center add-button">
+                  <FaPlus />
+                  <span>Add New Building</span>
+                </button>
+              </Link>
             </div>
             <div className="table-responsive">
               <table className="table table-border-bottom align-middle text-center">
@@ -973,7 +994,16 @@ function CampusSetup() {
                     <tr key={block.id}>
                       <td>{block.id}</td>
                       <td className="text-start">
-                        <Link to="/campusoverview" style={{textDecoration:'none', outline:'none', color:'#717376'}}>{block.blockName}</Link>
+                        <Link
+                          to="/campusoverview"
+                          style={{
+                            textDecoration: "none",
+                            outline: "none",
+                            color: "#717376",
+                          }}
+                        >
+                          {block.blockName}
+                        </Link>
                       </td>
                       <td>
                         <span className="text-start">{block.code}</span>
@@ -1141,7 +1171,7 @@ function CampusSetup() {
               </div>
             </div>
 
-            {/* multi layer bar grapg*/}
+            {/* <------------------------------------------ multi layer bar graph -------------------------------------------> */}
             <div className="multi-layer-graph mt-3">
               <div className=" p-4 bg-white rounded shadow-sm">
                 <div className="d-flex justify-content-between align-items-center mb-3">
