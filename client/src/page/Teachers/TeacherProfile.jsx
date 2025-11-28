@@ -2054,8 +2054,8 @@ const TeacherProfile = () => {
                         <p className="fw-semibold mb-0">Status</p>
                         <p
                           className={`small mb-0 ${item.status === "Success"
-                              ? "text-success"
-                              : "text-danger"
+                            ? "text-success"
+                            : "text-danger"
                             }`}
                         >
                           {item.status}
@@ -3134,7 +3134,7 @@ const TeacherProfile = () => {
                           </div>
                         </div>
 
-                        
+
                       </div>
                     </Card>
                   </div>
@@ -3147,34 +3147,32 @@ const TeacherProfile = () => {
                         <div className="row mb-1">
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">Monthly</p>
-                            <p className="text-secondary">For tax filing</p>
+                            <p className="text-secondary">Fixed or CTC breakdown</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
-                            <p className="fw-semibold mb-0">Aadhaar Number</p>
-                            <p className="text-secondary">Identity & compliance</p>
+                            <p className="fw-semibold mb-0">Salary Component</p>
+                            <p className="text-secondary">Basic, HRA , Transport, Special Allowances,etc.</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
-                            <p className="fw-semibold mb-0">UAN(Universal Account Number)</p>
-                            <p className="text-secondary">For PF (Provident Fund)</p>
+                            <p className="fw-semibold mb-0">Deductions</p>
+                            <p className="text-secondary">PF, TDS, Loan EMI, etc.</p>
                           </div>
                         </div>
 
                         <div className="row mb-1">
                           <div className="col-12 col-sm-6 col-lg-4">
-                            <p className="fw-semibold mb-0">PF Account Number</p>
-                            <p className="text-secondary">If enrolled in PF system</p>
+                            <p className="fw-semibold mb-0">Pay Frequency</p>
+                            <p className="text-secondary">Monthly / Bi-weekly</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
-                            <p className="fw-semibold mb-0">Tax Regime</p>
-                            <p className="text-secondary">Old Regime / New Regime selection</p>
+                            <p className="fw-semibold mb-0">Last Paid On</p>
+                            <p className="text-secondary">Last salary processed date</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
-                            <p className="fw-semibold mb-0">TDS Applicable</p>
-                            <p className="text-secondary">Yes / No, with % deduction details if yes</p>
+                            <p className="fw-semibold mb-0">View Payslip </p>
+                            {/* <p className="text-secondary">Yes / No, with % deduction details if yes</p> */}
                           </div>
                         </div>
-
-                        
                       </div>
                     </Card>
                   </div>
