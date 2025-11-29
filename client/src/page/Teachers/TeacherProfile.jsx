@@ -30,6 +30,7 @@ import {
   Cell,
 } from "recharts";
 import { Smile } from "lucide-react";
+import { Form } from "react-bootstrap";
 
 const TeacherProfile = () => {
   const [selectedSection, setSelectedSection] = useState("Basic & Contact Details");
@@ -3130,7 +3131,7 @@ const TeacherProfile = () => {
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
                             <p className="fw-semibold mb-0">TDS Applicable</p>
-                            <p className="text-secondary">Yes / No, with % deduction details if yes</p>
+                            <p className="text-secondary">Yes/No, with % deduction details if yes</p>
                           </div>
                         </div>
 
@@ -3146,7 +3147,7 @@ const TeacherProfile = () => {
                       <div className="ms-4">
                         <div className="row mb-1">
                           <div className="col-12 col-sm-6 col-lg-4">
-                            <p className="fw-semibold mb-0">Monthly</p>
+                            <p className="fw-semibold mb-0">Monthly Salary</p>
                             <p className="text-secondary">Fixed or CTC breakdown</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
@@ -3169,8 +3170,7 @@ const TeacherProfile = () => {
                             <p className="text-secondary">Last salary processed date</p>
                           </div>
                           <div className="col-12 col-sm-6 col-lg-4">
-                            <p className="fw-semibold mb-0">View Payslip </p>
-                            {/* <p className="text-secondary">Yes / No, with % deduction details if yes</p> */}
+                            <p className="fw-semibold mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View Payslip &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <MdOutlineDownload size={25} className=" cursor-pointer" /></p>
                           </div>
                         </div>
                       </div>
@@ -3314,244 +3314,86 @@ const TeacherProfile = () => {
           </>
         );
 
-      case "Additional Info":
+      case "Loging & Security":
+        const permissions = [
+          { id: 1, module: "Students Attendance", create: false, view: false, update: false, delete: false, approve: false },
+          { id: 2, module: "Your Attendance", create: true, view: true, update: true, delete: true, approve: true },
+          { id: 3, module: "Homework", create: true, view: true, update: true, delete: false, approve: false },
+          { id: 4, module: "Exam Module", create: true, view: false, update: false, delete: false, approve: false },
+          { id: 5, module: "Timetable", create: true, view: false, update: false, delete: false, approve: false },
+          { id: 6, module: "Assign Task to Staff", create: true, view: false, update: false, delete: false, approve: false },
+          { id: 7, module: "Assign Task to Teacher", create: true, view: false, update: false, delete: false, approve: false },
+          { id: 8, module: "Library Module", create: false, view: false, update: false, delete: false, approve: false },
+          { id: 9, module: "Dormitory Module", create: false, view: false, update: false, delete: false, approve: false },
+          { id: 10, module: "Fees", create: true, view: false, update: false, delete: false, approve: false },
+          { id: 11, module: "Transport Module", create: true, view: false, update: false, delete: false, approve: false },
+          { id: 12, module: "Fees", create: true, view: false, update: false, delete: false, approve: false },
+        ];
         return (
           <>
+            {/* MAIN INFORMATION */}
             <div className="d-flex  justify-content-between gap-4 ">
-              <div className="w-100">
-                <Card className="shadow border-0 rounded-4 p-4 h-auto ">
-                  <div className="p-2">
-                    <h4 className="fw-semibold mb-4">Additional Info</h4>
+              <div className="w-100 h-100">
+                <div className="container bg-white p-4 rounded-4 shadow-sm ">
 
-                    <div className="ms-3">
-                      {/* ROW 1 */}
-                      <div className="row mb-3">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Hobbies / Interests
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            Painting, Reading, Robotics, Singing
-                          </p>
-                        </div>
+                  {/* ---------- LOGIN & ACCESS ---------- */}
+                  <h4 className="fw-semibold mb-3">Login & Access</h4>
 
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Talent</p>
-                          <p className="text-secondary small mb-2">
-                            Mention interschool, state, or national awards
-                          </p>
-                        </div>
+                  <div className="row mb-4">
+                    <div className="col-md-4">
+                      <p className="fw-semibold mb-1">Login ID / Username</p>
+                      <p className="text-secondary fw-semibold">For teacher portal access</p>
+                    </div>
 
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Alternate Mobile Number
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            +91 7656 765 765
-                          </p>
-                        </div>
-                      </div>
+                    <div className="col-md-4">
+                      <p className="fw-semibold mb-1">Password</p>
+                      <p className="text-secondary fw-semibold">**********</p>
+                    </div>
 
-                      {/* ROW 2 */}
-                      <div className="row mb-3">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Leadership Roles</p>
-                          <p className="text-secondary small mb-2">
-                            e.g., Class Monitor, School Captain, Event Volunteer
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Father's Occupation
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            For internal records or scholarship eligibility
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Father’s Annual Income
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            ₹20000/Per Month
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* ROW 3 */}
-                      <div className="row mb-3">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Mother’s Name</p>
-                          <p className="text-secondary small mb-2">
-                            Full name – used on ID card
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Mother’s Mobile Number
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            +91 7656 765 765
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Alternate Mobile Number
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            +91 7656 765 765
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* ROW 4 */}
-                      <div className="row mb-3">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Mother’s Email ID</p>
-                          <p className="text-secondary small mb-2">
-                            sangeeta@gmail.com
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Mother’s Occupation
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            House Wife
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Mother’s Annual Income
-                          </p>
-                          <p className="text-secondary small mb-2">—</p>
-                        </div>
-                      </div>
-
-                      {/* ROW 5 */}
-                      <div className="row mb-3">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Guardian's Name</p>
-                          <p className="text-secondary small mb-2">Manshi</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Guardian's Mobile Number
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            +91 7656 765 765
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Alternate Mobile Number
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            +91 7656 765 765
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* ROW 6: Address */}
-                      <div className="row mb-3">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Current Residential Address
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            House No.327
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Area</p>
-                          <p className="text-secondary small mb-2">
-                            Civil Lines
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">City</p>
-                          <p className="text-secondary small mb-2">Allahabad</p>
-                        </div>
-                      </div>
-
-                      {/* ROW 7 */}
-                      <div className="row mb-3">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">State</p>
-                          <p className="text-secondary small mb-2">UP</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Country</p>
-                          <p className="text-secondary small mb-2">India</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Pincode</p>
-                          <p className="text-secondary small mb-2">254254</p>
-                        </div>
-                      </div>
-
-                      {/* ROW 8: Permanent Address (if different) */}
-                      <div className="row mb-3">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">
-                            Permanent Residential Address (if Different)
-                          </p>
-                          <p className="text-secondary small mb-2">
-                            House No.327
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Area</p>
-                          <p className="text-secondary small mb-2">
-                            Civil Lines
-                          </p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">City</p>
-                          <p className="text-secondary small mb-2">Allahabad</p>
-                        </div>
-                      </div>
-
-                      {/* ROW 9 */}
-                      <div className="row mb-3">
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">State</p>
-                          <p className="text-secondary small mb-2">UP</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Country</p>
-                          <p className="text-secondary small mb-2">India</p>
-                        </div>
-
-                        <div className="col-12 col-sm-6 col-lg-4">
-                          <p className="fw-semibold mb-1">Pincode</p>
-                          <p className="text-secondary small mb-2">254254</p>
-                        </div>
-                      </div>
+                    <div className="col-md-4">
+                      <p className="fw-semibold mb-1">Last Login</p>
+                      <p className="text-secondary fw-semibold">Timestamp</p>
                     </div>
                   </div>
-                </Card>
+
+                  {/* ---------- ROLES & PERMISSIONS ---------- */}
+                  <h4 className=" mb-3">Roles & Permissions</h4>
+
+                  <Table hover responsive className="align-middle">
+                    <thead className="table-light">
+                      <tr>
+                        <th>S.N.</th>
+                        <th>Module Name</th>
+                        <th>Create</th>
+                        <th>View</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                        <th>Approve</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {permissions.map((item, i) => (
+                        <tr key={i}>
+                          <td>{item.id}</td>
+                          <td>{item.module}</td>
+
+                          <td><Form.Check checked={item.create} /></td>
+                          <td><Form.Check checked={item.view} /></td>
+                          <td><Form.Check checked={item.update} /></td>
+                          <td><Form.Check checked={item.delete} /></td>
+                          <td><Form.Check checked={item.approve} /></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </div>
               </div>
-              <div className="w-25">
+              <div className="w-30">
                 <Card className="shadow border-0 rounded-4 p-3 text-center ">
                   <div>
                     <img
-                      src="https://i.pravatar.cc/200?img=8"
+                      src="https://i.pravatar.cc/200?img=11"
                       className=" mb-3 mt-1 p-3 "
                       style={{
                         width: "100%",
@@ -3561,20 +3403,24 @@ const TeacherProfile = () => {
                       }}
                     />
                   </div>
-                  <h5 className="fw-bold fs-5">Neha Pal</h5>
-                  <p className="text-secondary">Student ID : ST65432</p>
+                  <h5 className="fw-bold fs-4">Mr. Sumit Sharma</h5>
+                  <p className="text-secondary">Employee ID : ST65432</p>
 
-                  <div className="text-start mt-0 px-3">
+                  <div className="text-start  px-3">
                     <p className="fw-semibold text-dark mb-1">E-Mail ID</p>
-                    <p className="text-secondary">neha.pal@DPS.com</p>
+                    <p className="text-secondary">Sumit.Sharma@DPS.com</p>
 
                     <p className="fw-semibold text-dark mb-1">
-                      Class & Section
+                      Designation
                     </p>
-                    <p className="text-secondary">Class 5th C</p>
+                    <p className="text-secondary">Subject or class Teacher or Coordination</p>
+                    <p className="fw-semibold text-dark mb-1">
+                      Department
+                    </p>
+                    <p className="text-secondary">English / Science / Mathematics etc.</p>
 
-                    <p className="fw-semibold text-dark mb-1">Roll No.</p>
-                    <p className="text-secondary">63</p>
+                    <p className="fw-semibold text-dark mb-1">Contact No.</p>
+                    <p className="text-secondary">+91 8765 765 765</p>
                   </div>
                 </Card>
               </div>
@@ -3647,7 +3493,7 @@ const TeacherProfile = () => {
       activeIcon: <FaCircleUser />,
     },
     {
-      title: "Additional Info",
+      title: "Loging & Security",
       icon: <RiGraduationCapFill />,
       activeIcon: <FaCircleUser />,
     },
